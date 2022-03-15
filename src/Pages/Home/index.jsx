@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 import CardsProducts from "../../Components/CardsProducts";
+import Loading from "../../Components/Loading";
 
 const Home = () => {
   const products = useSelector((state) => state.productsReducer.allProducts);
@@ -15,7 +16,7 @@ const Home = () => {
   }, [dispatch]);
 
   if (!products) {
-    return <h1>Cargando...</h1>;
+    return <Loading />;
   }
 
   return (
