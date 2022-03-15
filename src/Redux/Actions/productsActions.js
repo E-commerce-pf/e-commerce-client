@@ -1,5 +1,5 @@
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const SET_ALL_PRODUCTS = "SET_ALL_PRODUCTS";
 
-export const getAllProducts = (data) => {
-  return { type: GET_ALL_PRODUCTS, payload: data };
+export const setAllProducts = (data) => {
+  return { type: SET_ALL_PRODUCTS, payload: data };
 };

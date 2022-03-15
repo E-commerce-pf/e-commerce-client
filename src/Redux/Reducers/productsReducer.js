@@ -1,12 +1,12 @@
-import { GET_ALL_PRODUCTS } from "../Actions/productsActions";
+import { SET_ALL_PRODUCTS } from "../Actions/productsActions";
 
 const initialState = {
-  allProducts: [],
+  allProducts: null,
 };
 
 const productsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_ALL_PRODUCTS:
+    case SET_ALL_PRODUCTS:
       return {
         ...state,
         allProducts: payload,
