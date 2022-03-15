@@ -1,2 +1,2 @@
 # Deploy
-https://e-commerce-client-olive.vercel.app/
+https://everyones-store.vercel.app/
