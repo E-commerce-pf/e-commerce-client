@@ -1,5 +1,6 @@
 import {
   ADD_PRODUCT_TO_BAG,
+  REMOVE_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
 } from "../Actions/productsActions";
@@ -59,6 +60,18 @@ const productsReducer = (state = initialState, { type, payload }) => {
             amount: 1,
           },
         ],
+      };
+
+    case REMOVE_PRODUCT_TO_BAG:
+      return {
+        ...state,
+        bagProducts: state.bagProducts.reduce((acc, product) => {
+          if (product.id === payload) {
+            if (product.amount === 1) return acc;
+            return [...acc, { ...product, amount: product.amount - 1 }];
+          }
+          return [...acc, product];
+        }, []),
       };
 
     default:
