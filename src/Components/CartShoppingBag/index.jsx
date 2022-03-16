@@ -11,10 +11,10 @@ const CartShoppingBag = ({ cartItems }) => {
       ))}
       <p>
         Total:{" "}
-        {cartItems.reduce(
+        {(cartItems.reduce(
           (acum, product) => product.price * product.amount + acum,
           0
-        )}
+        )).toFixed(2)} $
       </p>
     </aside>
   );

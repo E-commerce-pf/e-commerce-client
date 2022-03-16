@@ -19,7 +19,6 @@ const ShoppingBag = () => {
   useEffect(() => {
     dispatch(setIdBagProducts(ids));
     return () => {
-      alert("dimount");
       addToLocalStorageIds(
         bagProducts.map((product) => {
           return {
