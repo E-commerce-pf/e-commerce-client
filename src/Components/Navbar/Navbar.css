@@ -10,18 +10,20 @@
     display: flex;
     flex-direction:column;
     padding-left: 10px;
-    
+    cursor:pointer;
 }
 .home_SU{
     display: flex;
     flex-direction:row;
     gap: 2rem;
+    cursor:pointer;
 }
 .home_FLC{
     display: flex;
     flex-direction:row;
     gap: 1rem;
     padding-right: 20px;
+    cursor:pointer;
 }
 .container-info-2 {
     display: flex;

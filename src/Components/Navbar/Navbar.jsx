@@ -6,21 +6,25 @@ import { AiFillHeart } from 'react-icons/ai'
 import { BsBag } from 'react-icons/bs'
 import Everylogopf from '../../Assets/Images/Everylogopf.png'
 import './Navbar.css'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Navbar = () => {
+
+    const navigate=useNavigate()
     return (
         <>
         <div className="container-info-1">
                 <div className='home_img'>
+                    <Link to='/'>
                     <img src={Everylogopf} alt="img" width="150px" height="100px" />
+                    </Link>
                 </div>
                 <div className='home_SU'>
                     <h2><FaHeadphonesAlt /> Soporte</h2>
                     <h2><HiOutlineLocationMarker /> Ubicacion</h2>
                 </div>
                 <div className='home_FLC'>
-                    <h2><AiFillHeart /></h2>
-                    <h2><IoPersonOutline /></h2>
+                    <h2><IoPersonOutline onClick={()=>(navigate('/login'))}/></h2>
                     <h2><BsBag /></h2>
                 </div>
             </div>
