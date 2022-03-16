@@ -36,7 +36,7 @@ export const Home = () => {
         <div className='card'>
         {
           products?.map(el=>(
-            <CardProduct key={el.id}img={el.image} title={el.title} price={el.price} category={el.category}/>
+            <CardProduct key={el.id}img={el.image} title={el.title} id={el.id}price={el.price} category={el.category}/>
           ))
         }
         </div>

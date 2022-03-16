@@ -1,6 +1,7 @@
 import React from 'react';
 import './CardProduct.css'
-export const CardProduct = ({ img, category, title, price }) => {
+import AddToBag from "../AddToBag";
+export const CardProduct = ({ img, category, title,id, price }) => {
   return (
     <div className='card-container'>
       <div className="card_img">
@@ -10,6 +11,7 @@ export const CardProduct = ({ img, category, title, price }) => {
           <h4>{title}</h4>
           <h4>{category}</h4>
           <h4>{price}</h4>
+      <AddToBag text={"Add to cart"} id={id} />
       </div>
     </div>
   );

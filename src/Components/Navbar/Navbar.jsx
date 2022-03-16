@@ -7,12 +7,14 @@ import Everylogopf from '../../Assets/Images/Everylogopf.png'
 import './Navbar.css'
 import { Link, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar'
+import ShoppingBag from '../ShoppingBag'
 
 export const Navbar = () => {
 
     const navigate = useNavigate()
     return (
-        <>
+        <>  <div className="navbar">
+
             <div className="container-info-1">
                 <div className='home_img'>
                     <Link to='/'>
@@ -25,7 +27,7 @@ export const Navbar = () => {
                 </div>
                 <div className='home_FLC'>
                     <h2><IoPersonOutline onClick={() => (navigate('/login'))} /></h2>
-                    <h2><BsBag /></h2>
+                    <ShoppingBag/>
                 </div>
             </div>
             <div className="container-info-2">
@@ -45,6 +47,7 @@ export const Navbar = () => {
                     <SearchBar />
                 </div>
             </div>
+        </div>
         </>
     )
 }
