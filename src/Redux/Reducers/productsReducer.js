@@ -26,16 +26,38 @@ const productsReducer = (state = initialState, { type, payload }) => {
       };
 
     case ADD_PRODUCT_TO_BAG:
-      if (state.bagProducts.find((product) => product.id === payload)) {
-        return state;
+      const isItemInCart = state.bagProducts.find(
+        (product) => product.id === payload
+      );
+      if (isItemInCart) {
+        return {
+          ...state,
+          bagProducts: state.bagProducts.map((product) =>
+            product.id === payload
+              ? { ...product, amount: product.amount + 1 }
+              : product
+          ),
+        };
+      }
+      const newProductCart = state.allProducts.find((product) => {
+        return product.id === payload;
+      });
+      if (!newProductCart) {
+        return {
+          ...state,
+          bagProducts: state.bagProducts.filter(
+            (product) => product.id !== payload
+          ),
+        };
       }
       return {
         ...state,
         bagProducts: [
           ...state.bagProducts,
-          ...state.allProducts.filter((product) => {
-            return product.id === payload;
-          }),
+          {
+            ...newProductCart,
+            amount: 1,
+          },
         ],
       };
 
