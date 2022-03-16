@@ -1,6 +1,6 @@
-.card-container{
-    background-color:$FCARD;
-    color:$LETRAS;
+card-container{
+    background-color:hsl(0, 0%, 98%);
+    color:#23263B;
     font-family: inter;
     display:flex;
     flex-direction:column;
@@ -13,9 +13,10 @@
 .card_img {
     display: flex;
     justify-content: center;
-    img{
-        border-radius:5px
-    }
+    
+}
+.card_img img{
+    border-radius:5px
 }
 .card_info{
     display:flex;
