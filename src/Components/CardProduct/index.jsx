@@ -4,6 +4,7 @@ const CardProduct = ({ name, id, description, price }) => {
       <p>{name}</p>
       <p>{description}</p>
       <p>{price}</p>
+      <button>Agregar al Carrito</button>
     </div>
   );
 };

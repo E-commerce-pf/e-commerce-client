@@ -7,6 +7,7 @@ import CardsProducts from "../../Components/CardsProducts";
 import Loading from "../../Components/Loading";
 import Footer from "../../Components/Footer";
 import SearchBar from "../../Components/SearchBar";
+import ShoppingBag from "../../Components/ShoppingBag";
 
 const Home = () => {
   const products = useSelector((state) => state.productsReducer.allProducts);
@@ -28,6 +29,7 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
+      <ShoppingBag />
       <SearchBar products={products} />
       <div>
         <button
