@@ -22,7 +22,7 @@ const Landing = () => {
       <Carousel
        breakPoints={breakPoints}
        enableAutoPlay
-       autoPlaySpeed={1500}
+       autoPlaySpeed={2500}
        itemPadding={[10, 10]}
        focusOnSelect={false}
        verticalMode>
@@ -37,7 +37,6 @@ const Landing = () => {
          </item>
          </Carousel>
     </div>
-
     </div>
       )
 }
