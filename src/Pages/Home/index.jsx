@@ -5,6 +5,7 @@ import { setAllProducts } from "../../Redux/Actions/productsActions";
 import { Paginate } from "../../Utils/paginate";
 import CardsProducts from "../../Components/CardsProducts";
 import Loading from "../../Components/Loading";
+import Landing from "../../Components/Landing-page";
 
 const Home = () => {
   const products = useSelector((state) => state.productsReducer.allProducts);
@@ -25,6 +26,9 @@ const Home = () => {
 
   return (
     <div>
+      <div>
+        <Landing/>
+      </div>
       <h1>Home</h1>
       <div>
         <button
