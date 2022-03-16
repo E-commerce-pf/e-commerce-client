@@ -3,6 +3,7 @@ import Carousel from "react-elastic-carousel";
 import IMG1 from './img-landing/belleza.png'
 import IMG2 from './img-landing/deco-casa.png';
 import IMG3 from './img-landing/carrousel-tec.png';
+import video_landing from './img-landing/Store2.mp4'
 import './styles/landingPage.css';
 
 const Landing = () => {
@@ -13,7 +14,11 @@ const Landing = () => {
     { width: 1500, itemsToShow: 1 },
   ];
   return (
-    <div className='container-carrusel'>
+    <div>
+      <video className='video_landing234' autoPlay loop muted>
+       <source className='video-pre' src={video_landing} type="video/mp4" />
+     </video>
+      <div className='container-carrusel'>
       <Carousel
        breakPoints={breakPoints}
        enableAutoPlay
@@ -32,7 +37,9 @@ const Landing = () => {
          </item>
          </Carousel>
     </div>
-  )
+
+    </div>
+      )
 }
 
 export default Landing

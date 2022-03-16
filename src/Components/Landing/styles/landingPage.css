@@ -1,6 +1,6 @@
 .container-carrusel{
     width: 100%;
-    height: 400px !important;
+    height: 400px ;
     transition: all ease-in-out 0.7s;
   
     border-radius: 10px 10px;
@@ -15,4 +15,10 @@
 /* hide disabled buttons */
 .rec.rec-arrow:disabled {
     visibility: hidden;
+}
+
+.video_landing234{
+    height:5%;
+    width: 100%;
+    background-color: aqua;
 }
