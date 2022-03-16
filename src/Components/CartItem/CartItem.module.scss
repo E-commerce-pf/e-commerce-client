@@ -6,3 +6,21 @@
   transform: scale(0.2);
   position: relative;
 }
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.button p {
+  width: 10%;
+  text-align: center;
+}

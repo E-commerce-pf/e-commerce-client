@@ -31,13 +31,17 @@ const ShoppingBag = () => {
     };
   }, []);
 
+  const getTotalProducts = (products) => {
+     return products.reduce((acc, product) => acc + product.amount, 0);
+  };
+
   return (
     <div>
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
         <CartShoppingBag cartItems={bagProducts} />
       </Drawer>
       <button style={{ fontSize: "2em" }} onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={bagProducts.length} color="error">
+        <Badge badgeContent={getTotalProducts(bagProducts)} color="error">
           <BiShoppingBag />
         </Badge>
       </button>

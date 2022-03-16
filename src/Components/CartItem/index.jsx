@@ -8,10 +8,15 @@ const CartItem = ({ title, price, id, amount }) => {
   return (
     <div className={styled.container}>
       <p>Nombre: {title}</p>
-      <p>Precio: {price}</p>
-      <RemoveToBag text={"-"} id={id} />
-      <p>{amount}</p>
-      <AddToBag text={"+"} id={id} />
+      <div className={styled.price}>
+        <p>Precio: {price} $</p>
+        <p>Total: {price * amount} $</p>
+      </div>
+      <div className={styled.button}>
+        <RemoveToBag text={"-"} id={id} />
+        <p>{amount}</p>
+        <AddToBag text={"+"} id={id} />
+      </div>
     </div>
   );
 };

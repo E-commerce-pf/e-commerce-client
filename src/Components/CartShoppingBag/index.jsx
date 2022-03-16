@@ -10,7 +10,11 @@ const CartShoppingBag = ({ cartItems }) => {
         <CardItem key={item.id} {...item} />
       ))}
       <p>
-        Total: {cartItems.reduce((acum, product) => product.price + acum, 0)}
+        Total:{" "}
+        {cartItems.reduce(
+          (acum, product) => product.price * product.amount + acum,
+          0
+        )}
       </p>
     </aside>
   );
