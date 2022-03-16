@@ -13,10 +13,10 @@ const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
   const dispatch = useDispatch();
+  const ids = getToLocalStorageIds();
+
 
   useEffect(() => {
-    const ids = getToLocalStorageIds();
-    console.log(ids);
     dispatch(setIdBagProducts(ids));
     return () => {
       addToLocalStorageIds(bagProducts.map((product) => product.id));

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "./CartItem.module.scss";
 
-const CartItem = ({ title, image }) => {
+const CartItem = ({ title, price }) => {
   return (
     <div className={styled.container}>
       <p>Nombre: {title}</p>
-      <img src={image} alt={title} />
+      <p>Precio: {price}</p>
     </div>
   );
 };
