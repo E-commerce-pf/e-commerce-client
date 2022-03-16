@@ -1,0 +1,24 @@
+.card-container{
+    background-color:$FCARD;
+    color:$LETRAS;
+    font-family: inter;
+    display:flex;
+    flex-direction:column;
+    border-radius:10px;
+    cursor: pointer;
+    font-size: 14px;
+    width:20vw;
+}
+
+.card_img {
+    display: flex;
+    justify-content: center;
+    img{
+        border-radius:5px
+    }
+}
+.card_info{
+    display:flex;
+    padding-left: 20px;
+    flex-direction: column;
+}
