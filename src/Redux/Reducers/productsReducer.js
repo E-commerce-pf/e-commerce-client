@@ -21,8 +21,9 @@ const productsReducer = (state = initialState, { type, payload }) => {
     case SET_ID_BAG_PRODUCTS:
       return {
         ...state,
-        bagProducts: state.allProducts.filter((product) => {
-          return payload.includes(product.id);
+        bagProducts: payload.map(({ id, amount }) => {
+          const aux = state.allProducts.find((product) => product.id === id);
+          return { ...aux, amount };
         }),
       };
 
