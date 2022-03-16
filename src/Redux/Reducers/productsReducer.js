@@ -1,4 +1,5 @@
 import {
+  ADD_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
 } from "../Actions/productsActions";
@@ -22,6 +23,20 @@ const productsReducer = (state = initialState, { type, payload }) => {
         bagProducts: state.allProducts.filter((product) => {
           return payload.includes(product.id);
         }),
+      };
+
+    case ADD_PRODUCT_TO_BAG:
+      if (state.bagProducts.find((product) => product.id === payload)) {
+        return state;
+      }
+      return {
+        ...state,
+        bagProducts: [
+          ...state.bagProducts,
+          ...state.allProducts.filter((product) => {
+            return product.id === payload;
+          }),
+        ],
       };
 
     default:
