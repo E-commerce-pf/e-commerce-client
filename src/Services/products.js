@@ -11,6 +11,7 @@ const createProduct = async (product) => {
 
 const productsService = {
   getAllProducts,
+  createProduct,
 };
 
 export default productsService;
