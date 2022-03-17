@@ -165,7 +165,6 @@ const Register = () => {
 
         <InputLabel id='pais-label'>Pais</InputLabel>
         <select name="country" onChange={handlerChange}>
-          <MenuItem>Hola</MenuItem>
           {countries.map((country, index) => {
             return (
               <option key={index} name={country.value}>
