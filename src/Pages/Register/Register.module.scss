@@ -1,14 +1,64 @@
-.disable{
-      opacity: 0;
-      transition: .3s;
+@use '../../config/styles/colors.scss' as color;
+
+.container{
+
+      
+
+      .formContainer{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60%;
+            margin-top: 50px;
+            text-align: center;
+            gap: 5px;
+
+            .personalData{
+                  display: flex;
+                  flex-direction: row;
+                  gap: 50px;
+                  input{
+                        width: 100%;
+                  }
+            }
+            label{
+                  color: color.$black;
+            }
+            select{
+                  border: 1px solid rgb(92, 92, 92);
+                  height: 25px;
+                  width: 30%;
+                  border-radius: 4px;
+                  padding: 0px 20px;
+            }
+      }
+
+
+      //ESTILOS RELACIONADOS CON EL BOTON SUBMIT
+      .disable{
+            opacity: 0;
+            transition: .3s;
+            margin-top: 15px;
+            width: 180px;
+            height: 35px;
+            background-color: rgb(46, 209, 100);
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            color: white;
+            cursor:pointer;
+      }
+      .enable{
+            opacity: 1;
+            margin-top: 15px;
+            transition: .3s;
+      }      
+      .warning{
+            color: rgb(199, 33, 33);
+            font-weight: bold;
+      }
+
 
 }
-.enable{
-      opacity: 1;
-      cursor:pointer;
-      transition: .3s;
-}
 
-.warning{
-      color: red;
-}
