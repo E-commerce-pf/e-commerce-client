@@ -1,0 +1,14 @@
+.disable{
+      opacity: 0;
+      transition: .3s;
+
+}
+.enable{
+      opacity: 1;
+      cursor:pointer;
+      transition: .3s;
+}
+
+.warning{
+      color: red;
+}

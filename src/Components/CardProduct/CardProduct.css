@@ -1,0 +1,25 @@
+card-container{
+    background-color:hsl(0, 0%, 98%);
+    color:#23263B;
+    font-family: inter;
+    display:flex;
+    flex-direction:column;
+    border-radius:10px;
+    cursor: pointer;
+    font-size: 14px;
+    width:20vw;
+}
+
+.card_img {
+    display: flex;
+    justify-content: center;
+    
+}
+.card_img img{
+    border-radius:5px
+}
+.card_info{
+    display:flex;
+    padding-left: 20px;
+    flex-direction: column;
+}

@@ -1,10 +1,11 @@
 import React from "react";
 
 import styled from "./Loading.module.css";
+import Load from "../../Assets/Gifts/loading (1).gif";
 
 const Loading = () => (
   <div className={styled.container}>
-    <div className={styled.loader}></div>
+    <img src={Load} alt="Loading gif" />
   </div>
 );
 
