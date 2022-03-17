@@ -1,0 +1,64 @@
+.container-info-1{
+    display: flex;
+    flex-direction:row;
+    color: #23263B;
+    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home_img{
+    display: flex;
+    flex-direction:column;
+    padding-left: 10px;
+    cursor:pointer;
+}
+.home_SU{
+    display: flex;
+    flex-direction:row;
+    gap: 2rem;
+    cursor:pointer;
+}
+.home_FLC{
+    display: flex;
+    flex-direction:row;
+    gap: 1rem;
+    padding-right: 20px;
+    cursor:pointer;
+}
+.container-info-2 {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 14px;
+    align-items: center;
+}
+
+.select_CP {
+    display: flex;
+    gap: 3rem;
+    
+}
+.select_CP select {
+    height: 5vh;
+    width: 7vw;
+    border: 1px solid white;
+}
+
+
+.input_S {
+    padding-right: 30px;
+
+}
+
+.input_S input {
+    height: 5vh;
+    width: 30vw;
+    padding-left: 10px;
+
+}
+.input_S input focus {
+    outline: 1px solid white;
+}
+
