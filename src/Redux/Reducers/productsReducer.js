@@ -8,6 +8,7 @@ import {
 const initialState = {
   allProducts: null,
   bagProducts: [],
+  produtsFilter: [],
 };
 
 const productsReducer = (state = initialState, { type, payload }) => {
@@ -16,6 +17,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allProducts: payload,
+        produtsFilter: payload,
       };
 
     case SET_ID_BAG_PRODUCTS:

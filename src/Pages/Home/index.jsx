@@ -8,6 +8,7 @@ import { CardProduct } from "../../Components/CardProduct";
 import Footer from "../../Components/Footer";
 import "./Home.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
+import Filter from "../../Components/Filter";
 
 export const Home = () => {
   const products = useSelector((state) => state.productsReducer.allProducts);
@@ -29,6 +30,7 @@ export const Home = () => {
       <div className="container-info-3">
         <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div>
+      <Filter />
       <div className="container-info-4">
         <div className="nuevo">
           <h2>Nuevo en </h2>
