@@ -1,10 +1,10 @@
 import React from 'react'
 import Carousel from "react-elastic-carousel";
-import IMG1 from './img-landing/belleza.png'
-import IMG2 from './img-landing/deco-casa.png';
-import IMG3 from './img-landing/carrousel-tec.png';
-import video_landing from './img-landing/Store2.mp4'
-import './styles/landingPage.css';
+import IMG1 from './img-landing/img-car.png'
+import IMG2 from './img-landing/img-car2.png';
+import IMG3 from './img-landing/img-car3.png';
+import video_landing from './img-landing/EveryoneVideo.mp4'
+import './styles/landingPage.modules.css';
 
 const Landing = () => {
    const breakPoints = [
@@ -25,16 +25,13 @@ const Landing = () => {
        autoPlaySpeed={2500}
        itemPadding={[10, 10]}
        focusOnSelect={false}
-       verticalMode>
-         <item>
+       verticalMode
+       >
          <img className='img-carrousel' src={IMG1} alt='carousel1'/>
-         </item>
-         <item>
+         
          <img className='img-carrousel' src={IMG2} alt='carousel2'/>
-         </item>
-         <item>
+         
          <img className='img-carrousel' src={IMG3} alt='carousel3'/>
-         </item>
          </Carousel>
     </div>
     </div>
