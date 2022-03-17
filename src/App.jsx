@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
-import CreateProperty from "./Pages/CreateProperty/CreateProperty";
+import CreateProduct from "./Pages/CreateProduct/CreateProduct";
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <Routes>
         <Route path="*" element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="/create-product" element={<CreateProperty />} />
+        <Route path="/create-product" element={<CreateProduct />} />
       </Routes>
     </>
   );

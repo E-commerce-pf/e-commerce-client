@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.create-product__background-image {
+  background-image: url("../../Assets/form-background-image.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  flex-grow: 1;
+  filter: grayscale(80%) blur(5px);
+  position: absolute;
+  z-index: -1;
+}
+
+.create-product__form {
+  position: absolute;
+  color: white;
+  display: flex;
+  width: 40%;
+  padding: 15px;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 16px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(10, 36, 57, 0.5);
+  border-radius: 25px;
+}
+
+.create-product__form h1 {
+  margin: 0 auto;
+}
+
+.create-product__form div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.create-product__form select {
+  height: 30px;
+}
+
+.create-product__form div input {
+  height: 30px;
+}
+
+.create-product__form .create-product__form--image {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.create-product__form .create-product__form--image div {
+  width: 100%;
+}
+
+.create-product__form .create-product__form--image button {
+  height: 35px;
+  width: 50%;
+  background-color: #003465;
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  box-sizing: border-box;
+}
+
+.create-product__form div input::placeholder {
+  padding-left: 10px;
+}
+
+.create-product__form div label {
+  margin-left: 20px;
+}
+
+.create-product__form--button {
+  color: white;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  background-color: #003465;
+  border-radius: 20px;
+}
