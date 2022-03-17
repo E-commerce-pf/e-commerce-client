@@ -1,5 +1,6 @@
 import {
   ADD_PRODUCT_TO_BAG,
+  CLEAR_FILTER,
   REMOVE_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
@@ -27,6 +28,12 @@ const productsReducer = (state = initialState, { type, payload }) => {
           const aux = state.allProducts.find((product) => product.id === id);
           return { ...aux, amount };
         }),
+      };
+
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        produtsFilter: state.allProducts,
       };
 
     case ADD_PRODUCT_TO_BAG:
