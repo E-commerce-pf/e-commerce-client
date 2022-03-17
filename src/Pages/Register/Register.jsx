@@ -1,178 +1,190 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./Register.module.scss";
+import axios from "axios";
 import { countries } from "../../Utils/countries";
 
 //COMPONENTES
-import AlertModal from "../../Components/AlertModal/AlertModa";
-
+import { TextField, Select, MenuItem, InputLabel } from '@mui/material' 
+import { ToastContainer} from 'react-toastify'
+import { notifyError, notifySuccess } from "../../Utils/notifications";
 //SOLO TEMPORAL
-import axios from "axios";
 const baseUrl = "http://localhost:3001/api/";
 
 const validateData = (input, error, name) => {
-      console.log("input", input);
-      console.log("error", error);
 
-      if (name === "email" || name === "email2") {
-            return {
-                  ...error,
-                  email: input.email !== input.email2 ? "Los correos deben coincidirr" : "",
-            };
-      }
+  if(input.email === input.email2 && input.password === input.password2 && input.name && input.lastName && (input.email2.length && input.password2.length)){
+    document.querySelector('#submit').classList.add(style.enable)
+  } else {
+    document.querySelector('#submit').classList.remove(style.enable)
+  }
 
-      if(name === "password" || name === "password2")
+  if (name === "email" || name === "email2") {
+    return {
+      ...error,
+      email: input.email !== input.email2 ? "Los correos deben coincidir" : "",
+    };
+  }
+
+  if (name === "password" || name === "password2") {
       return {
-            ...error,
-            password : input.password === input.password2 ? 'Las contraseñas deben coincidir' : ''
+        ...error,
+        password: input.password !== input.password2 ? "Las contraseñas deben coincidir" : "",
       };
+    }
+
+  return error;
 };
 
 const Register = () => {
-      const [userData, setUserData] = useState({
-            name: "",
-            lastName: "",
-            email: "",
-            email2: "",
-            password: "",
-            password2: "",
-            country: "",
-      });
+  const [userData, setUserData] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    email2: "",
+    password: "",
+    password2: "",
+    country: "",
+  });
 
-      const [error, setError] = useState({
-            name: "",
-            lastName: "",
-            email: "",
-            password: "",
-            country: "",
-      });
+  const [error, setError] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+    country: "",
+  });
 
-      const [errorModal, setErrorModal] = useState({ status: false, message: "" });
 
-      const handlerChange = (event) => {
-            setUserData({
-                  ...userData,
-                  [event.target.name]: event.target.value,
-            });
-            setError(
-                  validateData( {...userData}, error, event.target.name )
-            );
-      };
+  const handlerChange = (event) => {
+    setUserData({
+      ...userData,
+      [event.target.name]: event.target.value,
+    });
+    setError(
+      validateData(
+        {
+          ...userData,
+          [event.target.name]: event.target.value,
+        },
+        error,
+        event.target.name
+      )
+    );
+  };
 
-      //Funcion encargada de enviar la informacion del formulario para crear un usuario
-      const handlerSubmit = async (e) => {
-      e.preventDefault();
+  //Funcion encargada de enviar la informacion del formulario para crear un usuario
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+    const { password2, email2, ...newUser } = userData;
+    console.log(newUser);
 
-      const { password2, email2, ...newUser } = userData;
+    if(!userData.country) notifyError('Alto! aún no sabemos de que país eres');
 
-      if (error.email) return alert("Error Form");
-
-      console.log(newUser);
-
-      await axios.post(baseUrl + "register",{newUser})
+    await axios.post(baseUrl + "register", { ...userData })
       .then((res) => {
-            setErrorModal({ status: true, message: res.data.success });
-            //Comenzamos una cuenta regresiva para ocultar el modal
-            setTimeout(() => {
-            setErrorModal({ status: false });
-            }, 3000);
+        notifySuccess(res.data.success)
       })
       .catch((err) => {
-            console.log(err);
-            setErrorModal({ status: true, message: "Algo salió mal" });
-            //Comenzamos una cuenta regresiva para ocultar el modal
-            setTimeout(() => {
-            setErrorModal({ status: false });
-            }, 3000);
+        notifyError('Algo salió mal')
       });
-      };
+  };
 
-      return (
-      <div className={style.container}>
-            <AlertModal
-                  status={errorModal.status}
-                  message={errorModal.message}
-                  width={250}
+  return (
+    <div className={style.container}>
+      <ToastContainer/> 
+      <form onSubmit={(e) => handlerSubmit(e)} className={style.formContainer}>
+        <div className={style.personalData}>
+
+          <div className={style.container}>
+            <TextField 
+              name='name' 
+              value={userData.name} 
+              onChange={handlerChange} 
+              variant="outlined" 
+              label='Name'
             />
+          </div>
 
-            <form onSubmit={(e) => handlerSubmit(e)} className={style.formContainer}>
-                  <div className={style.personalData}>
-                        <div className={style.container}>
-                              <label>Nombre</label>
-                              <input
-                                    type="text"
-                                    name="name"
-                                    value={userData.name}
-                                    onChange={handlerChange}
-                              />
-                        </div>
-                        <div className={style.container}>
-                              <label>Apellido</label>
-                              <input
-                                    type="text"
-                                    name="lastName"
-                                    value={userData.lastName}
-                                    onChange={handlerChange}
-                              />
-                        </div>
-                  </div>
+          <div className={style.container}>
+            <TextField 
+              name='lastName' 
+              value={userData.lastName} 
+              onChange={handlerChange} 
+              variant="outlined" 
+              label='Last name'
+            />
+          </div>
 
-                  <label>Email</label>
-                  <input
-                        type="email"
-                        placeholder="example@example.com"
-                        name="email"
-                        value={userData.email}
-                        onChange={handlerChange}
-                  />
-                  <label>Repetir email</label>
-                  <input
-                        type="email"
-                        placeholder="example@example.com"
-                        name="email2"
-                        value={userData.email2}
-                        onChange={handlerChange}
-                  />
-                        {error.email && <p className={style.warning}>{error.email}</p>}
+        </div>
 
-                        <p id="emailCaveat" className={style.warning}></p>
+        <TextField 
+          type="email" 
+          name='email' 
+          placeholder="example@example.com" 
+          value={userData.email} 
+          onChange={handlerChange} 
+          variant="outlined" 
+          label='Email'
+          color={error.email ? 'error' : 'success' }
 
-                        <label>Contraseña</label>
-                        <input
-                        type="password"
-                        name="password"
-                        value={userData.password}
-                        onChange={handlerChange}
-                        />
-                        <label>Repetir contraseña</label>
-                        <input
-                        type="password"
-                        name="password2"
-                        value={userData.password2}
-                        onChange={handlerChange}
-                        />
-                        <p id="passCaveat" className={style.warning}></p>
+        />
 
-                        <label>Pais</label>
-                        <select name="country" onChange={handlerChange}>
-                        {countries.map((country, index) => {
-                        return (
-                              <option key={index} name={country.value}>
-                              {country.value}
-                              </option>
-                        );
-                        })}
-                        </select>
+        <TextField 
+          type="email" 
+          name='email2' 
+          placeholder="example@example.com" 
+          value={userData.email2} 
+          onChange={handlerChange} 
+          variant="outlined" 
+          label='Repeat Email'
+          color={error.email ? 'error' : 'success'}
+        />
 
-                        <input
-                        type="submit"
-                        value="Crear cuenta"
-                        id="submit"
-                        //     className={style.disable}
-                        />
-            </form>
-            <div className={style.background}></div>
-      </div>
-      );
+        {error.email && <p className={style.warning}>{error.email}</p>}
+  
+        <TextField 
+          type="password" 
+          name='password' 
+          value={userData.password} 
+          onChange={handlerChange} 
+          variant="outlined"
+          label='Password'
+          color={error.password ? 'error' : 'success'}
+        />
+
+        <TextField 
+          type="password" 
+          name='password2' 
+          value={userData.password2} 
+          onChange={handlerChange} 
+          variant="outlined" 
+          label='Repeat password'
+          color={error.password ? 'error' : 'success'}
+        />
+        {error.password && <p className={style.warning}>{error.password}</p>}
+
+        <InputLabel id='pais-label'>Pais</InputLabel>
+        <select name="country" onChange={handlerChange}>
+          <MenuItem>Hola</MenuItem>
+          {countries.map((country, index) => {
+            return (
+              <option key={index} name={country.value}>
+                {country.value}
+              </option>
+            );
+          })}
+        </select>
+
+        <input
+          type="submit"
+          value="Crear cuenta"
+          id="submit"
+          className={style.disable}
+        />
+
+      </form>
+    </div>
+  );
 };
 
 export default Register;
