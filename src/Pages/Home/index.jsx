@@ -4,6 +4,7 @@ import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
+import Landing from "../../Components/Landing/Landing-page";
 import { CardProduct } from "../../Components/CardProduct";
 import Footer from "../../Components/Footer";
 import "./Home.css";
@@ -26,7 +27,9 @@ export const Home = () => {
 
   return (
     <div className="container_home">
+      <Landing/>
       <Navbar />
+      
       <div className="container-info-3">
         <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div>
