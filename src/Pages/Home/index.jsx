@@ -26,8 +26,9 @@ export const Home = () => {
 
   return (
     <div className="container_home">
-      <Navbar />
       <Landing/>
+      <Navbar />
+      
       <div className="container-info-3">
         <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div>
