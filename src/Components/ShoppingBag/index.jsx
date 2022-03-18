@@ -8,6 +8,7 @@ import {
   getToLocalStorageIds,
 } from "../../Utils/shoppingBag";
 import CartShoppingBag from "../CartShoppingBag";
+import './ShoppingBag.modules.css';
 
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -38,12 +39,12 @@ const ShoppingBag = () => {
   };
 
   return (
-    <div>
+    <div >
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
         <CartShoppingBag cartItems={bagProducts} />
       </Drawer>
-      <button style={{ fontSize: "2em" }} onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalProducts(bagProducts)} color="error">
+      <button className="shopping_container"  onClick={() => setCartOpen(true)}>
+        <Badge  badgeContent={getTotalProducts(bagProducts)} color="error">
           <BiShoppingBag />
         </Badge>
       </button>
