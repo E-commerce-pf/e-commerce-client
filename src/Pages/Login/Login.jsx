@@ -27,12 +27,14 @@ const Login = () => {
     const signInGoogle = ()=>{
         signInWithPopup(auth, googleProvider)
             .then(result => {
+                console.log(result);
                 const displayName = result.user.displayName.split(' ');
                 //Enviamos los datos a la api
                 axios.post(baseUrl, {
                     email : result.user.email,
                     name : displayName[0],
                     lastName : displayName[1],
+                    password : result.user.uid,
                     loginWithSocial : true
                 }) .then( res =>{
                     notifySuccess( res.data.success);
@@ -48,10 +50,12 @@ const Login = () => {
     const signInGitHub = ()=>{
         signInWithPopup(auth, gitHubProvider)
             .then(result => {
+                console.log(result)
                 axios.post(baseUrl, {
-                    email : result.tokenResponse.email,
-                    name : result.tokenResponse.screenName,
+                    email : result._tokenResponse.email,
+                    name : result._tokenResponse.screenName,
                     lastName : '',
+                    password : result.user.uid,
                     loginWithSocial : true
                 }) .then( res =>{
                     notifySuccess( res.data.success )
@@ -59,8 +63,11 @@ const Login = () => {
                         navigate('/');
                     },3500);
                 }) .catch( err => {
-                    console.log( err.data )
+                    notifyError( err.response.data.error )
                 })
+            }) .catch( err =>{
+                const error = err.message.split(' ');
+                notifyError(error[2])
             })
     }
 
