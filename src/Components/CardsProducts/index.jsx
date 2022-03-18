@@ -1,4 +1,5 @@
 import CardProduct from "../CardProduct";
+import style from "./CardsProducts.module.scss";
 
 const CardsProducts = ({ products }) => {
   if (products.length === 0) {
@@ -6,7 +7,7 @@ const CardsProducts = ({ products }) => {
   }
 
   return (
-    <div>
+    <div className={style.cards}>
       {products.map((product) => {
         return <CardProduct {...product} key={product.id} />;
       })}
