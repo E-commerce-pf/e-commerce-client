@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Badge, Drawer } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { BiShoppingBag } from "react-icons/bi";
@@ -9,15 +8,19 @@ import {
   getToLocalStorageIds,
 } from "../../Utils/shoppingBag";
 import CartShoppingBag from "../CartShoppingBag";
+import './ShoppingBag.modules.css';
 
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
   const dispatch = useDispatch();
-  const ids = getToLocalStorageIds();
 
   useEffect(() => {
+    const ids = getToLocalStorageIds();
     dispatch(setIdBagProducts(ids));
+  }, [dispatch]);
+
+  useEffect(() => {
     return () => {
       addToLocalStorageIds(
         bagProducts.map((product) => {
@@ -28,6 +31,7 @@ const ShoppingBag = () => {
         })
       );
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTotalProducts = (products) => {
@@ -35,12 +39,12 @@ const ShoppingBag = () => {
   };
 
   return (
-    <div>
+    <div >
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
         <CartShoppingBag cartItems={bagProducts} />
       </Drawer>
-      <button style={{ fontSize: "2em" }} onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalProducts(bagProducts)} color="error">
+      <button className="shopping_container"  onClick={() => setCartOpen(true)}>
+        <Badge  badgeContent={getTotalProducts(bagProducts)} color="error">
           <BiShoppingBag />
         </Badge>
       </button>
