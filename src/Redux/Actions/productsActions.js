@@ -4,6 +4,7 @@ export const ADD_PRODUCT_TO_BAG = "ADD_PRODUCT_TO_BAG";
 export const REMOVE_PRODUCT_TO_BAG = "REMOVE_PRODUCT_TO_BAG";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
+export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 
 export const setAllProducts = (data) => {
   return { type: SET_ALL_PRODUCTS, payload: data };
@@ -27,4 +28,8 @@ export const clearFilter = () => {
 
 export const setFilterProducts = (data) => {
   return { type: FILTER_PRODUCTS, payload: data };
+};
+
+export const setOrderProducts = (data) => {
+  return { type: ORDER_PRODUCTS, payload: data };
 };

@@ -2,6 +2,7 @@ import {
   ADD_PRODUCT_TO_BAG,
   CLEAR_FILTER,
   FILTER_PRODUCTS,
+  ORDER_PRODUCTS,
   REMOVE_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
@@ -51,6 +52,17 @@ const productsReducer = (state = initialState, { type, payload }) => {
           const aux = state.allProducts.find((product) => product.id === id);
           return { ...aux, amount };
         }),
+      };
+
+    case ORDER_PRODUCTS:
+      const products = state.produtsFilter.sort((productA, productB) =>
+        payload.order === "max-min"
+          ? productB[payload.name] - productA[payload.name]
+          : productA[payload.name] - productB[payload.name]
+      );
+      return {
+        ...state,
+        produtsFilter: [...products],
       };
 
     case CLEAR_FILTER:

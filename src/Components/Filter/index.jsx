@@ -10,6 +10,7 @@ import {
 import {
   setFilterProducts,
   clearFilter,
+  setOrderProducts,
 } from "../../Redux/Actions/productsActions";
 
 import categoriesService from "../../Services/category";
@@ -21,15 +22,20 @@ const Filter = () => {
     description: "",
     title: "",
     price: [0, 2500],
+    category: "all",
+  };
+
+  const initialStateOrder = {
     stock: "all",
     sales: "all",
     discount: "all",
-    category: "all",
   };
 
   const dispatch = useDispatch();
 
-  const [input, setInput] = useState({ ...initialState });
+  const [input, setInput] = useState(initialState);
+  const [inputOrder, setInputOrder] = useState(initialStateOrder);
+
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -37,6 +43,16 @@ const Filter = () => {
       setCategories(data);
     });
   }, []);
+
+  const handleChangeOrder = (event) => {
+    const name = event.target.name;
+    setInputOrder({
+      stock: name === "stock" ? event.target.value : "all",
+      sales: name === "sales" ? event.target.value : "all",
+      discount: name === "discount" ? event.target.value : "all",
+    });
+    dispatch(setOrderProducts({ order: event.target.value, name }));
+  };
 
   const handleChange = (event) => {
     setInput({
@@ -58,8 +74,8 @@ const Filter = () => {
         <Select
           name="stock"
           aria-labelledby="stock"
-          value={input.stock}
-          onChange={handleChange}
+          value={inputOrder.stock}
+          onChange={handleChangeOrder}
         >
           <MenuItem value="all">Sin Ordenar</MenuItem>
           <MenuItem value="min-max">Menor a mayor</MenuItem>
@@ -71,8 +87,8 @@ const Filter = () => {
         <Select
           name="sales"
           aria-labelledby="sales"
-          value={input.sales}
-          onChange={handleChange}
+          value={inputOrder.sales}
+          onChange={handleChangeOrder}
         >
           <MenuItem value="all">Sin Ordenar</MenuItem>
           <MenuItem value="min-max">Menor a mayor</MenuItem>
@@ -84,8 +100,8 @@ const Filter = () => {
         <Select
           name="discount"
           aria-labelledby="discount"
-          value={input.discount}
-          onChange={handleChange}
+          value={inputOrder.discount}
+          onChange={handleChangeOrder}
         >
           <MenuItem value="all">Sin Ordenar</MenuItem>
           <MenuItem value="min-max">Menor a mayor</MenuItem>
@@ -146,6 +162,7 @@ const Filter = () => {
           variant="contained"
           onClick={() => {
             setInput(initialState);
+            setInputOrder(initialStateOrder);
             dispatch(clearFilter());
           }}
         >
