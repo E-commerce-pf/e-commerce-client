@@ -42,12 +42,16 @@
   flex-direction: column;
   gap: 10px;
 }
-.create-product__form select {
+.create-product__form .select {
   height: 30px;
+  border: 1px solid transparent;
+  outline: none;
 }
 
-.create-product__form div input {
+.create-product__form div .input {
   height: 30px;
+  border: 1px solid transparent;
+  outline: none;
 }
 
 .create-product__form .create-product__form--image {
@@ -84,4 +88,9 @@
   border: 1px solid white;
   background-color: #003465;
   border-radius: 20px;
+}
+
+.error {
+  border: 1px solid red;
+  height: 30px;
 }

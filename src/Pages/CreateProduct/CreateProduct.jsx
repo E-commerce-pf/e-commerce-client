@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { isValidURL, validateProduct } from "../../Utils/validate.product";
-import "./CreateProduct.css";
+import "./CreateProduct.scss";
 
 export default function CreateProperty() {
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
+    lastName: "",
     categories: [],
     images: [],
     description: "",
@@ -56,6 +57,7 @@ export default function CreateProperty() {
         <div>
           <label htmlFor="name">Name</label>
           <input
+            className={errors.name ? "error" : "input"}
             onChange={handleChange}
             name="name"
             id="name"
@@ -64,18 +66,24 @@ export default function CreateProperty() {
           />
         </div>
         <div>
-          <label htmlFor="name">Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
+            className={errors.lastName ? "error" : "input"}
             onChange={handleChange}
             name="lastName"
-            id="name"
+            id="lastName"
             type="text"
             placeholder="Product Name"
           />
         </div>
         <div>
           <label htmlFor="categories">Categories</label>
-          <select onChange={handleChange} name="categories" id="categories">
+          <select
+            onChange={handleChange}
+            className={errors.categories ? "error" : "select"}
+            name="categories"
+            id="categories"
+          >
             <option value="null">Categories</option>
             <option value="technology">Technology</option>
             <option value="clothe">Clothes</option>
@@ -84,6 +92,7 @@ export default function CreateProperty() {
         <div>
           <label htmlFor="description">Description</label>
           <input
+            className={errors.description ? "error" : "input"}
             onChange={handleChange}
             name="description"
             id="description"
@@ -95,11 +104,12 @@ export default function CreateProperty() {
           <div>
             <label htmlFor="images">Images</label>
             <input
+              className={errors.images ? "error" : "input"}
               name="images"
               id="images"
               onChange={handleChange}
               type="text"
-              placeholder=".png .jpg ..."
+              placeholder="Image Url"
             />
           </div>
           <button type="button" onClick={handleClick}>
@@ -107,8 +117,9 @@ export default function CreateProperty() {
           </button>
         </div>
         <div>
-          <label htmlFor="name">Price</label>
+          <label htmlFor="price">Price</label>
           <input
+            className={errors.price ? "error" : "input"}
             onChange={handleChange}
             name="price"
             id="price"
@@ -119,6 +130,7 @@ export default function CreateProperty() {
         <div>
           <label htmlFor="stock">Stock</label>
           <input
+            className={errors.stock ? "error" : "input"}
             onChange={handleChange}
             name="stock"
             id="stock"

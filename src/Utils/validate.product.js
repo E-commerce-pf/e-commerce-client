@@ -7,6 +7,7 @@ export function validateProduct(input) {
   if (!input.lastName) {
     errors.lastName = "this field is required";
   }
+
   if (!input.images.length > 0) {
     errors.images = "The product needs at least one image";
   } else if (isValidURL(input.images)) {
