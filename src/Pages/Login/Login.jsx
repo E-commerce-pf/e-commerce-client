@@ -1,13 +1,15 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import everylogopf_gris from '../../Assets/Images/Everylogopf_gris.png'
 import {IoIosArrowBack} from 'react-icons/io'
 import {FcGoogle} from 'react-icons/fc'
+import{BsGithub} from 'react-icons/bs'
 import styles from'./Login.module.css'
 //COMPONENTES
-import {getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
+import {getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import firebaseConfing from '../../config/firebase'
 import axios from 'axios';
+import { notifyError, notifySuccess } from '../../Utils/notifications'
 
 const baseUrl = 'http://localhost:3001/api/user/login';
 
@@ -17,9 +19,12 @@ const Login = () => {
     firebaseConfing()
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
-    googleProvider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+    const gitHubProvider = new GithubAuthProvider();
 
-    const signIn = ()=>{
+    googleProvider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+    gitHubProvider.addScope('repo');
+
+    const signInGoogle = ()=>{
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const displayName = result.user.displayName.split(' ');
@@ -29,8 +34,32 @@ const Login = () => {
                     name : displayName[0],
                     lastName : displayName[1],
                     loginWithSocial : true
-                }) . then( () => {
-                    navigate('/')
+                }) .then( res =>{
+                    notifySuccess( res.data.success);
+                    setTimeout(()=>{
+                        navigate('/')
+                    },3500)
+                }) .catch( err =>{
+                    notifyError( err.response.data.error )
+                } )
+            })
+    }
+
+    const signInGitHub = ()=>{
+        signInWithPopup(auth, gitHubProvider)
+            .then(result => {
+                axios.post(baseUrl, {
+                    email : result.tokenResponse.email,
+                    name : result.tokenResponse.screenName,
+                    lastName : '',
+                    loginWithSocial : true
+                }) .then( res =>{
+                    notifySuccess( res.data.success )
+                    setTimeout( ()=>{
+                        navigate('/');
+                    },3500);
+                }) .catch( err => {
+                    console.log( err.data )
                 })
             })
     }
@@ -52,11 +81,12 @@ const Login = () => {
                 <h4>Password</h4>
                 <input type="text" 
                 placeholder='Password'/>
-                <h4>Forgot password?</h4>
                 <button>Sign in</button>
+                <Link to='/register' className={styles.link}>create new account</Link>
             </div>
             <div  className={styles.login3}>
-            <button onClick={ signIn }> <FcGoogle className={styles.span}/>Sign in with Google</button>
+            <button onClick={ signInGoogle }> <FcGoogle className={styles.span}/>Sign in with Google</button>
+            <button onClick={ signInGitHub }><BsGithub className={styles.span}/>Sign in with GitHub</button>
             </div>
             </div>
         </div>

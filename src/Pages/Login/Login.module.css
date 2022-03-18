@@ -25,6 +25,7 @@
     align-items:center;
     flex-direction:row;
     gap: 20rem;
+
 }
 
 .login2{
@@ -32,16 +33,21 @@
     color: white;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 .login2 input{
     height:7vh;
     width: 40vw;
     border: 1px solid white;
-    border-radius:10px
+    border-radius:10px;
 }
 .login2 input :focus{
     outline: none;
     border: 1px solid white
+}
+.login2 h4{
+    margin:0;
+    padding:0;
 }
 .login2 button {
     height:5vh;
@@ -53,6 +59,12 @@
     font-family: ABeeZee;
     cursor: pointer;
 }
+.link {
+    text-decoration: none;
+    color:white;
+    font-family: ABeeZee;
+    padding-left:350px
+} 
 .cardButton{
     display:flex;
     padding-right:1200px;
@@ -74,7 +86,9 @@
     display:flex;
     padding-top: 15px;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 3rem;
+    
 }
 
 
@@ -91,6 +105,7 @@
     color:white;
     font-size:15px;
     border-radius:5px
+
 }
 .span{
     font-size:40px;
