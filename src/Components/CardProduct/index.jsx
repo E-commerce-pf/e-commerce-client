@@ -1,6 +1,7 @@
 import React from 'react';
 import './CardProduct.css'
 import AddToBag from "../AddToBag";
+
 export const CardProduct = ({ img, category, title,id, price }) => {
   return (
     <div className='card-container'>
