@@ -1,0 +1,45 @@
+.container-carrusel{
+    width: 100%;
+    height: 400px ;
+    transition: all ease-in-out 0.7s;
+  
+    border-radius: 10px 10px;
+}
+.img-carrousel{
+    width: 100%;
+    height: 300px;
+}
+.rec.rec-arrow:hover {
+    border-radius: 50%;
+}
+/* hide disabled buttons */
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.video_landing234{
+    height:5%;
+    width: 100%;
+    background-color: aqua;
+}
+
+
+.rec.rec-arrow {
+    border-radius: 50%;
+    background-color: rgba(57, 59, 180, 0.24);
+  }
+  .rec.rec-arrow:focus {
+    background-color: #100381 !important;
+  }
+  /* round buttons on hover */
+  .rec.rec-arrow:hover {
+    border-radius: 50%;
+    background-color: rgb(17, 19, 163);
+  }
+  .eaptOe {
+    color: #2226fa;
+  }
+  .lcUbOd.rec.rec-dot {
+    background-color: rgba(8, 25, 119, 0.815);
+    box-shadow: 0 0 1px 3px #052c75;
+  }

@@ -7,10 +7,11 @@ import styled from "./CartItem.module.scss";
 const CartItem = ({ title, price, id, amount }) => {
   return (
     <div className={styled.container}>
-      <p>Nombre: {title}</p>
+      <button className={styled.btn_quitar}>Quitar del carrito</button>
+      <p className={styled.text_shp}>Nombre: {title}</p>
       <div className={styled.price}>
-        <p>Precio: {price} $</p>
-        <p>Total: {price * amount} $</p>
+        <p className={styled.text_shp}>Precio: {price}$</p>        
+        <p className={styled.text_shp}>Total: {price * amount}$</p>
       </div>
       <div className={styled.button}>
         <RemoveToBag text={"-"} id={id} />
