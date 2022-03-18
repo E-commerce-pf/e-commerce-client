@@ -32,3 +32,26 @@ body {
     padding: 40px;
     gap: 3rem;
 }
+.paginado_home{
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.paginado_btn{
+    border-style: none;
+    color: rgb(23, 23, 150);
+    border-radius: 9px;
+    margin-left: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all ease-in-out 0.5s;
+}
+.paginado_btn:hover{
+    color: antiquewhite;
+    background-color: rgba(23, 23, 150, 0.863);
+}
