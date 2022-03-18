@@ -46,3 +46,21 @@
   font-weight:bold;
   color:rgb(22, 22, 43);
 }
+.btn_quitar{
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  border-bottom-style: double;
+  border-top-style: double;
+  height: 30px;
+  color:blanchedalmond;
+  text-shadow: 1px 1px 2px black;
+  border-color: rgba(226, 168, 176, 0.233);
+  background-color: rgba(223, 23, 50, 0.39);
+  transition: all ease-in 0.5s;
+}
+.btn_quitar:hover{
+  text-shadow: 1px 1px 2px black;
+  border-color: rgba(83, 43, 48, 0.233);
+  background-color: rgba(70, 5, 14, 0.39);
+}

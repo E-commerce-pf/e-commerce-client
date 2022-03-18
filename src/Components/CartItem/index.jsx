@@ -7,6 +7,7 @@ import styled from "./CartItem.module.scss";
 const CartItem = ({ title, price, id, amount }) => {
   return (
     <div className={styled.container}>
+      <button className={styled.btn_quitar}>Quitar del carrito</button>
       <p className={styled.text_shp}>Nombre: {title}</p>
       <div className={styled.price}>
         <p className={styled.text_shp}>Precio: {price}$</p>        
