@@ -10,10 +10,10 @@ const CardProduct = ({ image, title, id, price, stock, discount }) => {
       </div>
       <div className={styles.cardInfo}>
         <h4>{title}</h4>
-        <h4>precio: {price}</h4>
-        <p>stock: {stock}</p>
-        <p>descuento: {discount}</p>
-        <AddToBag text={"Add to cart"} id={id} />
+        <h4>PRECIO:{price}$</h4>
+        <p>STOCK:{stock}</p>
+        <p>DESCUENTO:{discount}</p>
+        <AddToBag text={"Añadir al carrito"} id={id} />
       </div>
     </div>
   );
