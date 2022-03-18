@@ -85,7 +85,7 @@ const Register = () => {
         notifySuccess(res.data.success)
       })
       .catch((err) => {
-        notifyError('Algo salió mal')
+        notifyError( err.response.data.error )
       });
   };
 
