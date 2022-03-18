@@ -3,12 +3,54 @@
     margin-left: 20px;
     margin-right: 20px;
     padding: 20px;
+    /* background-color: rgba(71, 73, 80, 0.178); */
+    border-radius: 1px;  
+    border-bottom-style: double;
+    border-top-style: double;
+    border-color: rgba(13, 13, 167, 0.849);
     
 }
 
 .text_shop{
-    
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Courier New', Courier, monospace;
   font-weight:bold;
   color:rgb(17, 17, 77);
+}
+.text_total{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  color:rgb(231, 231, 238);
+  background-color: rgba(9, 44, 160, 0.548);
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px black;
+  height:30px;
+}
+
+.btn_comprar{
+  margin-left:20%;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  border-bottom-style: double;
+  border-top-style: double;
+  height: 30px;
+  color:blanchedalmond;
+  text-shadow: 1px 1px 2px black;
+  border-color: rgba(15, 55, 235, 0.233);
+  background-color: rgba(23, 53, 223, 0.39);
+  transition: all ease-in 0.5s;
+}
+.btn_comprar:hover{
+  color:rgb(3, 9, 46);
+  text-shadow: 1px 1px 2px rgb(228, 230, 235);
+  border-color: rgba(75, 90, 156, 0.233);
+  background-color: rgba(95, 114, 226, 0.801);
 }

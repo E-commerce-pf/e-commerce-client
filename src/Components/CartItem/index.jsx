@@ -9,8 +9,8 @@ const CartItem = ({ title, price, id, amount }) => {
     <div className={styled.container}>
       <p className={styled.text_shp}>Nombre: {title}</p>
       <div className={styled.price}>
-        <p>Precio: {price} $</p>
-        <p>Total: {price * amount} $</p>
+        <p className={styled.text_shp}>Precio: {price}$</p>        
+        <p className={styled.text_shp}>Total: {price * amount}$</p>
       </div>
       <div className={styled.button}>
         <RemoveToBag text={"-"} id={id} />
