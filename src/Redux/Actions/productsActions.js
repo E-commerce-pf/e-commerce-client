@@ -3,6 +3,7 @@ export const SET_ID_BAG_PRODUCTS = "SET_ID_BAG_PRODUCTS";
 export const ADD_PRODUCT_TO_BAG = "ADD_PRODUCT_TO_BAG";
 export const REMOVE_PRODUCT_TO_BAG = "REMOVE_PRODUCT_TO_BAG";
 export const CLEAR_FILTER = "CLEAR_FILTER";
+export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 
 export const setAllProducts = (data) => {
   return { type: SET_ALL_PRODUCTS, payload: data };
@@ -22,4 +23,8 @@ export const removeProductToBag = (id) => {
 
 export const clearFilter = () => {
   return { type: CLEAR_FILTER, payload: null };
+};
+
+export const setFilterProducts = (data) => {
+  return { type: FILTER_PRODUCTS, payload: data };
 };

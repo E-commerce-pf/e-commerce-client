@@ -15,6 +15,9 @@ import { Paginate } from "../../Utils/paginate";
 
 export const Home = () => {
   const products = useSelector((state) => state.productsReducer.allProducts);
+  const productsFilter = useSelector(
+    (state) => state.productsReducer.produtsFilter
+  );
   const dispatch = useDispatch();
 
   const [pageNumber, setPageNumber] = useState(0);
@@ -58,7 +61,9 @@ export const Home = () => {
           >
             Siguiente
           </button>
-          <CardsProducts products={Paginate(products, pageNumber, elemPage)} />
+          <CardsProducts
+            products={Paginate(productsFilter, pageNumber, elemPage)}
+          />
         </div>
       </div>
       <Footer />

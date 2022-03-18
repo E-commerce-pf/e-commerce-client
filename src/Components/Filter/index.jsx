@@ -7,9 +7,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import {
+  setFilterProducts,
+  clearFilter,
+} from "../../Redux/Actions/productsActions";
 
 import categoriesService from "../../Services/category";
 import style from "./Filter.module.scss";
+import { useDispatch } from "react-redux";
 
 const Filter = () => {
   const initialState = {
@@ -22,7 +27,9 @@ const Filter = () => {
     category: "all",
   };
 
-  const [input, setInput] = useState(initialState);
+  const dispatch = useDispatch();
+
+  const [input, setInput] = useState({ ...initialState });
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -36,6 +43,12 @@ const Filter = () => {
       ...input,
       [event.target.name]: event.target.value,
     });
+    dispatch(
+      setFilterProducts({
+        ...input,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   return (
@@ -88,10 +101,10 @@ const Filter = () => {
           onChange={handleChange}
         >
           <MenuItem value="all">Todas</MenuItem>
-          {categories.map((category, index) => {
+          {categories.map(({ id, name }) => {
             return (
-              <MenuItem key={index} value={category}>
-                {category}
+              <MenuItem key={id} value={name}>
+                {name}
               </MenuItem>
             );
           })}
@@ -116,6 +129,7 @@ const Filter = () => {
           variant="outlined"
           name="description"
           onChange={handleChange}
+          value={input.description}
         />
       </div>
       <div>
@@ -123,11 +137,18 @@ const Filter = () => {
           label="Titulo"
           variant="outlined"
           name="title"
+          value={input.title}
           onChange={handleChange}
         />
       </div>
       <div>
-        <Button variant="contained" onClick={() => setInput(initialState)}>
+        <Button
+          variant="contained"
+          onClick={() => {
+            setInput(initialState);
+            dispatch(clearFilter());
+          }}
+        >
           Limpiar filtros
         </Button>
       </div>

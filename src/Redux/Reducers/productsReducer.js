@@ -1,10 +1,32 @@
 import {
   ADD_PRODUCT_TO_BAG,
   CLEAR_FILTER,
+  FILTER_PRODUCTS,
   REMOVE_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
 } from "../Actions/productsActions";
+
+const toLower = (str) => {
+  return str.toLowerCase();
+};
+
+const isInRange = (value, a, b) => {
+  return value >= a && value <= b;
+};
+
+const isInCategory = (categories, category) => {
+  return categories.map((categ) => categ.name).includes(category);
+};
+
+const isIn = (product, payload) => {
+  return (
+    isInCategory(product.Categories, payload.category) &&
+    toLower(product.title).includes(toLower(payload.title)) &&
+    toLower(product.description).includes(toLower(payload.description)) &&
+    isInRange(product.price, payload.price[0], payload.price[1])
+  );
+};
 
 const initialState = {
   allProducts: null,
@@ -34,6 +56,14 @@ const productsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         produtsFilter: state.allProducts,
+      };
+
+    case FILTER_PRODUCTS:
+      return {
+        ...state,
+        produtsFilter: state.allProducts.filter((product) => {
+          return isIn(product, payload);
+        }),
       };
 
     case ADD_PRODUCT_TO_BAG:
