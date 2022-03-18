@@ -2,7 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import everylogopf_gris from '../../Assets/Images/Everylogopf_gris.png'
 import {IoIosArrowBack} from 'react-icons/io'
-import './Login.css'
+import {FcGoogle} from 'react-icons/fc'
+import styles from'./Login.module.css'
 //COMPONENTES
 import {getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import firebaseConfing from '../../config/firebase'
@@ -35,17 +36,16 @@ const Login = () => {
     }
 
     return (
-        <div className='container-login'>
-            <div className='card-button'>
-            <button onClick={()=>navigate('/')} className='btn-login'><IoIosArrowBack/> Back</button>
+        <div className={styles.containerLogin}>
+            <div className={styles.cardButton}>
+            <button onClick={()=>navigate('/')} className={styles.btnLogin}><IoIosArrowBack/> Back</button>
             </div>
-            <div className='card-login'>
-            <div className='login-1'>
+            <div className={styles.cardLogin}>
+            <div className={styles.login1}>
                 <h1>Login</h1>
                 <img src={everylogopf_gris} alt="logo" width="124px" height="78px" />
             </div>
-            <div className='login-2'>
-
+            <div className={styles.login2}>
                 <h4>Email</h4>
                 <input type="text"
                 placeholder='Username@gmail.com' />
@@ -54,10 +54,10 @@ const Login = () => {
                 placeholder='Password'/>
                 <h4>Forgot password?</h4>
                 <button>Sign in</button>
-                <button onClick={ signIn }>LogIn with Google</button>
-
             </div>
-            <div  className='login-3'></div>
+            <div  className={styles.login3}>
+            <button onClick={ signIn }> <FcGoogle className={styles.span}/>Sign in with Google</button>
+            </div>
             </div>
         </div>
     )

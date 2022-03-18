@@ -6,7 +6,7 @@ import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
 import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
-import "./Home.css";
+import styles from"./Home.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import Filter from "../../Components/Filter";
 
@@ -33,16 +33,16 @@ export const Home = () => {
   }
 
   return (
-    <div className="container_home">
+    <div className={styles.containerHome}>
       <Landing />
       <Navbar />
 
-      <div className="container-info-3">
+      <div className={styles.containerInfo3}>
         <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div>
       <Filter />
-      <div className="container-info-4">
-        <div className="nuevo">
+      <div className={styles.containerInfo4}>
+        <div className={styles.nuevo}>
           <h2>Nuevo en </h2>
         </div>
         <div>

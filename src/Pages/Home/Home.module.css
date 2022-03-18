@@ -3,20 +3,20 @@ body {
     padding: 0;
 }
 
-.container_home {
+.containerHome {
     display: flex;
     flex-direction: column;
     color: #23263B;
     font-family: inter;
 }
 
-.container-info-3 {
+.containerInfo3 {
     display: flex;
     font-size: 14px;
     padding-top: 20px
 }
 
-.container-info-4 {
+.containerInfo4 {
     display: flex;
     padding-left: 10px;
     flex-direction: column;

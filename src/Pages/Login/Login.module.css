@@ -1,4 +1,4 @@
-.container-login{
+.containerLogin{
     display:flex;
     flex-direction:column;
     background-image:url('../../Assets/Images/Login.jpg');
@@ -8,16 +8,16 @@
     background-size: cover;
     padding-top: 20px;
 }
-.card-login{
+.cardLogin{
     background-color: rgba(10, 36, 57, 0.50);
-    height:90vh;
-    width: 50vw;
+    min-height:90vh;
+    min-width: 50vw;
     border-radius:20px;
     display: flex;
     flex-direction:column;
     align-items:center;
 }
-.login-1{
+.login1{
     display:flex;
     color: white;
     font-size:30px;
@@ -27,23 +27,23 @@
     gap: 20rem;
 }
 
-.login-2{
+.login2{
     font-size: 18px;
     color: white;
     display: flex;
     flex-direction: column;
 }
-.login-2 input{
+.login2 input{
     height:7vh;
     width: 40vw;
     border: 1px solid white;
     border-radius:10px
 }
-.login-2 input :focus{
+.login2 input :focus{
     outline: none;
     border: 1px solid white
 }
-.login-2 button {
+.login2 button {
     height:5vh;
     border-radius: 9px;
     border: 1px solid #23263B;
@@ -53,11 +53,11 @@
     font-family: ABeeZee;
     cursor: pointer;
 }
-.card-button{
+.cardButton{
     display:flex;
     padding-right:1200px;
 }
-.btn-login{
+.btnLogin{
     display:flex;
     width: 8vw;
     height:6vh;
@@ -69,4 +69,29 @@
     font-size:20px;
     align-items: center;
     padding-left:20px;
+}
+.login3{
+    display:flex;
+    padding-top: 15px;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.login3 button{
+    height:50px;
+    width:200px;
+    border:1px solid #23263B;
+    background-color: #23263B;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+    color:white;
+    font-size:15px;
+    border-radius:5px
+}
+.span{
+    font-size:40px;
 }
