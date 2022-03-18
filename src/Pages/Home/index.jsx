@@ -1,17 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
-import { CardProduct } from "../../Components/CardProduct";
+import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
 import "./Home.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
+import Filter from "../../Components/Filter";
+
+import CardsProducts from "../../Components/CardsProducts";
+import { Paginate } from "../../Utils/paginate";
 
 export const Home = () => {
-  const products = useSelector((state) => state.productsReducer.allProducts);
+  const productsFilter = useSelector(
+    (state) => state.productsReducer.produtsFilter
+  );
   const dispatch = useDispatch();
+
+  const [pageNumber, setPageNumber] = useState(0);
+  const elemPage = 8;
 
   useEffect(() => {
     productsService.getAllProducts().then((data) => {
@@ -19,31 +28,41 @@ export const Home = () => {
     });
   }, [dispatch]);
 
-  if (!products) {
+  if (!productsFilter) {
     return <Loading />;
   }
 
   return (
     <div className="container_home">
+      <Landing />
       <Navbar />
+
       <div className="container-info-3">
         <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div>
+      <Filter />
       <div className="container-info-4">
         <div className="nuevo">
           <h2>Nuevo en </h2>
         </div>
-        <div className="card">
-          {products?.map((el) => (
-            <CardProduct
-              key={el.id}
-              img={el.image}
-              title={el.title}
-              id={el.id}
-              price={el.price}
-              category={el.category}
-            />
-          ))}
+        <div>
+          <button
+            onClick={() => {
+              setPageNumber(pageNumber - 1);
+            }}
+          >
+            Anterior
+          </button>
+          <button
+            onClick={() => {
+              setPageNumber(pageNumber + 1);
+            }}
+          >
+            Siguiente
+          </button>
+          <CardsProducts
+            products={Paginate(productsFilter, pageNumber, elemPage)}
+          />
         </div>
       </div>
       <Footer />
