@@ -1,0 +1,19 @@
+.shopping_container{
+    font-size: 2em;
+    background-color: rgba(36, 17, 119, 0.185);
+    padding: 5px;
+    border-radius: 7px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight:bold;
+    color:rgb(17, 17, 77);
+    border-style: ridge;
+    border-top: none;
+    border-left: none;
+    border-color: rgb(80, 80, 179);
+    cursor: pointer;
+}
+
+.shopping_container:hover{
+    background-color: rgba(32, 32, 97, 0.658);
+    color:rgb(210, 210, 230);
+}

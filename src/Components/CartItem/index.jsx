@@ -7,7 +7,7 @@ import styled from "./CartItem.module.scss";
 const CartItem = ({ title, price, id, amount }) => {
   return (
     <div className={styled.container}>
-      <p>Nombre: {title}</p>
+      <p className={styled.text_shp}>Nombre: {title}</p>
       <div className={styled.price}>
         <p>Precio: {price} $</p>
         <p>Total: {price * amount} $</p>

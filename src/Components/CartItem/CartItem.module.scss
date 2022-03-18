@@ -1,5 +1,9 @@
 .container {
+  position: relative;
   width: 100%;
+  padding-left: 10px;
+  background-color:  rgba(123, 112, 168, 0.185);
+  border-radius: 5px;
 }
 
 .container img {
@@ -11,6 +15,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  color:rgb(17, 17, 77);
 }
 
 .button {
@@ -23,4 +31,11 @@
 .button p {
   width: 10%;
   text-align: center;
+}
+
+.text_shp{
+
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  color:rgb(17, 17, 77);
 }

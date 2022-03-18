@@ -1,15 +1,15 @@
 import CardItem from "../CartItem";
-import styled from "./CartShoppingBag.module.scss";
+import styled from "./CartShoppingBag.module.css";
 
 const CartShoppingBag = ({ cartItems }) => {
   return (
     <aside className={styled.container}>
-      <h1>Shopping Bag</h1>
-      {cartItems.length === 0 ? <p>No tienes productos en la Bolsa</p> : null}
+      <h1 className={styled.text_shop}>Shopping Bag</h1>
+      {cartItems.length === 0 ? <p className={styled.text_shop}>No tienes productos en la Bolsa</p> : null}
       {cartItems.map((item) => (
         <CardItem key={item.id} {...item} />
       ))}
-      <p>
+      <p className={styled.text_shop}>
         Total:{" "}
         {(cartItems.reduce(
           (acum, product) => product.price * product.amount + acum,
