@@ -9,7 +9,7 @@ const config = {
 }
 
 export const notifyError = (text)=>{
-      toast.error(text, config);
+      toast.error(text,config);
 }
 
 export const notifySuccess = (text) =>{
