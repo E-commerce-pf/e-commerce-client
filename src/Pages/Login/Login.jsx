@@ -5,6 +5,7 @@ import {IoIosArrowBack} from 'react-icons/io'
 import {FcGoogle} from 'react-icons/fc'
 import{BsGithub} from 'react-icons/bs'
 import styles from'./Login.module.css'
+
 //COMPONENTES
 import {getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import firebaseConfing from '../../config/firebase'

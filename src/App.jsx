@@ -7,7 +7,6 @@ import Register from './Pages/Register/Register'
 import { ToastContainer } from 'react-toastify';
 
 
-
 const App = () => {
   return (
     <>
