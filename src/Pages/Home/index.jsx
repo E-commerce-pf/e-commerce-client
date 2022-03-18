@@ -14,7 +14,6 @@ import CardsProducts from "../../Components/CardsProducts";
 import { Paginate } from "../../Utils/paginate";
 
 export const Home = () => {
-  const products = useSelector((state) => state.productsReducer.allProducts);
   const productsFilter = useSelector(
     (state) => state.productsReducer.produtsFilter
   );
@@ -29,7 +28,7 @@ export const Home = () => {
     });
   }, [dispatch]);
 
-  if (!products) {
+  if (!productsFilter) {
     return <Loading />;
   }
 

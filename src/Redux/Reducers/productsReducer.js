@@ -16,6 +16,7 @@ const isInRange = (value, a, b) => {
 };
 
 const isInCategory = (categories, category) => {
+  if (category === "all") return true;
   return categories.map((categ) => categ.name).includes(category);
 };
 
@@ -31,7 +32,7 @@ const isIn = (product, payload) => {
 const initialState = {
   allProducts: null,
   bagProducts: [],
-  produtsFilter: [],
+  produtsFilter: null,
 };
 
 const productsReducer = (state = initialState, { type, payload }) => {
