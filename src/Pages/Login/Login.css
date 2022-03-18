@@ -1,7 +1,7 @@
 .container-login{
     display:flex;
     flex-direction:column;
-    background-image:url('../../Assets/Images/Login.jpg');
+    background-image:url('../../Assets/images/Login.jpg');
     height:100vh;
     align-items:center;
     background-position: center;
