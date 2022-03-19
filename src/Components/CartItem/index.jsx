@@ -16,7 +16,7 @@ const CartItem = ({ title, price, id, amount }) => {
       </div>
       <div className={styled.button}>
         <RemoveToBag text={"-"} id={id} />
-        <p>{amount}</p>
+        <p>{amount}f</p>
         <AddToBag text={"+"} id={id} />
       </div>
     </div>
