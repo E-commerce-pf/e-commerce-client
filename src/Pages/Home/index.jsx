@@ -6,12 +6,14 @@ import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
 import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
-import "./Home.css";
+import "./Home.modules.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import Filter from "../../Components/Filter";
 
 import CardsProducts from "../../Components/CardsProducts";
 import { Paginate } from "../../Utils/paginate";
+import { FaArrowCircleRight } from "react-icons/fa";
+import { FaArrowCircleLeft } from "react-icons/fa";
 
 export const Home = () => {
   const productsFilter = useSelector(
@@ -45,21 +47,25 @@ export const Home = () => {
         <div className="nuevo">
           <h2>Nuevo en </h2>
         </div>
-        <div>
-          <button
+        <div >
+          <div className='paginado_home'>
+          <button className='paginado_btn'
             onClick={() => {
               setPageNumber(pageNumber - 1);
             }}
           >
-            Anterior
+            <FaArrowCircleLeft/> Anterior 
           </button>
-          <button
+          <button className='paginado_btn'
             onClick={() => {
               setPageNumber(pageNumber + 1);
             }}
           >
-            Siguiente
+            Siguiente <FaArrowCircleRight/>
+            
           </button>
+          </div>
+          
           <CardsProducts
             products={Paginate(productsFilter, pageNumber, elemPage)}
           />

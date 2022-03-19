@@ -4,16 +4,17 @@
     border-radius: 10px;
     font-family: 'Courier New', Courier, monospace;
     font-weight:bold;
+    font-size: 15px;
     color:rgb(17, 17, 77);
     border-style: ridge;
     border-top: none;
     border-left: none;
     border-color: rgb(80, 80, 179);
     cursor:pointer;
-    transition: all ease-in 1s;
+    transition: all ease-in 0.5s;
 }
 
 .btn_addToB:hover{
-    background-color: rgba(32, 32, 97, 0.658);
+    background-color: rgba(23, 23, 150, 0.863);
     color:rgb(210, 210, 230);
 }
