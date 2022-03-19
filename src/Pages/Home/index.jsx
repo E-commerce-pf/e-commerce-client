@@ -48,15 +48,15 @@ export const Home = () => {
           <h2>Nuevo en </h2>
         </div>
         <div >
-          <div className='paginado_home'>
-          <button className='paginado_btn'
+          <div className={styles.paginado_home}>
+          <button className={styles.paginado_btn}
             onClick={() => {
               setPageNumber(pageNumber - 1);
             }}
           >
             <FaArrowCircleLeft/> Anterior 
           </button>
-          <button className='paginado_btn'
+          <button className={styles.paginado_btn}
             onClick={() => {
               setPageNumber(pageNumber + 1);
             }}
