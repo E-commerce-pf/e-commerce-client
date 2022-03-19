@@ -33,9 +33,39 @@ export const Home = () => {
 	}
 
 	return (
-		<>
+		<div className='container_home'>
+			<Landing />
 			<Navbar />
-			<CardsProducts products={productsFilter} />
-		</>
+
+			<div className='container-info-3'>
+				<img src={imgHome2} alt='imagen' width='100%' height='250px' />
+			</div>
+			<Filter />
+			<div className='container-info-4'>
+				<div className='nuevo'>
+					<h2>Nuevo en </h2>
+				</div>
+				<div>
+					<button
+						onClick={() => {
+							setPageNumber(pageNumber - 1);
+						}}
+					>
+						Anterior
+					</button>
+					<button
+						onClick={() => {
+							setPageNumber(pageNumber + 1);
+						}}
+					>
+						Siguiente
+					</button>
+					<CardsProducts
+						products={Paginate(productsFilter, pageNumber, elemPage)}
+					/>
+				</div>
+			</div>
+			<Footer />
+		</div>
 	);
 };
