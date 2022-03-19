@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Badge, Drawer } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { BiShoppingBag } from "react-icons/bi";
@@ -15,10 +14,13 @@ const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
   const dispatch = useDispatch();
-  const ids = getToLocalStorageIds();
 
   useEffect(() => {
+    const ids = getToLocalStorageIds();
     dispatch(setIdBagProducts(ids));
+  }, [dispatch]);
+
+  useEffect(() => {
     return () => {
       addToLocalStorageIds(
         bagProducts.map((product) => {
@@ -29,6 +31,7 @@ const ShoppingBag = () => {
         })
       );
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTotalProducts = (products) => {
