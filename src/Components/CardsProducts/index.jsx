@@ -8,7 +8,7 @@ const CardsProducts = ({ products }) => {
 
   return (
     <div className={style.cards}>
-      {products.map((product) => {
+      {products.products.map((product) => {
         return <CardProduct {...product} key={product.id} />;
       })}
     </div>
