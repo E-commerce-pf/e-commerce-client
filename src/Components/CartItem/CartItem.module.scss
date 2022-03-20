@@ -1,5 +1,16 @@
 .container {
+  position: relative;
   width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  margin-left: -20px;
+  // background-color:  rgba(9, 261, 626, 0.213);
+  border-radius: 5px;
+  margin-top: 10px;
+  border-bottom-style: double;
+  border-top-style: double;
+  border-color: rgba(15, 15, 63, 0.616);
 }
 
 .container img {
@@ -11,6 +22,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  color:rgb(17, 17, 77);
 }
 
 .button {
@@ -23,4 +38,29 @@
 .button p {
   width: 10%;
   text-align: center;
+}
+
+.text_shp{
+
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  color:rgb(22, 22, 43);
+}
+.btn_quitar{
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:bold;
+  border-bottom-style: double;
+  border-top-style: double;
+  height: 30px;
+  color:blanchedalmond;
+  text-shadow: 1px 1px 2px black;
+  border-color: rgba(226, 168, 176, 0.233);
+  background-color: rgba(223, 23, 50, 0.39);
+  transition: all ease-in 0.5s;
+}
+.btn_quitar:hover{
+  text-shadow: 1px 1px 2px black;
+  border-color: rgba(83, 43, 48, 0.233);
+  background-color: rgba(70, 5, 14, 0.39);
 }

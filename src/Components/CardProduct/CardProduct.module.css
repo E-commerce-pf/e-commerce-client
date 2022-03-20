@@ -1,4 +1,4 @@
-card-container{
+.cardContainer{
     background-color:hsl(0, 0%, 98%);
     color:#23263B;
     font-family: inter;
@@ -10,15 +10,15 @@ card-container{
     width:20vw;
 }
 
-.card_img {
+.cardImg {
     display: flex;
     justify-content: center;
     
 }
-.card_img img{
+.cardImg img{
     border-radius:5px
 }
-.card_info{
+.cardInfo{
     display:flex;
     padding-left: 20px;
     flex-direction: column;
