@@ -1,16 +1,20 @@
+import { createTheme } from '@material-ui/core/styles';
+import orange from '@mui/material/colors/orange';
 
-    import { createTheme } from '@mui/material/styles';
-    import { purple } from '@mui/material/colors';
-    
-    const theme = createTheme({
-      palette: {
-        primary: {
-          main: purple[500],
-        },
-        secondary: {
-          main: '#f44336',
-        },
-      },
-    });
-
+const theme = createTheme({
+	palette: {
+		primary: {
+			light: '#757ce8',
+			main: '#3f50b5',
+			dark: '#002884',
+			contrastText: '#fff',
+		},
+		secondary: {
+			light: '#ff7961',
+			main: '#f44336',
+			dark: '#ba000d',
+			contrastText: '#000',
+		},
+	},
+});
 export default theme;

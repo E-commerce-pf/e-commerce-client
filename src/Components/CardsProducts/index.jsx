@@ -11,10 +11,10 @@ const CardsProducts = ({ products }) => {
 	return (
 		<Container sx={{ py: 8 }} maxWidth='lx'>
 			<Grid container spacing={2}>
-				{products.map((product) => {
+				{products.products.map((product) => {
 					return (
-						 <Grid item xs={12} sm={6} md={2} >
-							<CardProduct {...product} key = {product.id} />
+						<Grid item xs={12} sm={6} md={2}>
+							<CardProduct {...product} key={product.id} />
 						</Grid>
 					);
 				})}

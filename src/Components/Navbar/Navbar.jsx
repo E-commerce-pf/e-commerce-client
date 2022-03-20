@@ -4,12 +4,8 @@ import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { IconButton } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -21,8 +17,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
 const Search = styled('div')(({ theme }) => ({
@@ -32,15 +26,13 @@ const Search = styled('div')(({ theme }) => ({
 	'&:hover': {
 		backgroundColor: alpha(theme.palette.common.white, 0.25),
 	},
-	marginRight: theme.spacing(2),
 	marginLeft: 0,
 	width: '100%',
 	[theme.breakpoints.up('sm')]: {
-		marginLeft: theme.spacing(3),
+		marginLeft: theme.spacing(20),
 		width: 'auto',
 	},
 }));
-
 const SearchIconWrapper = styled('div')(({ theme }) => ({
 	padding: theme.spacing(0, 2),
 	height: '100%',
@@ -56,11 +48,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
 		padding: theme.spacing(1, 1, 1, 0),
 		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+		paddingLeft: `calc(4em + ${theme.spacing(2)})`,
 		transition: theme.transitions.create('width'),
 		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
+		[theme.breakpoints.up('lg')]: {
+			width: '12ch',
+			'&:focus': {
+				width: '20ch',
+			},
 		},
 	},
 }));
@@ -106,8 +101,7 @@ export const Navbar = () => {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={() => navigate('/login')}>Iniciar Sesión</MenuItem>
 		</Menu>
 	);
 
@@ -129,24 +123,24 @@ export const Navbar = () => {
 			onClose={handleMobileMenuClose}
 		>
 			<MenuItem>
-				<IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-					<Badge badgeContent={4} color='error'>
-						<MailIcon />
+				<IconButton size='large' aria-label='show 4 new mails' color='primary'>
+					<Badge badgeContent={0} color='error'>
+						<FavoriteBorderIcon />
 					</Badge>
 				</IconButton>
-				<p>Messages</p>
+				<p>Favorites</p>
 			</MenuItem>
 			<MenuItem>
 				<IconButton
 					size='large'
 					aria-label='show 17 new notifications'
-					color='inherit'
+					color='primary'
 				>
-					<Badge badgeContent={17} color='error'>
-						<NotificationsIcon />
+					<Badge badgeContent={0} color='error'>
+						<ShoppingBagIcon />
 					</Badge>
 				</IconButton>
-				<p>Notifications</p>
+				<p>Carrito de compras</p>
 			</MenuItem>
 			<MenuItem onClick={handleProfileMenuOpen}>
 				<IconButton
@@ -154,7 +148,7 @@ export const Navbar = () => {
 					aria-label='account of current user'
 					aria-controls='primary-search-account-menu'
 					aria-haspopup='true'
-					color='inherit'
+					color='primary'
 				>
 					<AccountCircle />
 				</IconButton>
@@ -166,50 +160,9 @@ export const Navbar = () => {
 	const navigate = useNavigate();
 	return (
 		<>
-			{/* <div className='navbar'>
-				<div className='container-info-1'>
-					<div className='home_img'>
-						<Link to='/'>
-							<img src={Everylogopf} alt='img' width='150px' height='100px' />
-						</Link>
-					</div>
-					<div className='home_SU'>
-						<h2>
-							<FaHeadphonesAlt /> Soporte
-						</h2>
-						<h2>
-							<HiOutlineLocationMarker /> Ubicacion
-						</h2>
-					</div>
-					<div className='home_FLC'>
-						<h2>
-							<IoPersonOutline onClick={() => navigate('/login')} />
-						</h2>
-						<ShoppingBag />
-					</div>
-				</div>
-				<div className='container-info-2'>
-					<div className='select_CP'>
-						<select>
-							<option>categoria</option>
-							<option>categoria</option>
-							<option>categoria</option>
-						</select>
-						<select>
-							<option>Precio</option>
-							<option>Precio</option>
-							<option>Precio</option>
-						</select>
-					</div>
-					<div className='input_S'>
-						<SearchBar />
-					</div>
-				</div>
-			</div> */}
-
 			<Box sx={{ flexGrow: 1 }}>
 				<AppBar position='static'>
-					<Toolbar>
+					<Toolbar color='inherit'>
 						<Typography
 							variant='h6'
 							noWrap
@@ -232,7 +185,7 @@ export const Navbar = () => {
 							<IconButton
 								size='large'
 								aria-label='show 4 new mails'
-								color='secondary'
+								color='inherit'
 							>
 								<Badge badgeContent={4} color='error'>
 									<FavoriteBorderIcon />
