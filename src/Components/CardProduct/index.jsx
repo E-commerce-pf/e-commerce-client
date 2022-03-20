@@ -1,19 +1,22 @@
-import React from 'react';
-import './CardProduct.css'
+import React from "react";
+import styles from "./CardProduct.module.css";
 import AddToBag from "../AddToBag";
-export const CardProduct = ({ img, category, title,id, price }) => {
+
+const CardProduct = ({ image, title, id, price, stock, discount }) => {
   return (
-    <div className='card-container'>
-      <div className="card_img">
-        <img src={img} alt="img" width="250px" height="150px" />
+    <div className={styles.cardContaine}>
+      <div className={styles.cardImg}>
+        <img src={image} alt={title} width="250px" height="150px" />
       </div>
-      <div className="card_info">
-          <h4>{title}</h4>
-          <h4>{category}</h4>
-          <h4>{price}</h4>
-      <AddToBag text={"Add to cart"} id={id} />
+      <div className={styles.cardInfo}>
+        <h4>{title}</h4>
+        <h4>PRECIO:{price}$</h4>
+        <p>STOCK:{stock}</p>
+        <p>DESCUENTO:{discount}</p>
+        <AddToBag text={"Añadir al carrito"} id={id} />
       </div>
     </div>
   );
 };
 
+export default CardProduct;
