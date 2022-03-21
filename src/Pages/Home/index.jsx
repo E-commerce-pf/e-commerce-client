@@ -9,8 +9,8 @@ import Footer from "../../Components/Footer";
 import styles from"./Home.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import Filter from "../../Components/Filter";
-
 import CardsProducts from "../../Components/CardsProducts";
+import ScoreMax from '../../Components/ScoreMax/ScoreMax';
 import { Paginate } from "../../Utils/paginate";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
@@ -21,13 +21,18 @@ export const Home = () => {
   );
   const dispatch = useDispatch();
 
+ 
+
   const [pageNumber, setPageNumber] = useState(0);
   const elemPage = 8;
   useEffect(() => {
     productsService.getAllProducts().then(({products}) => {
       dispatch(setAllProducts(products));
     });
+    
   }, [dispatch]);
+
+  
 
   if (!productsFilter) {
     return <Loading />;
@@ -35,12 +40,14 @@ export const Home = () => {
 
   return (
     <div className={styles.containerHome}>
+      
       <Landing />
       <Navbar />
-
-      <div className={styles.containerInfo3}>
-        <img src={imgHome2} alt="imagen" width="100%" height="250px" />
-      </div>
+      <ScoreMax/>
+      {/* <div className={styles.containerInfo3}>
+      
+       <img src={imgHome2} alt="imagen" width="100%" height="250px" />
+      </div> */}
       <Filter />
       <div className={styles.containerInfo4}>
         <div className={styles.nuevo}>
