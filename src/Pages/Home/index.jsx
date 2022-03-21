@@ -23,7 +23,6 @@ export const Home = () => {
 
   const [pageNumber, setPageNumber] = useState(0);
   const elemPage = 8;
-
   useEffect(() => {
     productsService.getAllProducts().then((data) => {
       dispatch(setAllProducts(data));
@@ -65,9 +64,8 @@ export const Home = () => {
             
           </button>
           </div>
-          
           <CardsProducts
-            products={Paginate(productsFilter, pageNumber, elemPage)}
+            products={Paginate(productsFilter.products, pageNumber, elemPage)}
           />
         </div>
       </div>
