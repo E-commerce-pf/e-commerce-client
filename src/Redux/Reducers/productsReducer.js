@@ -3,6 +3,7 @@ import {
   CLEAR_FILTER,
   FILTER_PRODUCTS,
   ORDER_PRODUCTS,
+  PRODUCT_DETAIL,
   REMOVE_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
@@ -33,11 +34,17 @@ const isIn = (product, payload) => {
 const initialState = {
   allProducts: null,
   bagProducts: [],
+  productInfo:{},
   produtsFilter: null,
 };
 
 const productsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case PRODUCT_DETAIL:
+      return {
+        ...state,
+        productInfo: payload
+      };
     case SET_ALL_PRODUCTS:
       return {
         ...state,
