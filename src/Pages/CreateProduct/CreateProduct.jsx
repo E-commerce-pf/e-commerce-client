@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { isValidURL, validateProduct } from "../../Utils/validate.product";
 import "./CreateProduct.scss";
 
 export default function CreateProperty() {
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
-    name: "",
+    name: null,
     lastName: "",
     categories: [],
     images: [],
@@ -15,7 +15,7 @@ export default function CreateProperty() {
   });
   let image = "";
 
-  function handleChange(e) {
+  async function handleChange(e) {
     e.preventDefault();
     console.log("image", image);
     if (e.target.name === "images") {
@@ -64,6 +64,9 @@ export default function CreateProperty() {
             type="text"
             placeholder="Product Name"
           />
+          {errors.name && (
+            <p className="create-product-form__error-message">{errors.name}</p>
+          )}
         </div>
         <div>
           <label htmlFor="lastName">Last Name</label>
@@ -75,6 +78,11 @@ export default function CreateProperty() {
             type="text"
             placeholder="Product Name"
           />
+          {errors.lastName && (
+            <p className="create-product-form__error-message">
+              {errors.lastName}
+            </p>
+          )}
         </div>
         <div>
           <label htmlFor="categories">Categories</label>

@@ -1,11 +1,11 @@
 export function validateProduct(input) {
   const errors = {};
   if (!input.name) {
-    errors.name = "this field is required";
+    errors.name = "This field is required";
   }
 
   if (!input.lastName) {
-    errors.lastName = "this field is required";
+    errors.lastName = "This field is required";
   }
 
   if (!input.images.length > 0) {
@@ -23,11 +23,11 @@ export function validateProduct(input) {
   }
 
   if (!input.price) {
-    errors.price = "this field is required";
+    errors.price = "This field is required";
   }
 
   if (!input.stock) {
-    errors.stock = "this field is required";
+    errors.stock = "This field is required";
   }
   return errors;
 }
