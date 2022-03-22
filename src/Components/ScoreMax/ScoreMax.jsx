@@ -9,11 +9,9 @@ import './Styles/ScoreMax.modules.css';
 export default function ScoreMax() {
 	const dispatch = useDispatch();
 	const review = useSelector((state) => state.reviewsScore.reviews);
-	console.log(review, 'REVIEW SELECTOR');
 
 	useEffect(() => {
 		dispatch(getReview());
-		console.log(getReview(), ' este es el getReview');
 	}, []);
 
 	const breakPoints = [
@@ -35,7 +33,19 @@ export default function ScoreMax() {
 				focusOnSelect={false}
 			>
 				{review && review.length !== 0 ? (
-					review.map((el, index) => <CardProduct {...el} />)
+					review.map((item) => (
+						<CardProduct
+							key={item.id}
+							image={item.image}
+							title={item.title}
+							id={item.id}
+							price={item.price}
+							stock={item.stock}
+							discount={item.discount}
+							score={item.score}
+							description={item.description}
+						/>
+					))
 				) : (
 					<h1 className='no_found_score'>No existen mejores puntuados☹️</h1>
 				)}
