@@ -4,7 +4,7 @@ import { Navbar } from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer";
 import "./CreateProduct.scss";
 
-export default function CreateProperty() {
+export default function CreateProduct() {
   return (
     <div>
       <Navbar />

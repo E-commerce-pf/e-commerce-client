@@ -3,14 +3,15 @@ import { Formik, Field, ErrorMessage, Form } from "formik";
 import categoriesService from "../../Services/category";
 import Loading from "../Loading";
 import { validateProduct, isValidURL } from "../../Utils/validate.product";
-import { createProduct } from "../../Services/products";
-/* import { notifySuccess, notifyError } from "../../utils/notifications"; */
+import productServices from "../../Services/products";
 import "./createProductForm.scss";
 
 export default function CreateProductForm() {
   const [categories, setCategories] = useState([]);
   const [images, setImages] = useState([]);
   const [formErrors, setFormErrors] = useState({});
+  let imageInput = null;
+
   useEffect(() => {
     async function getCategories() {
       setCategories(await categoriesService.getAllCategories());
@@ -21,6 +22,7 @@ export default function CreateProductForm() {
   function clickHandler(img) {
     if (isValidURL(img)) {
       setImages([...images, img]);
+      /* imageInput.value = ""; */
       console.log(images);
     } /* else {
       notifyError("invalid URL");
@@ -30,6 +32,11 @@ export default function CreateProductForm() {
   function deleteImage(img) {
     setImages(images.filter((image) => image !== img));
     console.log(images);
+  }
+
+  function imageInputHandler(e) {
+    imageInput = e.target;
+    console.log(imageInput);
   }
 
   return !categories.length ? (
@@ -43,8 +50,8 @@ export default function CreateProductForm() {
         description: "",
         price: "",
         stock: "",
-        sales: "",
-        discount: "",
+        sales: 0,
+        discount: 0,
       }}
       validate={(v) => {
         let err = {};
@@ -52,10 +59,15 @@ export default function CreateProductForm() {
         setFormErrors(err);
         return err;
       }}
-      onSubmit={(values, resetForm) => {
-        if (Object.keys(formErrors).length > 0) {
-          values.images = images;
-          createProduct(values);
+      onSubmit={(values, { resetForm }) => {
+        values.price = Number(values.price);
+        values.stock = Number(values.stock);
+        values.sales = Number(values.sales);
+        values.discount = Number(values.discount);
+        if (Object.keys(formErrors).length <= 0) {
+          values.image = images;
+          productServices.createProduct(values);
+          /* resetForm(); */
         }
       }}
     >
@@ -130,11 +142,11 @@ export default function CreateProductForm() {
                 </button>
               </div>
               {images.length ? (
-                <div>
+                <div id="create-product-form__image-container">
                   {images.map((image, i) => (
                     <img
                       onClick={() => deleteImage(image)}
-                      className="productImage"
+                      className="create-product-form__product-image"
                       key={i}
                       src={image}
                       alt={`productImage`}
@@ -145,10 +157,10 @@ export default function CreateProductForm() {
               <div>
                 <label htmlFor="name">Description</label>
                 <Field
-                  className="form-container__field"
+                  className="form-container__field form-container__field-text-area"
                   name="description"
                   id="description"
-                  type="textarea"
+                  as="textarea"
                 />
                 <ErrorMessage
                   className="error-message"

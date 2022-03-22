@@ -8,7 +8,7 @@ const getAllProducts = async () => {
 
 //falta crear ruta en el back
 const createProduct = async (product) => {
-  await axios.post("/product", product);
+  await axios.post(baseUrl, product);
 };
 
 const productsService = {

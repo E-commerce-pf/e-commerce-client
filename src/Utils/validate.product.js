@@ -4,14 +4,8 @@ export function validateProduct(input) {
     errors.title = "This field is required";
   }
 
-  if (!input.lastName) {
-    errors.lastName = "This field is required";
-  }
-
   if (!input.images) {
     errors.images = "The product needs at least one image";
-  } else if (isValidURL(input.images)) {
-    errors.images = "This Url is not valid";
   }
 
   if (!input.categories) {
@@ -26,11 +20,16 @@ export function validateProduct(input) {
 
   if (!input.price) {
     errors.price = "This field is required";
+  } else if (!/^\d+$/.test(input.price)) {
+    errors.price = "This input only allows numbers";
   }
 
   if (!input.stock) {
     errors.stock = "This field is required";
+  } else if (!/^\d+$/.test(input.stock)) {
+    errors.price = "This input only allows numbers";
   }
+
   return errors;
 }
 
