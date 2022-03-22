@@ -15,7 +15,7 @@ const CardProduct = ({ image, title, id, price, stock, discount, score }) => {
           <h4>PRECIO:{price}$</h4>
           <p>STOCK:{stock}</p>
           <p>DESCUENTO:{discount}</p>
-          {score && <p>Score: {score}<p>}
+          {score && <p>Score: {score}</p>}
         </div>
       </Link>
       <AddToBag text={"Añadir al carrito"} id={id} />
