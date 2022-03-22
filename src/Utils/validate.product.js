@@ -1,20 +1,22 @@
 export function validateProduct(input) {
   const errors = {};
-  if (!input.name) {
-    errors.name = "This field is required";
+  if (!input.title) {
+    errors.title = "This field is required";
   }
 
   if (!input.lastName) {
     errors.lastName = "This field is required";
   }
 
-  if (!input.images.length > 0) {
+  if (!input.images) {
     errors.images = "The product needs at least one image";
   } else if (isValidURL(input.images)) {
     errors.images = "This Url is not valid";
   }
 
-  if (!input.categories.length > 0) {
+  if (!input.categories) {
+    errors.categories = "Choose at least one category";
+  } else if (input.categories === "categories") {
     errors.categories = "Choose at least one category";
   }
 

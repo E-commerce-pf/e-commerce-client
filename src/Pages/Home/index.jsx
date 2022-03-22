@@ -6,7 +6,7 @@ import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
 import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
-import styles from"./Home.module.css";
+import styles from "./Home.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import Filter from "../../Components/Filter";
 
@@ -24,7 +24,7 @@ export const Home = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const elemPage = 8;
   useEffect(() => {
-    productsService.getAllProducts().then(({products}) => {
+    productsService.getAllProducts().then(({ products }) => {
       dispatch(setAllProducts(products));
     });
   }, [dispatch]);
@@ -46,23 +46,24 @@ export const Home = () => {
         <div className={styles.nuevo}>
           <h2>Nuevo en </h2>
         </div>
-        <div >
+        <div>
           <div className={styles.paginado_home}>
-          <button className={styles.paginado_btn}
-            onClick={() => {
-              setPageNumber(pageNumber - 1);
-            }}
-          >
-            <FaArrowCircleLeft/> Anterior 
-          </button>
-          <button className={styles.paginado_btn}
-            onClick={() => {
-              setPageNumber(pageNumber + 1);
-            }}
-          >
-            Siguiente <FaArrowCircleRight/>
-            
-          </button>
+            <button
+              className={styles.paginado_btn}
+              onClick={() => {
+                setPageNumber(pageNumber - 1);
+              }}
+            >
+              <FaArrowCircleLeft /> Anterior
+            </button>
+            <button
+              className={styles.paginado_btn}
+              onClick={() => {
+                setPageNumber(pageNumber + 1);
+              }}
+            >
+              Siguiente <FaArrowCircleRight />
+            </button>
           </div>
           <CardsProducts
             products={Paginate(productsFilter, pageNumber, elemPage)}
