@@ -10,7 +10,7 @@ export const allReviews=(reviews)=>dispatch=>{
     })).then(data=>{
         return dispatch({ type: ALL_REVIEWS, payload: data });
     })
-  
+}  
 export default function getReview() {
 	return async (dispatch) => {
 		let infoGetReview = await axios.get(GET_ROUT_REVIEW);
