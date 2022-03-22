@@ -3,7 +3,7 @@ import styles from "./CardProduct.module.css";
 import AddToBag from "../AddToBag";
 import {Link} from "react-router-dom";
 
-const CardProduct = ({ image, title, id, price, stock, discount }) => {
+const CardProduct = ({ image, title, id, price, stock, discount, score }) => {
   return (
     <div className={styles.cardContaine}>
       <div className={styles.cardImg}>
@@ -15,6 +15,7 @@ const CardProduct = ({ image, title, id, price, stock, discount }) => {
           <h4>PRECIO:{price}$</h4>
           <p>STOCK:{stock}</p>
           <p>DESCUENTO:{discount}</p>
+          {score && <p>Score: {score}<p>}
         </div>
       </Link>
       <AddToBag text={"Añadir al carrito"} id={id} />
