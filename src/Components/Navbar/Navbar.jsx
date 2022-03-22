@@ -9,8 +9,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar'
 import ShoppingBag from '../ShoppingBag'
 
-export const Navbar = () => {
-
+export const Navbar = ({filter}) => {
     const navigate = useNavigate()
     return (
         <>  <div className={styles.navbar}>
@@ -30,7 +29,7 @@ export const Navbar = () => {
                     <ShoppingBag/>
                 </div>
             </div>
-            <div className={styles.containerInfo2}>
+            {filter!==false&&<div className={styles.containerInfo2}>
                 <div className={styles.selectCP}>
                     <select>
                         <option>categoria</option>
@@ -46,7 +45,7 @@ export const Navbar = () => {
                 <div className={styles.inputS}>
                     <SearchBar />
                 </div>
-            </div>
+            </div>}
         </div>
         </>
     )
