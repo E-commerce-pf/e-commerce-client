@@ -1,4 +1,4 @@
-.container-info-1{
+.containerInfo1{
     display: flex;
     flex-direction:row;
     color: #23263B;
@@ -7,26 +7,26 @@
     align-items: center;
 }
 
-.home_img{
+.homeImg{
     display: flex;
     flex-direction:column;
     padding-left: 10px;
     cursor:pointer;
 }
-.home_SU{
+.homeSU{
     display: flex;
     flex-direction:row;
     gap: 2rem;
     cursor:pointer;
 }
-.home_FLC{
+.homeFLC{
     display: flex;
     flex-direction:row;
     gap: 1rem;
     padding-right: 20px;
     cursor:pointer;
 }
-.container-info-2 {
+.containerInfo2 {
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
@@ -35,19 +35,19 @@
     align-items: center;
 }
 
-.select_CP {
+.selectCP {
     display: flex;
     gap: 3rem;
     
 }
-.select_CP select {
+.selectCP select {
     height: 5vh;
     width: 7vw;
     border: 1px solid white;
 }
 
 
-.input_S {
+.inputS {
     padding-right: 30px;
 
 }
