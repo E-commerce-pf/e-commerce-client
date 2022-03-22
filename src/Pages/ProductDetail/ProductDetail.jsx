@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Rating from '@mui/material/Rating';
 import AddToBag from '../../Components/AddToBag';
 import { Navbar } from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/index';
@@ -39,7 +40,7 @@ export const ProductDetail = () => {
                 <div><img src={product.image} alt="product image"/></div>
                 <div>
                     <h2>{product.title&&product.title[0].toUpperCase()+product.title?.slice(1)}</h2>
-                    {prom()}/5<span className={style.star}>★</span> <span className={style.opinion}>{product.Reviews?.length} opiniones</span>
+                    {<Rating name='read-only' value={prom()} readOnly />} <span className={style.opinion}>{product.Reviews?.length} opiniones</span>
                     <p>{product.description}</p>
                 </div>
                 <div className={style.buyContainer}>
@@ -56,7 +57,8 @@ export const ProductDetail = () => {
                 <div className={style.containerScore}>
                     {product.Reviews?.length?reviews?.slice(index,index+3).map((r,i)=>
                         <div key={i}>
-                            <span>{`${r.userName} ${r.score}`}/5</span><span className={style.star}>★</span>
+                            <Rating name='read-only' value={r.score} readOnly />
+                            <p>{r.userName}</p>
                             <p>{r.comment[0].toUpperCase()+r.comment.slice(1)}</p>
                         </div>
                     ):<p>Se el primero en opinar sobre este producto...</p>}
