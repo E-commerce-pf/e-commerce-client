@@ -1,7 +1,6 @@
 import React from 'react';
-import styles from './CardProduct.module.css';
 import AddToBag from '../AddToBag';
-import { Link } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import Rating from '@mui/material/Rating';
 import { withStyles } from '@material-ui/core/styles';
 import { styled } from '@mui/material/styles';
@@ -15,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import { Button, CardActionArea } from '@mui/material';
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
 	return <IconButton {...other} />;
@@ -43,27 +42,9 @@ const CardProduct = ({
 		setExpanded(!expanded);
 	};
 	return (
-		// <>
-
-		// <div className={styles.cardContaine}>
-		// 	<div className={styles.cardImg}>
-		// 		<img src={image} alt={title} width='250px' height='150px' />
-		// 	</div>
-		// 	<Link to={`/productDetail/${id}`}>
-		// 		<div className={styles.cardInfo}>
-		// 			<h4>{title}</h4>
-		// 			<h4>PRECIO:{price}$</h4>
-		// 			<p>STOCK:{stock}</p>
-		// 			<p>DESCUENTO:{discount}</p>
-		// 			{score && <Rating name='read-only' value={score} readOnly />}
-		// 		</div>
-		// 	</Link>
-		// 	<AddToBag text={'Añadir al carrito'} id={id} />
-		// </div>
-		// </>
 		<>
 			<Card sx={{ maxWidth: 345 }}>
-				<Link to={`/productDetail/${id}`}>
+				<CardActionArea>
 					<CardHeader title={title} subheader={`PRECIO: ${price}$`} />
 					<CardMedia
 						component='img'
@@ -79,6 +60,7 @@ const CardProduct = ({
 							{score && <Rating name='read-only' value={score} readOnly />}
 						</Typography>
 					</CardContent>
+
 					<CardActions disableSpacing>
 						<IconButton aria-label='add to favorites'>
 							<AddToBag text={'Añadir al carrito'} id={id} />
@@ -95,13 +77,24 @@ const CardProduct = ({
 							<ExpandMoreIcon />
 						</ExpandMore>
 					</CardActions>
-					<Collapse in={expanded} timeout='auto' unmountOnExit>
-						<CardContent>
-							<Typography paragraph>información adicional</Typography>
-							<Typography paragraph>{description}</Typography>
-						</CardContent>
-					</Collapse>
-				</Link>
+				</CardActionArea>
+				<Collapse in={expanded} timeout='auto' unmountOnExit>
+					<CardContent>
+						<Typography paragraph>información adicional</Typography>
+						<Typography paragraph>{description}</Typography>
+						<div>
+							<Button
+								variant='contained'
+								color='primary'
+								Link
+								component={Link}
+								href={`/product/${id}`}
+							>
+								Ver más
+							</Button>
+						</div>
+					</CardContent>
+				</Collapse>
 			</Card>
 		</>
 	);

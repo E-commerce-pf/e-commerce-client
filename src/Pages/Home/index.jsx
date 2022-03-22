@@ -14,6 +14,7 @@ import ScoreMax from '../../Components/ScoreMax/ScoreMax';
 import { Paginate } from '../../Utils/paginate';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { FaArrowCircleLeft } from 'react-icons/fa';
+import { Typography, Button } from '@mui/material';
 
 export const Home = () => {
 	const productsFilter = useSelector(
@@ -45,26 +46,26 @@ export const Home = () => {
 			<Filter />
 			<div className={styles.containerInfo4}>
 				<div className={styles.nuevo}>
-					<h2>Nuevo en </h2>
+					<Typography>Nuevo en</Typography>
 				</div>
 				<div>
 					<div className={styles.paginado_home}>
-						<button
+						<Button
 							className={styles.paginado_btn}
 							onClick={() => {
 								setPageNumber(pageNumber - 1);
 							}}
 						>
 							<FaArrowCircleLeft /> Anterior
-						</button>
-						<button
+						</Button>
+						<Button
 							className={styles.paginado_btn}
 							onClick={() => {
 								setPageNumber(pageNumber + 1);
 							}}
 						>
 							Siguiente <FaArrowCircleRight />
-						</button>
+						</Button>
 					</div>
 					<CardsProducts
 						products={Paginate(productsFilter, pageNumber, elemPage)}
