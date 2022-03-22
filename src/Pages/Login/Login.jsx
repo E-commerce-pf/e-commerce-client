@@ -17,7 +17,7 @@ import firebaseConfing from "../../config/firebase";
 import axios from "axios";
 import { notifyError, notifySuccess } from "../../Utils/notifications";
 
-const baseUrl = "http://localhost:3001/api/user/login";
+const baseUrl = "/api/user/login";
 
 const Login = () => {
   const navigate = useNavigate();

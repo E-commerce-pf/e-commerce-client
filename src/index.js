@@ -10,8 +10,7 @@ import App from "./App";
 
 const AUTH0_DOMAIN = "dev-zq1m3o1i.us.auth0.com";
 const AUTH0_CLIENT_ID = "t8JiYlzhXaqZpYNWCKamK6VHkk5VPV2H";
-axios.defaults.baseURL =
-  /* process.env.REACT_APP_API || */ "http://localhost:3001";
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 const root = document.getElementById("root");
 
