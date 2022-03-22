@@ -9,13 +9,11 @@ import Footer from '../../Components/Footer';
 import styles from './Home.module.css';
 import { Navbar } from '../../Components/Navbar/Navbar';
 import Filter from '../../Components/Filter';
-
 import CardsProducts from '../../Components/CardsProducts';
+import ScoreMax from '../../Components/ScoreMax/ScoreMax';
 import { Paginate } from '../../Utils/paginate';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { FaArrowCircleLeft } from 'react-icons/fa';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 export const Home = () => {
 	const productsFilter = useSelector(
@@ -39,35 +37,34 @@ export const Home = () => {
 		<div className={styles.containerHome}>
 			<Landing />
 			<Navbar />
-
-			<div className={styles.containerInfo3}>
-				<img src={imgHome2} alt='imagen' width='100%' height='250px' />
-			</div>
+			<ScoreMax />
+			{/* <div className={styles.containerInfo3}>
+      
+       <img src={imgHome2} alt="imagen" width="100%" height="250px" />
+      </div> */}
 			<Filter />
 			<div className={styles.containerInfo4}>
 				<div className={styles.nuevo}>
-					<Typography variant='h5' component='h2'>
-						Nuevo en{' '}
-					</Typography>
+					<h2>Nuevo en </h2>
 				</div>
 				<div>
 					<div className={styles.paginado_home}>
-						<Button
+						<button
 							className={styles.paginado_btn}
 							onClick={() => {
 								setPageNumber(pageNumber - 1);
 							}}
 						>
 							<FaArrowCircleLeft /> Anterior
-						</Button>
-						<Button
+						</button>
+						<button
 							className={styles.paginado_btn}
 							onClick={() => {
 								setPageNumber(pageNumber + 1);
 							}}
 						>
 							Siguiente <FaArrowCircleRight />
-						</Button>
+						</button>
 					</div>
 					<CardsProducts
 						products={Paginate(productsFilter, pageNumber, elemPage)}

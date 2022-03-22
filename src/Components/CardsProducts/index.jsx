@@ -1,14 +1,13 @@
 import CardProduct from '../CardProduct';
 import Container from '@material-ui/core/Grid';
 import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
 
 const CardsProducts = ({ products, classes }) => {
 	if (products.length === 0) {
 		return <h1>No se encontraron productos...</h1>;
 	}
 	return (
-		<Container className={classes.container} sx={{ py: 8 }}>
+		<Container sx={{ py: 8 }}>
 			<Grid container spacing={1}>
 				{products.map((product, index) => {
 					return (
@@ -21,6 +20,4 @@ const CardsProducts = ({ products, classes }) => {
 		</Container>
 	);
 };
-export default withStyles({
-	container: {},
-})(CardsProducts);
+export default CardsProducts;
