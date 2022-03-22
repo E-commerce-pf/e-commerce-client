@@ -34,13 +34,13 @@ const Login = () => {
       console.log(result);
       const displayName = result.user.displayName.split(" ");
       //Enviamos los datos a la api
-      axios
-        .post(baseUrl, {
+      axios.post(baseUrl, {
           email: result.user.email,
           name: displayName[0],
           lastName: displayName[1],
           password: result.user.uid,
           loginWithSocial: true,
+          isAdmin : false
         })
         .then((res) => {
           notifySuccess(res.data.success);
