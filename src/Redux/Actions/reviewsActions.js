@@ -7,8 +7,6 @@ export default function getReview(){
     return async(dispatch)=>{
         let infoGetReview= await axios.get(GET_ROUT_REVIEW)
         let infoGet=infoGetReview.data;
-        
-        console.log(infoGet,'este es el infoGet')
         return dispatch({
             type:GET_REVIEW,
             payload:infoGet,
