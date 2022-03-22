@@ -9,7 +9,7 @@ import Footer from "../../Components/Footer";
 import styles from"./Home.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import Filter from "../../Components/Filter";
-
+import getReview from '../../Redux/Actions/reviewsActions';
 import CardsProducts from "../../Components/CardsProducts";
 import { Paginate } from "../../Utils/paginate";
 import { FaArrowCircleRight } from "react-icons/fa";
@@ -21,13 +21,22 @@ export const Home = () => {
   );
   const dispatch = useDispatch();
 
+  const review= useSelector((state)=> state.reviewsScore.reviews)
+  console.log(review,'REVIEW SELECTOR')
+
   const [pageNumber, setPageNumber] = useState(0);
   const elemPage = 8;
   useEffect(() => {
     productsService.getAllProducts().then(({products}) => {
       dispatch(setAllProducts(products));
     });
+    
   }, [dispatch]);
+
+   useEffect(()=>{
+     dispatch(getReview())
+     console.log(getReview(),' este es el getReview')
+   },[])
 
   if (!productsFilter) {
     return <Loading />;
