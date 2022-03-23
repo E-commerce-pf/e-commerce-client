@@ -10,6 +10,7 @@ import {
 import Swal from "sweetalert2";
 import CartShoppingBag from "../CartShoppingBag";
 import "./ShoppingBag.modules.css";
+import { notifyError } from "../../Utils/notifications";
 
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -40,19 +41,23 @@ const ShoppingBag = () => {
   };
 
   const deleteCart = () => {
-    setCartOpen(false);
-    Swal.fire({
-      title: "Seguro deseas eliminar el carrito de compras?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Si",
-      denyButtonText: "No",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Listo", "", "success");
-        dispatch(setIdBagProducts([]));
-      }
-    });
+    if (bagProducts.length !== 0) {
+      setCartOpen(false);
+      Swal.fire({
+        title: "Seguro deseas eliminar el carrito de compras?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Si",
+        denyButtonText: "No",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Listo", "", "success");
+          dispatch(setIdBagProducts([]));
+        }
+      });
+    } else {
+      notifyError("No tienes productos en el carrito!")
+    }
   };
 
   return (
