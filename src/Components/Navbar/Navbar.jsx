@@ -2,15 +2,13 @@ import React from 'react'
 import { FaHeadphonesAlt } from 'react-icons/fa'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { IoPersonOutline } from 'react-icons/io5'
-import { BsBag } from 'react-icons/bs'
 import Everylogopf from '../../Assets/Images/Everylogopf.png'
 import styles from'./Navbar.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar'
 import ShoppingBag from '../ShoppingBag'
 
-export const Navbar = () => {
-
+export const Navbar = ({filter}) => {
     const navigate = useNavigate()
     return (
         <>  <div className={styles.navbar}>
@@ -30,7 +28,7 @@ export const Navbar = () => {
                     <ShoppingBag/>
                 </div>
             </div>
-            <div className={styles.containerInfo2}>
+            {filter!==false&&<div className={styles.containerInfo2}>
                 <div className={styles.selectCP}>
                     <select>
                         <option>categoria</option>
@@ -46,7 +44,7 @@ export const Navbar = () => {
                 <div className={styles.inputS}>
                     <SearchBar />
                 </div>
-            </div>
+            </div>}
         </div>
         </>
     )

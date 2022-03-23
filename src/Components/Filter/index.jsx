@@ -26,9 +26,8 @@ const Filter = () => {
   };
 
   const initialStateOrder = {
-    stock: "all",
-    sales: "all",
-    discount: "all",
+    orderBy: "stock",
+    order: "all",
   };
 
   const dispatch = useDispatch();
@@ -47,11 +46,15 @@ const Filter = () => {
   const handleChangeOrder = (event) => {
     const name = event.target.name;
     setInputOrder({
-      stock: name === "stock" ? event.target.value : "all",
-      sales: name === "sales" ? event.target.value : "all",
-      discount: name === "discount" ? event.target.value : "all",
+      ...inputOrder,
+      [name]: event.target.value,
     });
-    dispatch(setOrderProducts({ order: event.target.value, name }));
+    dispatch(
+      setOrderProducts({
+        ...inputOrder,
+        [name]: event.target.value,
+      })
+    );
   };
 
   const handleChange = (event) => {
@@ -70,37 +73,24 @@ const Filter = () => {
   return (
     <div className={style.container}>
       <div>
-        <Typography>Stock</Typography>
+        <Typography>Ordenar por</Typography>
         <Select
-          name="stock"
-          aria-labelledby="stock"
-          value={inputOrder.stock}
+          name="orderBy"
+          aria-labelledby="orderBy"
+          value={inputOrder.orderBy}
           onChange={handleChangeOrder}
         >
-          <MenuItem value="all">Sin Ordenar</MenuItem>
-          <MenuItem value="min-max">Menor a mayor</MenuItem>
-          <MenuItem value="max-min">Mayor a menor</MenuItem>
+          <MenuItem value="stock">Cantidad</MenuItem>
+          <MenuItem value="sales">Vendidos</MenuItem>
+          <MenuItem value="discount">Descuentos</MenuItem>
         </Select>
       </div>
       <div>
-        <Typography>Ventas</Typography>
+        <Typography>Orden</Typography>
         <Select
-          name="sales"
-          aria-labelledby="sales"
-          value={inputOrder.sales}
-          onChange={handleChangeOrder}
-        >
-          <MenuItem value="all">Sin Ordenar</MenuItem>
-          <MenuItem value="min-max">Menor a mayor</MenuItem>
-          <MenuItem value="max-min">Mayor a menor</MenuItem>
-        </Select>
-      </div>
-      <div>
-        <Typography>Descuentos</Typography>
-        <Select
-          name="discount"
-          aria-labelledby="discount"
-          value={inputOrder.discount}
+          name="order"
+          aria-labelledby="order"
+          value={inputOrder.order}
           onChange={handleChangeOrder}
         >
           <MenuItem value="all">Sin Ordenar</MenuItem>

@@ -1,2 +1,2 @@
-const BASE_URL = "http://localhost:3001/api/";
-export default BASE_URL; 
+const BASE_URL = "/api/";
+export default BASE_URL;

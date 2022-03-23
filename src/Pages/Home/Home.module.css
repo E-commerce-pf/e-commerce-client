@@ -1,57 +1,42 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .containerHome {
-    display: flex;
-    flex-direction: column;
-    color: #23263B;
-    font-family: inter;
+  display: flex;
+  flex-direction: column;
+  color: #23263b;
+  font-family: inter;
 }
 
 .containerInfo3 {
-    display: flex;
-    font-size: 14px;
-    padding-top: 20px
+  display: flex;
+  font-size: 14px;
+  padding-top: 20px;
 }
 
 .containerInfo4 {
-    display: flex;
-    padding-left: 10px;
-    flex-direction: column;
+  display: flex;
+  padding-left: 10px;
+  flex-direction: column;
 }
 
 .nuevo h2 {
-    font-size: 34px;
+  font-size: 34px;
 }
 
 .card {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding: 40px;
-    gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 40px;
+  gap: 3rem;
 }
-.paginado_home{
-    /* background-color: aqua; */
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-.paginado_btn{
-    border-style: none;
-    color: rgb(23, 23, 150);
-    border-radius: 9px;
-    margin-left: 10px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all ease-in-out 0.5s;
-}
-.paginado_btn:hover{
-    color: antiquewhite;
-    background-color: rgba(23, 23, 150, 0.863);
+.paginado_home {
+  /* background-color: aqua; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

@@ -20,21 +20,39 @@
 }
 .buttons{
     display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .next{
-    border: none;
-    width: 70px;
-    margin-left: calc(50% - 70px);
-    background-color: rgb(93, 93, 158);
-    padding: 5px;
+    width: 110px;
+    margin-left: calc(50% - 110px);
     cursor: pointer;
+    border-style: none;
+    color: rgb(23, 23, 150);
+    border-radius: 9px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all ease-in-out 0.5s;
 }
 .prev{
-    border: none;
-    width: 70px;
-    padding: 5px;
-    background-color: rgb(93, 93, 158);
+    width: 110px;
     cursor: pointer;
+    border-style: none;
+    color: rgb(23, 23, 150);
+    border-radius: 9px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all ease-in-out 0.5s;
+}
+.next:hover{
+    color: antiquewhite;
+    background-color: rgba(23, 23, 150, 0.863);
+}
+.prev:hover{
+    color: antiquewhite;
+    background-color: rgba(23, 23, 150, 0.863);
 }
 .opinion{
     color: gray;

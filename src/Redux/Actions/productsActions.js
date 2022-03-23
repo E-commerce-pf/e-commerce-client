@@ -1,5 +1,5 @@
 import BASE_URL from "../../config/baseUrl";
-import axios from 'axios'
+import axios from "axios";
 export const SET_ALL_PRODUCTS = "SET_ALL_PRODUCTS";
 export const SET_ID_BAG_PRODUCTS = "SET_ID_BAG_PRODUCTS";
 export const ADD_PRODUCT_TO_BAG = "ADD_PRODUCT_TO_BAG";
@@ -8,13 +8,13 @@ export const CLEAR_FILTER = "CLEAR_FILTER";
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const PRODUCT_DETAIL = "PRODUCT_DETAIL";
+export const REMOVE_ALL_PRODUCT_TO_BAG = "REMOVE_ALL_PRODUCT_TO_BAG";
 
-export const setProductInfo=(id)=>dispatch=>{
-  return axios.get(`${BASE_URL}product/${id}`)
-  .then(({data})=>{
+export const setProductInfo = (id) => (dispatch) => {
+  return axios.get(`${BASE_URL}product/${id}`).then(({ data }) => {
     return dispatch({ type: PRODUCT_DETAIL, payload: data });
-  })
-}
+  });
+};
 export const setAllProducts = (data) => {
   return { type: SET_ALL_PRODUCTS, payload: data };
 };
@@ -29,6 +29,10 @@ export const addProductToBag = (id) => {
 
 export const removeProductToBag = (id) => {
   return { type: REMOVE_PRODUCT_TO_BAG, payload: id };
+};
+
+export const removeAllProductToBag = (id) => {
+  return { type: REMOVE_ALL_PRODUCT_TO_BAG, payload: id };
 };
 
 export const clearFilter = () => {

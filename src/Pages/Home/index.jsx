@@ -6,14 +6,15 @@ import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
 import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
-import styles from"./Home.module.css";
+import styles from "./Home.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import Filter from "../../Components/Filter";
 import CardsProducts from "../../Components/CardsProducts";
-import ScoreMax from '../../Components/ScoreMax/ScoreMax';
+import ScoreMax from "../../Components/ScoreMax/ScoreMax";
 import { Paginate } from "../../Utils/paginate";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
+import { Typography, Button } from "@mui/material";
 
 export const Home = () => {
   const productsFilter = useSelector(
@@ -21,18 +22,13 @@ export const Home = () => {
   );
   const dispatch = useDispatch();
 
- 
-
   const [pageNumber, setPageNumber] = useState(0);
   const elemPage = 8;
   useEffect(() => {
-    productsService.getAllProducts().then(({products}) => {
+    productsService.getAllProducts().then(({ products }) => {
       dispatch(setAllProducts(products));
     });
-    
   }, [dispatch]);
-
-  
 
   if (!productsFilter) {
     return <Loading />;
@@ -40,10 +36,9 @@ export const Home = () => {
 
   return (
     <div className={styles.containerHome}>
-      
       <Landing />
-      <Navbar />
-      <ScoreMax/>
+      <Navbar filter={false} />
+      <ScoreMax />
       {/* <div className={styles.containerInfo3}>
       
        <img src={imgHome2} alt="imagen" width="100%" height="250px" />
@@ -51,25 +46,26 @@ export const Home = () => {
       <Filter />
       <div className={styles.containerInfo4}>
         <div className={styles.nuevo}>
-          <h2>Nuevo en </h2>
+          <Typography>Nuevo en</Typography>
         </div>
-        <div >
+        <div>
           <div className={styles.paginado_home}>
-          <button className={styles.paginado_btn}
-            onClick={() => {
-              setPageNumber(pageNumber - 1);
-            }}
-          >
-            <FaArrowCircleLeft/> Anterior 
-          </button>
-          <button className={styles.paginado_btn}
-            onClick={() => {
-              setPageNumber(pageNumber + 1);
-            }}
-          >
-            Siguiente <FaArrowCircleRight/>
-            
-          </button>
+            <Button
+              className={styles.paginado_btn}
+              onClick={() => {
+                setPageNumber(pageNumber - 1);
+              }}
+            >
+              <FaArrowCircleLeft /> Anterior
+            </Button>
+            <Button
+              className={styles.paginado_btn}
+              onClick={() => {
+                setPageNumber(pageNumber + 1);
+              }}
+            >
+              Siguiente <FaArrowCircleRight />
+            </Button>
           </div>
           <CardsProducts
             products={Paginate(productsFilter, pageNumber, elemPage)}

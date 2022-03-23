@@ -4,6 +4,7 @@ import {
   FILTER_PRODUCTS,
   ORDER_PRODUCTS,
   PRODUCT_DETAIL,
+  REMOVE_ALL_PRODUCT_TO_BAG,
   REMOVE_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
@@ -34,7 +35,7 @@ const isIn = (product, payload) => {
 const initialState = {
   allProducts: null,
   bagProducts: [],
-  productInfo:{},
+  productInfo: {},
   produtsFilter: null,
 };
 
@@ -43,7 +44,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
     case PRODUCT_DETAIL:
       return {
         ...state,
-        productInfo: payload
+        productInfo: payload,
       };
     case SET_ALL_PRODUCTS:
       return {
@@ -64,8 +65,8 @@ const productsReducer = (state = initialState, { type, payload }) => {
     case ORDER_PRODUCTS:
       const products = state.produtsFilter.sort((productA, productB) =>
         payload.order === "max-min"
-          ? productB[payload.name] - productA[payload.name]
-          : productA[payload.name] - productB[payload.name]
+          ? productB[payload.orderBy] - productA[payload.orderBy]
+          : productA[payload.orderBy] - productB[payload.orderBy]
       );
       return {
         ...state,
@@ -87,22 +88,10 @@ const productsReducer = (state = initialState, { type, payload }) => {
       };
 
     case ADD_PRODUCT_TO_BAG:
-      const isItemInCart = state.bagProducts.find(
-        (product) => product.id === payload
-      );
-      if (isItemInCart) {
-        return {
-          ...state,
-          bagProducts: state.bagProducts.map((product) =>
-            product.id === payload
-              ? { ...product, amount: product.amount + 1 }
-              : product
-          ),
-        };
-      }
       const newProductCart = state.allProducts.find((product) => {
         return product.id === payload;
       });
+
       if (!newProductCart) {
         return {
           ...state,
@@ -111,15 +100,39 @@ const productsReducer = (state = initialState, { type, payload }) => {
           ),
         };
       }
+
+      const isItemInCart = state.bagProducts.find(
+        (product) => product.id === payload
+      );
+      if (isItemInCart) {
+        return {
+          ...state,
+          bagProducts: state.bagProducts.map((product) =>
+            product.id === payload
+              ? {
+                  ...product,
+                  amount:
+                    product.amount === product.stock
+                      ? product.amount
+                      : product.amount + 1,
+                }
+              : product
+          ),
+        };
+      }
+
       return {
         ...state,
-        bagProducts: [
-          ...state.bagProducts,
-          {
-            ...newProductCart,
-            amount: 1,
-          },
-        ],
+        bagProducts:
+          newProductCart.stock > 0
+            ? [
+                ...state.bagProducts,
+                {
+                  ...newProductCart,
+                  amount: 1,
+                },
+              ]
+            : [...state.bagProducts],
       };
 
     case REMOVE_PRODUCT_TO_BAG:
@@ -132,6 +145,14 @@ const productsReducer = (state = initialState, { type, payload }) => {
           }
           return [...acc, product];
         }, []),
+      };
+
+    case REMOVE_ALL_PRODUCT_TO_BAG:
+      return {
+        ...state,
+        bagProducts: state.bagProducts.filter(
+          (product) => product.id !== payload
+        ),
       };
 
     default:
