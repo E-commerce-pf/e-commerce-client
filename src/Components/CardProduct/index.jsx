@@ -1,6 +1,6 @@
 import React from "react";
 import AddToBag from "../AddToBag";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import { withStyles } from "@material-ui/core/styles";
 import { styled } from "@mui/material/styles";
@@ -83,14 +83,8 @@ const CardProduct = ({
             <Typography paragraph>información adicional</Typography>
             <Typography paragraph>{description}</Typography>
             <div>
-              <Button
-                variant="contained"
-                color="primary"
-                Link
-                component={Link}
-                href={`/productDetail/${id}`}
-              >
-                Ver más
+              <Button variant="contained" color="primary">
+                <Link to={`/productDetail/${id}`}>Ver más</Link>
               </Button>
             </div>
           </CardContent>

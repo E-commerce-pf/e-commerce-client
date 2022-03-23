@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addProductToBag } from '../../Redux/Actions/productsActions';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { IconButton } from '@mui/material';
 
 const AddToBag = ({ text, id }) => {
 	const dispatch = useDispatch();

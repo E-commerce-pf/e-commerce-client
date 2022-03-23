@@ -47,9 +47,7 @@ export const ProductDetail = () => {
                     <p className={style.price}>$ {product.price}</p>
                     <p>{product.stock} disponibles</p>
                     <p>{product.sales} vendidos</p>
-                    <div className={style.buttonContainer}>
-                    <AddToBag text={"Añadir al carrito"} id={productId} />
-                    </div>
+                    <AddToBag  id={productId} />
                 </div>
             </div>
             <div>
