@@ -7,8 +7,9 @@ import {
   addToLocalStorageIds,
   getToLocalStorageIds,
 } from "../../Utils/shoppingBag";
+import Swal from "sweetalert2";
 import CartShoppingBag from "../CartShoppingBag";
-import './ShoppingBag.modules.css';
+import "./ShoppingBag.modules.css";
 
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -31,20 +32,35 @@ const ShoppingBag = () => {
         })
       );
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTotalProducts = (products) => {
     return products.reduce((acc, product) => acc + product.amount, 0);
   };
 
+  const deleteCart = () => {
+    Swal.fire({
+      title: "Seguro deseas eliminar el carrito de compras?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Listo", "", "success");
+        dispatch(setIdBagProducts([]));
+      }
+    });
+  };
+
   return (
-    <div >
+    <div>
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-        <CartShoppingBag cartItems={bagProducts} />
+        <CartShoppingBag cartItems={bagProducts} deleteCart={deleteCart} />
       </Drawer>
-      <button className="shopping_container"  onClick={() => setCartOpen(true)}>
-        <Badge  badgeContent={getTotalProducts(bagProducts)} color="error">
+      <button className="shopping_container" onClick={() => setCartOpen(true)}>
+        <Badge badgeContent={getTotalProducts(bagProducts)} color="error">
           <BiShoppingBag />
         </Badge>
       </button>

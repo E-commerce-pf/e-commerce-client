@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { removeProductToBag } from "../../Redux/Actions/productsActions";
-import '../AddToBag/AddToBag.modules.css';
+import RemoveShoppingCartOutlinedIcon from "@mui/icons-material/RemoveShoppingCartOutlined";
 
 const RemoveToBag = ({ text, id }) => {
   const dispatch = useDispatch();
@@ -10,7 +10,11 @@ const RemoveToBag = ({ text, id }) => {
     dispatch(removeProductToBag(id));
   };
 
-  return <button className="btn_addToB" onClick={() => removeToCart(id)}>{text} </button>;
+  return (
+    <RemoveShoppingCartOutlinedIcon onClick={() => removeToCart(id)}>
+      {text}
+    </RemoveShoppingCartOutlinedIcon>
+  );
 };
 
 export default RemoveToBag;

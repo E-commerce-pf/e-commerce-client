@@ -4,6 +4,7 @@ import {
   FILTER_PRODUCTS,
   ORDER_PRODUCTS,
   PRODUCT_DETAIL,
+  REMOVE_ALL_PRODUCT_TO_BAG,
   REMOVE_PRODUCT_TO_BAG,
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
@@ -34,7 +35,7 @@ const isIn = (product, payload) => {
 const initialState = {
   allProducts: null,
   bagProducts: [],
-  productInfo:{},
+  productInfo: {},
   produtsFilter: null,
 };
 
@@ -43,7 +44,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
     case PRODUCT_DETAIL:
       return {
         ...state,
-        productInfo: payload
+        productInfo: payload,
       };
     case SET_ALL_PRODUCTS:
       return {
@@ -132,6 +133,14 @@ const productsReducer = (state = initialState, { type, payload }) => {
           }
           return [...acc, product];
         }, []),
+      };
+
+    case REMOVE_ALL_PRODUCT_TO_BAG:
+      return {
+        ...state,
+        bagProducts: state.bagProducts.filter(
+          (product) => product.id !== payload
+        ),
       };
 
     default:
