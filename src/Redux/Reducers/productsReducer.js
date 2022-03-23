@@ -88,22 +88,10 @@ const productsReducer = (state = initialState, { type, payload }) => {
       };
 
     case ADD_PRODUCT_TO_BAG:
-      const isItemInCart = state.bagProducts.find(
-        (product) => product.id === payload
-      );
-      if (isItemInCart) {
-        return {
-          ...state,
-          bagProducts: state.bagProducts.map((product) =>
-            product.id === payload
-              ? { ...product, amount: product.amount + 1 }
-              : product
-          ),
-        };
-      }
       const newProductCart = state.allProducts.find((product) => {
         return product.id === payload;
       });
+
       if (!newProductCart) {
         return {
           ...state,
@@ -112,15 +100,39 @@ const productsReducer = (state = initialState, { type, payload }) => {
           ),
         };
       }
+
+      const isItemInCart = state.bagProducts.find(
+        (product) => product.id === payload
+      );
+      if (isItemInCart) {
+        return {
+          ...state,
+          bagProducts: state.bagProducts.map((product) =>
+            product.id === payload
+              ? {
+                  ...product,
+                  amount:
+                    product.amount === product.stock
+                      ? product.amount
+                      : product.amount + 1,
+                }
+              : product
+          ),
+        };
+      }
+
       return {
         ...state,
-        bagProducts: [
-          ...state.bagProducts,
-          {
-            ...newProductCart,
-            amount: 1,
-          },
-        ],
+        bagProducts:
+          newProductCart.stock > 0
+            ? [
+                ...state.bagProducts,
+                {
+                  ...newProductCart,
+                  amount: 1,
+                },
+              ]
+            : [...state.bagProducts],
       };
 
     case REMOVE_PRODUCT_TO_BAG:

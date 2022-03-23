@@ -45,7 +45,10 @@ const CardProduct = ({
     <>
       <Card sx={{ maxWidth: 345 }}>
         <CardActionArea>
-          <CardHeader title={title} subheader={`PRECIO: ${price}$`} />
+          <CardHeader
+            title={title}
+            subheader={`AHORA: ${(price * ((discount - 1) * -1)).toFixed(2)}$ ANTES: ${price}$`}
+          />
           <CardMedia
             component="img"
             height="194"

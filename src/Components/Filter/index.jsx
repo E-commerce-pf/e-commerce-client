@@ -27,7 +27,7 @@ const Filter = () => {
 
   const initialStateOrder = {
     orderBy: "stock",
-    order: "min-max",
+    order: "all",
   };
 
   const dispatch = useDispatch();
@@ -93,6 +93,7 @@ const Filter = () => {
           value={inputOrder.order}
           onChange={handleChangeOrder}
         >
+          <MenuItem value="all">Sin Ordenar</MenuItem>
           <MenuItem value="min-max">Menor a mayor</MenuItem>
           <MenuItem value="max-min">Mayor a menor</MenuItem>
         </Select>
