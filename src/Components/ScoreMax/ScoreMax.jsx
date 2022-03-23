@@ -12,7 +12,7 @@ export default function ScoreMax() {
 
 	useEffect(() => {
 		dispatch(getReview());
-	}, []);
+	}, [dispatch]);
 
 	const breakPoints = [
 		{ width: 100, itemsToShow: 1 },
