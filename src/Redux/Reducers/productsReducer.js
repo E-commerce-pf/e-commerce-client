@@ -64,8 +64,8 @@ const productsReducer = (state = initialState, { type, payload }) => {
     case ORDER_PRODUCTS:
       const products = state.produtsFilter.sort((productA, productB) =>
         payload.order === "max-min"
-          ? productB[payload.name] - productA[payload.name]
-          : productA[payload.name] - productB[payload.name]
+          ? productB[payload.orderBy] - productA[payload.orderBy]
+          : productA[payload.orderBy] - productB[payload.orderBy]
       );
       return {
         ...state,
