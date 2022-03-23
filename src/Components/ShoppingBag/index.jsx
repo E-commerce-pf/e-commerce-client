@@ -40,6 +40,7 @@ const ShoppingBag = () => {
   };
 
   const deleteCart = () => {
+    setCartOpen(false);
     Swal.fire({
       title: "Seguro deseas eliminar el carrito de compras?",
       showDenyButton: true,
