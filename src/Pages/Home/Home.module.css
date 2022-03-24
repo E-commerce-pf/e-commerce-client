@@ -22,8 +22,9 @@ body {
   display: flex;
   width: 100%;
   flex-direction: row;
-  position: relative;
-  /* background-color: rgba(255, 0, 0, 0.459);  */
+  margin-top: 40px;
+  padding-top: 20px;
+  position: relative; 
   padding-left: 10px;
 }
 .prodct{
@@ -42,10 +43,23 @@ body {
   gap: 3rem;
 }
 .paginado_home {
-  /* background-color: aqua; */
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.paginado_btn{
+  font-size: 14px !important;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+@media (max-width: 600px) {
+  .containerInfo4 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    /* background-color: rgba(255, 0, 0, 0.459);  */
+    padding-left: 10px;
+  }
 }

@@ -4,6 +4,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
+import './index.css'
 
 import store from "./Redux/Store";
 import App from "./App";

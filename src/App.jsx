@@ -12,7 +12,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container  maxWidth="xl">
+       <Container  maxWidth= 'false'>
         <Routes>
           <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
         </Routes>
         <ToastContainer />
-      </Container>
+      </Container> 
     </ThemeProvider>
   );
 };
