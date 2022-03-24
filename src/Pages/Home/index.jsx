@@ -5,7 +5,7 @@ import { setAllProducts } from "../../Redux/Actions/productsActions";
 import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
 import Landing from "../../Components/Landing/Landing-page";
-import Footer from "../../Components/Footer";
+import Footer from "../../Components/footer";
 import styles from "./Home.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import Filter from "../../Components/Filter";

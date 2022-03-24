@@ -51,7 +51,7 @@ const Login = () => {
             notifySuccess(res.data.success);
             dispatch( getUser(user) );
             setTimeout(() => {
-              navigate("/");
+              navigate("/viewClient");
             }, 3500);
           })
           .catch((err) => {
@@ -78,7 +78,7 @@ const Login = () => {
             dispatch( getUser(user) );
 
             setTimeout(() => {
-              navigate("/");
+              navigate("/viewClient");
             }, 3500);
           })
           .catch((err) => {
@@ -101,7 +101,7 @@ const Login = () => {
         notifySuccess('Login Success');
 
         setTimeout(()=>{
-          navigate('/')
+          navigate('/viewClient')
         },3500)
       })
       .catch(err => notifyError(err.response.data.error))
@@ -114,20 +114,18 @@ const Login = () => {
           <IoIosArrowBack /> Back
         </button>
       </div>
-
       <div className={styles.cardLogin}>
         <div className={styles.login1}>
           <h1>Login</h1>
           <img src={everylogopf_gris} alt="logo" width="124px" height="78px" />
         </div>
-
         <form className={styles.login2} onSubmit={handlerSubmit}>
           <h4>Email</h4>
           <input 
             type="email" 
             placeholder="example@example.com" 
             id='email'
-
+            autoComplete="off"
           />
           <h4>Password</h4>
           <input 
@@ -140,7 +138,6 @@ const Login = () => {
             create new account
           </Link>
         </form>
-        
         <div className={styles.login3}>
           <button onClick={signInGoogle}>
             {" "}
@@ -152,7 +149,6 @@ const Login = () => {
             Sign in with GitHub
           </button>
         </div>
-
       </div>
     </div>
   );

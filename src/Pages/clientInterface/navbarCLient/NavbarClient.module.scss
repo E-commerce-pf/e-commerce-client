@@ -1,0 +1,72 @@
+.containerInfo1{
+    display: flex;
+    flex-direction:row;
+    color: #23263B;
+    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(86, 88, 92, 0.123);
+}
+
+.homeImg{
+    display: flex;
+    flex-direction:column;
+    padding-left: 10px;
+    cursor:pointer;
+}
+.homeSU{
+    display: flex;
+    flex-direction:row;
+    gap: 2rem;
+    cursor:pointer;
+    color:#23263B;
+    padding-right: 100px;
+    align-items:center;
+}
+.btn{
+    font-size:27px;
+}
+.homeFLC{
+    display: flex;
+    flex-direction:row;
+    gap: 1rem;
+    padding-right: 20px;
+    cursor:pointer;
+    align-items:center;
+}
+.containerInfo2 {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 14px;
+    align-items: center;
+}
+
+.selectCP {
+    display: flex;
+    gap: 3rem;
+    
+}
+.selectCP select {
+    height: 5vh;
+    width: 7vw;
+    border: 1px solid white;
+}
+
+
+.inputS {
+    padding-right: 30px;
+
+}
+
+.input_S input {
+    height: 5vh;
+    width: 30vw;
+    padding-left: 10px;
+
+}
+.input_S input focus {
+    outline: 1px solid white;
+}
+
