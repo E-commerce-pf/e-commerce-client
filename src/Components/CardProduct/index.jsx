@@ -15,6 +15,8 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button, CardActionArea } from "@mui/material";
+import './CardProduct.modules.css'
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -43,15 +45,16 @@ const CardProduct = ({
   };
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 355 }} >
         <CardActionArea>
           <CardHeader
+          className="txt_card"
             title={title}
             subheader={`AHORA: ${(price * ((discount - 1) * -1)).toFixed(2)}$ ANTES: ${price}$`}
           />
           <CardMedia
             component="img"
-            height="194"
+            height="200"
             image={image}
             alt="Paella dish"
           />
@@ -81,10 +84,10 @@ const CardProduct = ({
             </ExpandMore>
           </CardActions>
         </CardActionArea>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Collapse in={expanded} timeout="auto" unmountOnExit >
           <CardContent>
-            <Typography paragraph>información adicional</Typography>
-            <Typography paragraph>{description}</Typography>
+            <Typography className='title_info' paragraph>INFORMACION ADICIONAL</Typography>
+            <Typography className='cardInfo' paragraph>{description}</Typography>
             <div>
               <Button variant="contained" color="primary">
                 <Link to={`/productDetail/${id}`}>Ver más</Link>
