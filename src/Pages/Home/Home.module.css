@@ -1,11 +1,13 @@
 body {
   margin: 0;
   padding: 0;
+  
 }
 
 .containerHome {
   display: flex;
   flex-direction: column;
+  background-color: rgba(86, 88, 92, 0.123);
   color: #23263b;
   font-family: inter;
 }
@@ -18,12 +20,19 @@ body {
 
 .containerInfo4 {
   display: flex;
+  width: 100%;
+  flex-direction: row;
+  position: relative;
+  /* background-color: rgba(255, 0, 0, 0.459);  */
   padding-left: 10px;
-  flex-direction: column;
 }
-
+.prodct{
+  width: 100%;
+  /* background-color: rgba(0, 0, 0, 0.164); */
+}
 .nuevo h2 {
   font-size: 34px;
+ 
 }
 
 .card {

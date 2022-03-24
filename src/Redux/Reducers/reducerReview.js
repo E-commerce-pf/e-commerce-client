@@ -12,8 +12,6 @@ export const reviewsScore=(state= initialState,action)=>{
                 reviews:action.payload
             }
         default:
-            return {
-                state,
-            }
+            return state;
     }
 }
