@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import './index.css'
 
-import store from "./Redux/Store";
+import {persistor,store} from "./Redux/Store";
 import App from "./App";
 
 const AUTH0_DOMAIN = "dev-zq1m3o1i.us.auth0.com";
@@ -23,7 +24,9 @@ ReactDOM.render(
       redirectUri={window.location.origin}
     >
       <Provider store={store}>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </Auth0Provider>
   </BrowserRouter>,

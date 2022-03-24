@@ -1,10 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../Redux/Actions/userActions";
 import { Link, useNavigate } from "react-router-dom";
 import everylogopf_gris from "../../Assets/Images/Everylogopf_gris.png";
 import { IoIosArrowBack } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
-import styles from "./Login.module.css";
+import styles from "./Login.module.scss";
 
 //COMPONENTES
 import {
@@ -20,6 +22,7 @@ import { notifyError, notifySuccess } from "../../Utils/notifications";
 const baseUrl = "/api/user/login";
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   firebaseConfing();
   const auth = getAuth();
@@ -30,44 +33,50 @@ const Login = () => {
   gitHubProvider.addScope("repo");
 
   const signInGoogle = () => {
-    signInWithPopup(auth, googleProvider).then((result) => {
-      console.log(result);
-      const displayName = result.user.displayName.split(" ");
-      //Enviamos los datos a la api
-      axios.post(baseUrl, {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        console.log(result);
+        const displayName = result.user.displayName.split(" ");
+        const user = {
           email: result.user.email,
           name: displayName[0],
           lastName: displayName[1],
           password: result.user.uid,
           loginWithSocial: true,
           isAdmin : false
-        })
-        .then((res) => {
-          notifySuccess(res.data.success);
-          setTimeout(() => {
-            navigate("/");
-          }, 3500);
-        })
-        .catch((err) => {
-          notifyError(err.response.data.error);
-        });
-    });
+        }
+        //Enviamos los datos a la api
+        axios.post(baseUrl, {...user})
+          .then((res) => {
+            notifySuccess(res.data.success);
+            dispatch( getUser(user) );
+            setTimeout(() => {
+              navigate("/");
+            }, 3500);
+          })
+          .catch((err) => {
+            notifyError(err.response.data.error);
+          });
+      });
   };
 
   const signInGitHub = () => {
     signInWithPopup(auth, gitHubProvider)
       .then((result) => {
         console.log(result);
-        axios
-          .post(baseUrl, {
-            email: result._tokenResponse.email,
-            name: result._tokenResponse.screenName,
-            lastName: "",
-            password: result.user.uid,
-            loginWithSocial: true,
-          })
+        const user = {
+          email: result._tokenResponse.email,
+          name: result._tokenResponse.screenName,
+          lastName: "",
+          password: result.user.uid,
+          loginWithSocial: true,
+          isAdmin : false
+        }
+        axios.post(baseUrl, {...user})
           .then((res) => {
             notifySuccess(res.data.success);
+            dispatch( getUser(user) );
+
             setTimeout(() => {
               navigate("/");
             }, 3500);
@@ -82,6 +91,22 @@ const Login = () => {
       });
   };
 
+  const handlerSubmit = (event)=>{
+    event.preventDefault();
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    axios.post(baseUrl, {email, password, isAdmin : false})
+      .then( res =>{
+        dispatch( getUser(res.data) )
+        notifySuccess('Login Success');
+
+        setTimeout(()=>{
+          navigate('/')
+        },3500)
+      })
+      .catch(err => notifyError(err.response.data.error))
+  }
+
   return (
     <div className={styles.containerLogin}>
       <div className={styles.cardButton}>
@@ -89,21 +114,33 @@ const Login = () => {
           <IoIosArrowBack /> Back
         </button>
       </div>
+
       <div className={styles.cardLogin}>
         <div className={styles.login1}>
           <h1>Login</h1>
           <img src={everylogopf_gris} alt="logo" width="124px" height="78px" />
         </div>
-        <div className={styles.login2}>
+
+        <form className={styles.login2} onSubmit={handlerSubmit}>
           <h4>Email</h4>
-          <input type="text" placeholder="Username@gmail.com" />
+          <input 
+            type="email" 
+            placeholder="example@example.com" 
+            id='email'
+
+          />
           <h4>Password</h4>
-          <input type="text" placeholder="Password" />
+          <input 
+            type="password" 
+            placeholder="password" 
+            id='password'
+          />
           <button>Sign in</button>
           <Link to="/register" className={styles.link}>
             create new account
           </Link>
-        </div>
+        </form>
+        
         <div className={styles.login3}>
           <button onClick={signInGoogle}>
             {" "}
@@ -115,6 +152,7 @@ const Login = () => {
             Sign in with GitHub
           </button>
         </div>
+
       </div>
     </div>
   );
