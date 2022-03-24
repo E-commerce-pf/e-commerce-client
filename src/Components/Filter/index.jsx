@@ -73,7 +73,7 @@ const Filter = () => {
   return (
     <div className={style.container}>
       <div>
-        <Typography>Ordenar por</Typography>
+        <Typography className={style.title}>Ordenar por</Typography>
         <Select
           name="orderBy"
           aria-labelledby="orderBy"
@@ -86,7 +86,7 @@ const Filter = () => {
         </Select>
       </div>
       <div>
-        <Typography>Orden</Typography>
+        <Typography className={style.title}>Orden</Typography>
         <Select
           name="order"
           aria-labelledby="order"
@@ -99,7 +99,7 @@ const Filter = () => {
         </Select>
       </div>
       <div>
-        <Typography>Categorias</Typography>
+        <Typography className={style.title}>Categorias</Typography>
         <Select
           name="category"
           aria-labelledby="category"
@@ -117,7 +117,7 @@ const Filter = () => {
         </Select>
       </div>
       <div>
-        <Typography>Precio USD (min - max) </Typography>
+        <Typography className={style.title}>Precio USD (min - max) </Typography>
         <Slider
           aria-labelledby="price"
           name="price"
@@ -129,7 +129,7 @@ const Filter = () => {
           disableSwap
         />
       </div>
-      <div>
+      <div className={style.title}>
         <TextField
           label="Descripcion"
           variant="outlined"
@@ -138,7 +138,7 @@ const Filter = () => {
           value={input.description}
         />
       </div>
-      <div>
+      <div className={style.title}>
         <TextField
           label="Titulo"
           variant="outlined"

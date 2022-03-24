@@ -43,8 +43,10 @@ export const Home = () => {
       
        <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div> */}
-      <Filter />
+      
       <div className={styles.containerInfo4}>
+        <Filter />
+        <div className={styles.prodct}>
         <div className={styles.nuevo}>
           <Typography>Nuevo en</Typography>
         </div>
@@ -72,6 +74,8 @@ export const Home = () => {
           />
         </div>
       </div>
+        </div>
+        
       <Footer />
     </div>
   );

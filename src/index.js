@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
+import './index.css'
 
 import {persistor,store} from "./Redux/Store";
 import App from "./App";
