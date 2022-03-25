@@ -3,14 +3,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUser } from '../../Redux/Actions/userActions' 
 import style from "./Register.module.scss";
-import baseURL from "../../config/baseUrl";
 import { countries } from "../../Utils/countries";
 
 //COMPONENTES
 import { TextField, InputLabel } from "@mui/material";
 import { ToastContainer } from "react-toastify";
+import axios from 'axios';
 import { notifyError, notifySuccess } from "../../Utils/notifications";
-//SOLO TEMPORAL
 
 const validateData = (input, error, name) => {
   if (
@@ -92,12 +91,12 @@ const Register = () => {
 
     if (!userData.country) return notifyError("Alto! aún no sabemos de que país eres");
 
-    await baseURL.post('register', { ...userData })
+    await axios.post('/api/register', { ...userData })
       .then((res) => {
         notifySuccess(res.data.success);
         dispatch( getUser(res.data.user) )
         setTimeout(()=>{
-          navigate('/');
+          navigate('/login');
         },4000)
 
       })

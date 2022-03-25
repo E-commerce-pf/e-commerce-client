@@ -1,5 +1,3 @@
-import axios from 'axios';
-import BASE_URL from "../../config/baseUrl";
 export const GET_USER = 'GET_USER';
 
 export const getUser = (userData)=>{
