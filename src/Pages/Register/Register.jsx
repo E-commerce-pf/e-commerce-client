@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getUser } from '../../Redux/Actions/userActions' 
 import style from "./Register.module.scss";
-import axios from "axios";
+import baseURL from "../../config/baseUrl";
 import { countries } from "../../Utils/countries";
 
 //COMPONENTES
@@ -8,7 +11,6 @@ import { TextField, InputLabel } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 import { notifyError, notifySuccess } from "../../Utils/notifications";
 //SOLO TEMPORAL
-const baseUrl = "/api/";
 
 const validateData = (input, error, name) => {
   if (
@@ -45,6 +47,8 @@ const validateData = (input, error, name) => {
 };
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     name: "",
     lastName: "",
@@ -86,12 +90,16 @@ const Register = () => {
     const { password2, email2, ...newUser } = userData;
     console.log(newUser);
 
-    if (!userData.country) notifyError("Alto! aún no sabemos de que país eres");
+    if (!userData.country) return notifyError("Alto! aún no sabemos de que país eres");
 
-    await axios
-      .post(baseUrl + "register", { ...userData })
+    await baseURL.post('register', { ...userData })
       .then((res) => {
         notifySuccess(res.data.success);
+        dispatch( getUser(res.data.user) )
+        setTimeout(()=>{
+          navigate('/');
+        },4000)
+
       })
       .catch((err) => {
         notifyError(err.response.data.error);
