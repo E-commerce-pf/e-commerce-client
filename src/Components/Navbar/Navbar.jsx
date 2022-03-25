@@ -1,39 +1,47 @@
-import React from 'react'
-import { FaHeadphonesAlt } from 'react-icons/fa'
-import { HiOutlineLocationMarker } from 'react-icons/hi'
-import { IoPersonOutline } from 'react-icons/io5'
-import Everylogopf from '../../Assets/Images/Everylogopf.png'
-import styles from'./Navbar.module.css'
-import { Link, useNavigate } from 'react-router-dom'
-import SearchBar from '../SearchBar'
-import ShoppingBag from '../ShoppingBag'
+import React from "react";
+import { FaHeadphonesAlt } from "react-icons/fa";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { IoPersonOutline } from "react-icons/io5";
+import Everylogopf from "../../Assets/Images/Everylogopf.png";
+import styles from "./Navbar.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import SearchBar from "../SearchBar";
+import ShoppingBag from "../ShoppingBag";
 
-export const Navbar = ({filter}) => {
-    const navigate = useNavigate()
-    return (
-        <>  <div className={styles.navbar}>
-
-            <div className={styles.containerInfo1}>
-                <div className={styles.homeImg}>
-                    <Link to='/'>
-                        <img src={Everylogopf} alt="img" width="150px" height="100px" />
-                    </Link>
-                </div>
-                <div className={styles.inputS}>
-                    <SearchBar />
-                </div>
-                <div className={styles.homeSU}>
-                    <h2><FaHeadphonesAlt /> Soporte</h2>
-                    <h2><HiOutlineLocationMarker /> Ubicacion</h2>
-                </div>
-                <div className={styles.homeFLC}>
-                    <button className={styles.login_}>
-                        <IoPersonOutline className={styles.login} onClick={() => (navigate('/login'))} />
-                    </button>
-                    <ShoppingBag/>
-                </div>
-            </div>
-            {/* {filter!==false&&<div className={styles.containerInfo2}>
+export const Navbar = ({ filter, state, setState }) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      {" "}
+      <div className={styles.navbar}>
+        <div className={styles.containerInfo1}>
+          <div className={styles.homeImg}>
+            <Link to="/">
+              <img src={Everylogopf} alt="img" width="150px" height="100px" />
+            </Link>
+          </div>
+          <div className={styles.inputS}>
+            <SearchBar />
+          </div>
+          <div className={styles.homeSU}>
+            <h2 onClick={() => setState(!state)}>
+              <FaHeadphonesAlt /> Soporte
+            </h2>
+            <h2>
+              <HiOutlineLocationMarker /> Ubicacion
+            </h2>
+          </div>
+          <div className={styles.homeFLC}>
+            <button className={styles.login_}>
+              <IoPersonOutline
+                className={styles.login}
+                onClick={() => navigate("/login")}
+              />
+            </button>
+            <ShoppingBag />
+          </div>
+        </div>
+        {/* {filter!==false&&<div className={styles.containerInfo2}>
                 <div className={styles.selectCP}>
                     <select>
                         <option>categoria</option>
@@ -46,9 +54,7 @@ export const Navbar = ({filter}) => {
                         <option>Precio</option>
                     </select>
                 </div> */}
-                
-            </div>
-        
-        </>
-    )
-}
+      </div>
+    </>
+  );
+};
