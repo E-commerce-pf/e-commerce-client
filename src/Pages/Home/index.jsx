@@ -29,7 +29,7 @@ export const Home = () => {
 
   const elemPage = 8;
   useEffect(() => {
-    productsService.getAllProducts().then(({ products }) => {
+    productsService.getAllProducts().then((products) => {
       dispatch(setAllProducts(products));
     });
   }, [dispatch]);
