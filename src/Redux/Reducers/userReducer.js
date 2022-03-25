@@ -1,7 +1,7 @@
-import { GET_USER } from "../Actions/userActions";
+import { GET_USER,LOGOUT_USER} from "../Actions/userActions";
 
 const initialState = {
-      currentUser : {}
+      currentUser : null
 }
 
 const userReducer = (state = initialState, action )=>{
@@ -10,6 +10,11 @@ const userReducer = (state = initialState, action )=>{
                   return {
                         ...state,
                         currentUser : action.payload
+                  }
+            case LOGOUT_USER:
+                  return { 
+                        ...state,
+                        currentUser : null
                   }
             default:
                   return state

@@ -6,7 +6,8 @@ import { RiLogoutBoxRLine } from 'react-icons/ri'
 import Everylogopf from '../../../Assets/Images/Everylogopf.png'
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from '@material-ui/core';
-
+import {useDispatch} from 'react-redux';
+import {logoutUser} from '../../../Redux/Actions/userActions'
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
@@ -27,18 +28,22 @@ export const NavbarClient = () => {
     const classes = useStyles();
     const navigate = useNavigate()
     const [modal,setModal]=useState(false)
-
+    const dispatch= useDispatch()
     const Home = () => {
         navigate('/')
     }
 
     const body = (
         <div className={classes.modal}>
-            Adrian cabezon
+            aqui se van a cambiar los datos del usuario
         </div>
     )
     const openCloseModal = () => {
         setModal(!modal)
+    }
+    const logout=()=>{
+        dispatch(logoutUser())
+        navigate('/')
     }
     return (
         <>
@@ -48,7 +53,7 @@ export const NavbarClient = () => {
                 </div>
                 <div className={styles.homeFLC}>
                     <BsPencilSquare className={styles.btn} onClick={() => openCloseModal()}/>
-                    <RiLogoutBoxRLine className={styles.btn} />
+                    <RiLogoutBoxRLine className={styles.btn} onClick={logout}/>
                 </div>
             </div>
             <Modal open={modal} onClose={openCloseModal}>
