@@ -32,7 +32,7 @@
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   color: rgb(231, 231, 238);
-  background-color: rgba(9, 44, 160, 0.548);
+  background-color: rgba(8, 25, 119, 0.815);
   border-radius: 5px;
   text-shadow: 1px 1px 2px black;
   height: 30px;
@@ -45,18 +45,18 @@
   font-weight: bold;
   border-bottom-style: double;
   border-top-style: double;
-  height: 30px;
+  height: 40px;
   color: blanchedalmond;
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 1px 1px 2px rgb(19, 101, 168);
   border-color: rgba(15, 55, 235, 0.233);
-  background-color: rgba(23, 53, 223, 0.39);
+  background-color: rgba(8, 25, 119, 0.973);
   transition: all ease-in 0.5s;
 }
 .btn_comprar:hover {
-  color: rgb(3, 9, 46);
-  text-shadow: 1px 1px 2px rgb(228, 230, 235);
+  color: rgba(8, 25, 119, 0.973);
+  text-shadow: 1px 1px 2px rgb(97, 131, 216);
   border-color: rgba(75, 90, 156, 0.233);
-  background-color: rgba(95, 114, 226, 0.801);
+  background-color: rgba(187, 190, 207, 0.801);
 }
 
 .btn_quitar{
@@ -65,15 +65,16 @@
   font-weight:bold;
   border-bottom-style: double;
   border-top-style: double;
-  height: 30px;
+  height: 40px;
   color:blanchedalmond;
   text-shadow: 1px 1px 2px black;
   border-color: rgba(226, 168, 176, 0.233);
-  background-color: rgba(223, 23, 50, 0.39);
+  background-color: rgba(223, 46, 23, 0.863);
   transition: all ease-in 0.5s;
 }
 .btn_quitar:hover{
-  text-shadow: 1px 1px 2px black;
+  color: rgb(231, 7, 7);
+  text-shadow: 1px 1px 2px rgb(223, 205, 201);
   border-color: rgba(83, 43, 48, 0.233);
-  background-color: rgba(70, 5, 14, 0.39);
+  background-color: rgba(236, 186, 173, 0.589);
 }

@@ -19,16 +19,21 @@ export const Navbar = ({filter}) => {
                         <img src={Everylogopf} alt="img" width="150px" height="100px" />
                     </Link>
                 </div>
+                <div className={styles.inputS}>
+                    <SearchBar />
+                </div>
                 <div className={styles.homeSU}>
                     <h2><FaHeadphonesAlt /> Soporte</h2>
                     <h2><HiOutlineLocationMarker /> Ubicacion</h2>
                 </div>
                 <div className={styles.homeFLC}>
-                    <h2><IoPersonOutline onClick={() => (navigate('/login'))} /></h2>
+                    <button className={styles.login_}>
+                        <IoPersonOutline className={styles.login} onClick={() => (navigate('/login'))} />
+                    </button>
                     <ShoppingBag/>
                 </div>
             </div>
-            {filter!==false&&<div className={styles.containerInfo2}>
+            {/* {filter!==false&&<div className={styles.containerInfo2}>
                 <div className={styles.selectCP}>
                     <select>
                         <option>categoria</option>
@@ -40,12 +45,10 @@ export const Navbar = ({filter}) => {
                         <option>Precio</option>
                         <option>Precio</option>
                     </select>
-                </div>
-                <div className={styles.inputS}>
-                    <SearchBar />
-                </div>
-            </div>}
-        </div>
+                </div> */}
+                
+            </div>
+        
         </>
     )
 }

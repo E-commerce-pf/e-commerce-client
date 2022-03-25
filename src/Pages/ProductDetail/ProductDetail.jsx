@@ -37,21 +37,23 @@ export const ProductDetail = () => {
         <div>
             <Navbar filter={false}/>
             <div className={style.container}>
-                <div><img src={product.image} alt="product image"/></div>
-                <div>
-                    <h2>{product.title&&product.title[0].toUpperCase()+product.title?.slice(1)}</h2>
-                    {<Rating name='read-only' value={prom()} readOnly />} <span className={style.opinion}>{product.Reviews?.length} opiniones</span>
-                    <p>{product.description}</p>
-                </div>
-                <div className={style.buyContainer}>
-                    <p className={style.price}>$ {product.price}</p>
-                    <p>{product.stock} disponibles</p>
-                    <p>{product.sales} vendidos</p>
+                <div><img className={style.img12} src={product.image} alt="product image"/></div>
+                <div className={style.container_dos}>
+                    <h2 className={style.title_}>{product.title&&product.title[0].toUpperCase()+product.title?.slice(1)}</h2>
+                    <div className={style.opinion}>
+                    {<Rating  name='read-only' value={prom()} readOnly />} <span className={style.span_}>{product.Reviews?.length} opiniones</span>
+                    </div>
+                    <p className={style.descrip}>{product.description}</p>
+                    <div className={style.buyContainer}>
+                    <p className={style.price}>usd{product.price}</p>
+                    <p className={style.descrip}>{product.stock} Disponibles</p>
+                    <p className={style.descrip}>{product.sales} Vendidos</p>
                     <AddToBag  id={productId} />
+                    </div>
                 </div>
             </div>
-            <div>
-                <h2>Comentarios</h2>
+            <div  className={style.container_tres}>
+                <h2 className={style.comentarios}>Comentarios</h2>
                 <div className={style.containerScore}>
                     {product.Reviews?.length?reviews?.slice(index,index+3).map((r,i)=>
                         <div key={i}>
@@ -59,7 +61,7 @@ export const ProductDetail = () => {
                             <p>{r.userName}</p>
                             <p>{r.comment[0].toUpperCase()+r.comment.slice(1)}</p>
                         </div>
-                    ):<p>Se el primero en opinar sobre este producto...</p>}
+                    ):<p className={style.placeho} >Aun no hay opiniones de este producto</p>}
                     <div className={style.buttons}>
                         {index-3>=0&&<button className={style.prev} onClick={prev}><FaArrowCircleLeft /> Anterior</button>}
                         {index+3<product.Reviews?.length&&<button className={style.next} onClick={next}>Siguiente<FaArrowCircleRight/></button>}

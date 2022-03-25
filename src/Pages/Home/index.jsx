@@ -37,7 +37,7 @@ export const Home = () => {
   return (
     <div className={styles.containerHome}>
       <Landing />
-      <Navbar filter={false} />
+      <Navbar filter={true} />
       <ScoreMax />
       {/* <div className={styles.containerInfo3}>
       
@@ -47,9 +47,6 @@ export const Home = () => {
       <div className={styles.containerInfo4}>
         <Filter />
         <div className={styles.prodct}>
-        <div className={styles.nuevo}>
-          <Typography>Nuevo en</Typography>
-        </div>
         <div>
           <div className={styles.paginado_home}>
             <Button

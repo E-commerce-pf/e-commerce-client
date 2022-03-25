@@ -43,6 +43,7 @@ const CardProduct = ({
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   return (
     <>
       <Card sx={{ maxWidth: 355 }} >
@@ -59,8 +60,8 @@ const CardProduct = ({
             alt="Paella dish"
           />
           <CardContent>
-            <Typography variant="body6" color="text.secondary">
-              {`STOCK: ${stock}`} {`DESCUENTO: ${discount * 100} %`}
+            <Typography variant="body6" color="text.primary">
+              {`STOCK: ${stock}`}<br></br>  {`DESCUENTO: ${discount * 100}%`}
             </Typography>{" "}
             <Typography variant="body2" color="textSecondary" component="p">
               {score && <Rating name="read-only" value={score} readOnly />}
@@ -71,9 +72,9 @@ const CardProduct = ({
             <IconButton aria-label="add to favorites">
               <AddToBag text={"Añadir al carrito"} id={id} />
             </IconButton>
-            <IconButton aria-label="share">
-              <FavoriteIcon />
-            </IconButton>
+            <button  className='fav_icon'>
+              <FavoriteIcon className='fav_icon'  />
+            </button>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
