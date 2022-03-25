@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         width: '600px',
         borderRadius: '5px',
         backgroundColor: 'white',
-        border: '2px solid #FAA222',
+        border: '2px solid #23263b',
         boxShadow: theme.shadows[5],
         padding: '16px 32px 24px',
         top: '50%',
@@ -34,7 +34,7 @@ export const NavbarClient = () => {
 
     const body = (
         <div className={classes.modal}>
-            hola
+            Adrian cabezon
         </div>
     )
     const openCloseModal = () => {
