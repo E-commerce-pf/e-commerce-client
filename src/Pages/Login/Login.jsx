@@ -48,7 +48,7 @@ const Login = () => {
         axios.post('/api/user/login', {...user})
           .then((res) => {
             notifySuccess(res.data.success);
-            dispatch( getUser(user) );
+            dispatch( getUser(res.data.user) );
             setTimeout(() => {
               navigate("/");
             }, 3500);
@@ -73,7 +73,7 @@ const Login = () => {
         axios.post('/api/user/login', {...user})
           .then((res) => {
             notifySuccess(res.data.success);
-            dispatch( getUser(user) );
+            dispatch( getUser(res.data.user) );
 
             setTimeout(() => {
               navigate("/");
@@ -95,8 +95,8 @@ const Login = () => {
     const password = document.querySelector('#password').value;
     axios.post('/api/user/login', {email, password, isAdmin : false})
       .then( res =>{
-        dispatch( getUser(res.data) )
-        notifySuccess('Login Success');
+        dispatch( getUser(res.data.user) )
+        notifySuccess(res.data.success);
 
         setTimeout(()=>{
           navigate('/')
