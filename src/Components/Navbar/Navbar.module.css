@@ -3,8 +3,9 @@
     flex-direction:row;
     color: #23263B;
     font-size: 14px;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    
 }
 
 .homeImg{
@@ -12,15 +13,19 @@
     flex-direction:column;
     padding-left: 10px;
     cursor:pointer;
+    
 }
 .homeSU{
     display: flex;
     flex-direction:row;
-    gap: 2rem;
+    gap: 1rem;
     cursor:pointer;
+    
 }
 .homeFLC{
     display: flex;
+    width: 70px;
+    
     flex-direction:row;
     gap: 1rem;
     padding-right: 20px;
@@ -48,6 +53,10 @@
 
 
 .inputS {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     padding-right: 30px;
 
 }
@@ -61,4 +70,38 @@
 .input_S input focus {
     outline: 1px solid white;
 }
-
+.login_{
+    
+    background-color: rgba(8, 25, 119, 0.973);
+    padding: 1px;
+    font-size:40px;
+    border-radius: 15px;
+    width: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight:bold;
+    color:rgb(17, 17, 77);
+    border-style: inset;
+    border-top: none;
+    border-left: none;
+    border-color: rgb(184, 184, 216);
+    cursor: pointer;
+    transition: all ease-in 0.5s; 
+}
+.login_:hover{
+    background-color: rgba(217, 217, 224, 0.658);
+    border-color: rgb(12, 12, 161);
+}
+.login{
+    position: relative;
+    font-size:25px;
+    border-radius: 15px;
+    width: 35px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight:300;
+    color:rgb(182, 182, 212);
+    transition: all ease 0.5s;
+}
+.login:hover{
+    color:rgb(23, 23, 223);
+    border-color: rgb(15, 15, 148);
+}

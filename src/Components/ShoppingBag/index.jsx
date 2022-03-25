@@ -67,7 +67,7 @@ const ShoppingBag = () => {
       </Drawer>
       <button className="shopping_container" onClick={() => setCartOpen(true)}>
         <Badge badgeContent={getTotalProducts(bagProducts)} color="error">
-          <BiShoppingBag />
+          <BiShoppingBag className="bolsa" />
         </Badge>
       </button>
     </div>
