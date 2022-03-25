@@ -14,7 +14,7 @@ import ScoreMax from "../../Components/ScoreMax/ScoreMax";
 import { Paginate } from "../../Utils/paginate";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
-import { Typography, Button } from "@mui/material";
+import { Button } from "@mui/material";
 
 export const Home = () => {
   const productsFilter = useSelector(
@@ -25,7 +25,7 @@ export const Home = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const elemPage = 8;
   useEffect(() => {
-    productsService.getAllProducts().then(({ products }) => {
+    productsService.getAllProducts().then((products) => {
       dispatch(setAllProducts(products));
     });
   }, [dispatch]);
@@ -43,36 +43,36 @@ export const Home = () => {
       
        <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div> */}
-      
+
       <div className={styles.containerInfo4}>
         <Filter />
         <div className={styles.prodct}>
-        <div>
-          <div className={styles.paginado_home}>
-            <Button
-              className={styles.paginado_btn}
-              onClick={() => {
-                setPageNumber(pageNumber - 1);
-              }}
-            >
-              <FaArrowCircleLeft /> Anterior
-            </Button>
-            <Button
-              className={styles.paginado_btn}
-              onClick={() => {
-                setPageNumber(pageNumber + 1);
-              }}
-            >
-              Siguiente <FaArrowCircleRight />
-            </Button>
+          <div>
+            <div className={styles.paginado_home}>
+              <Button
+                className={styles.paginado_btn}
+                onClick={() => {
+                  setPageNumber(pageNumber - 1);
+                }}
+              >
+                <FaArrowCircleLeft /> Anterior
+              </Button>
+              <Button
+                className={styles.paginado_btn}
+                onClick={() => {
+                  setPageNumber(pageNumber + 1);
+                }}
+              >
+                Siguiente <FaArrowCircleRight />
+              </Button>
+            </div>
+            <CardsProducts
+              products={Paginate(productsFilter, pageNumber, elemPage)}
+            />
           </div>
-          <CardsProducts
-            products={Paginate(productsFilter, pageNumber, elemPage)}
-          />
         </div>
       </div>
-        </div>
-        
+
       <Footer />
     </div>
   );
