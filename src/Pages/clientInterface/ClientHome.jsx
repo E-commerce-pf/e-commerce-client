@@ -37,7 +37,7 @@ export const ClientHome = () => {
     const { currentUser } = useSelector(state => state.userReducer)
 
         if (currentUser === null) {
-            
+
             return (
                 <>
                     <div className="title_login">
@@ -48,9 +48,7 @@ export const ClientHome = () => {
                     </div>
                 </>
             )
-        }else(
-            notifySuccess(`Bienvenid@ ${currentUser.name}`)
-        )
+        }
     
     return (
         <div className={styles.contClient}>
