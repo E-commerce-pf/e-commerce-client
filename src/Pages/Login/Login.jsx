@@ -16,10 +16,9 @@ import {
   GithubAuthProvider,
 } from "firebase/auth";
 import firebaseConfing from "../../config/firebase";
-import axios from "axios";
+import baseURL from "../../config/baseUrl";
 import { notifyError, notifySuccess } from "../../Utils/notifications";
 
-const baseUrl = "/api/user/login";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -46,7 +45,7 @@ const Login = () => {
           isAdmin : false
         }
         //Enviamos los datos a la api
-        axios.post(baseUrl, {...user})
+        baseURL.post('user/login', {...user})
           .then((res) => {
             notifySuccess(res.data.success);
             dispatch( getUser(user) );
@@ -72,7 +71,7 @@ const Login = () => {
           loginWithSocial: true,
           isAdmin : false
         }
-        axios.post(baseUrl, {...user})
+        baseURL.post('user/login', {...user})
           .then((res) => {
             notifySuccess(res.data.success);
             dispatch( getUser(user) );
@@ -95,7 +94,7 @@ const Login = () => {
     event.preventDefault();
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-    axios.post(baseUrl, {email, password, isAdmin : false})
+    baseURL.post('user/login', {email, password, isAdmin : false})
       .then( res =>{
         dispatch( getUser(res.data) )
         notifySuccess('Login Success');
