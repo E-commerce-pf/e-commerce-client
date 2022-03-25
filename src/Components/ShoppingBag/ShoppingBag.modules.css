@@ -1,20 +1,31 @@
 .shopping_container{
     font-size: 2em;
-    background-color: rgba(148, 138, 190, 0.185);
-    padding: 5px;
-    border-radius: 7px;
+    background-color: rgba(8, 25, 119, 0.973);
+    padding: 1px;
+    font-size:40px;
+    border-radius: 15px;
+    width: 40px;
     font-family: 'Courier New', Courier, monospace;
     font-weight:bold;
     color:rgb(17, 17, 77);
-    border-style: ridge;
+    border-style: inset;
     border-top: none;
     border-left: none;
-    border-color: rgb(80, 80, 179);
+    border-color: rgb(184, 184, 216);
     cursor: pointer;
-    transition: all ease-in 1s;
+    transition: all ease-in 0.5s;
 }
 
 .shopping_container:hover{
-    background-color: rgba(32, 32, 97, 0.658);
-    color:rgb(210, 210, 230);
+    background-color: rgba(217, 217, 224, 0.658);
+    color:rgb(6, 6, 114);
+    border-color: rgb(15, 15, 148);
+}
+.bolsa{
+    color: rgb(218, 218, 230);
+    width: 30px;
+    font-size: 25px;
+}
+.bolsa:hover{
+    color: blue;
 }

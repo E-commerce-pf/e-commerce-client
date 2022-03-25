@@ -56,11 +56,12 @@
   color:blanchedalmond;
   text-shadow: 1px 1px 2px black;
   border-color: rgba(226, 168, 176, 0.233);
-  background-color: rgba(223, 23, 50, 0.39);
+  background-color: rgba(223, 46, 23, 0.863);
   transition: all ease-in 0.5s;
 }
 .btn_quitar:hover{
-  text-shadow: 1px 1px 2px black;
-  border-color: rgba(83, 43, 48, 0.233);
-  background-color: rgba(70, 5, 14, 0.39);
+  color:rgb(223, 46, 23);
+  text-shadow: 1px 1px 2px rgb(228, 213, 213);
+  border-color: rgba(236, 107, 20, 0.678);
+  background-color: rgba(228, 205, 202, 0.842);
 }

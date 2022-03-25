@@ -46,3 +46,13 @@ a{
     color: rgb(9, 14, 63);
     font-family: Georgia, 'Times New Roman', Times, serif !important;
 }
+.fav_icon{
+    border-style: none;
+    background-color: aliceblue;
+   border-radius: 2px;
+    
+}
+.fav_icon:focus{
+    border-radius: 80px;
+    color:red !important;
+}
