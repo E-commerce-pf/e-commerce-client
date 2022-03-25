@@ -11,16 +11,28 @@ import Swal from "sweetalert2";
 import CartShoppingBag from "../CartShoppingBag";
 import "./ShoppingBag.modules.css";
 import { notifyError } from "../../Utils/notifications";
+import userService from "../../Services/userService";
 
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
+  const user = useSelector((store) => store.userReducer.currentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const ids = getToLocalStorageIds();
+    console.log(user);
+    userService
+      .getUser(user.id)
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
     dispatch(setIdBagProducts(ids));
-  }, [dispatch]);
+  }, [user, dispatch]);
 
   useEffect(() => {
     return () => {
@@ -56,7 +68,7 @@ const ShoppingBag = () => {
         }
       });
     } else {
-      notifyError("No tienes productos en el carrito!")
+      notifyError("No tienes productos en el carrito!");
     }
   };
 

@@ -62,7 +62,6 @@ const Login = () => {
   const signInGitHub = () => {
     signInWithPopup(auth, gitHubProvider)
       .then((result) => {
-        console.log(result);
         const user = {
           email: result._tokenResponse.email,
           name: result._tokenResponse.screenName,
