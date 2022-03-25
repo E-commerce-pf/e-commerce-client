@@ -1,4 +1,3 @@
-import BASE_URL from "../../config/baseUrl";
 import axios from "axios";
 export const SET_ALL_PRODUCTS = "SET_ALL_PRODUCTS";
 export const SET_ID_BAG_PRODUCTS = "SET_ID_BAG_PRODUCTS";
@@ -11,7 +10,7 @@ export const PRODUCT_DETAIL = "PRODUCT_DETAIL";
 export const REMOVE_ALL_PRODUCT_TO_BAG = "REMOVE_ALL_PRODUCT_TO_BAG";
 
 export const setProductInfo = (id) => (dispatch) => {
-  return axios.get(`${BASE_URL}product/${id}`).then(({ data }) => {
+  return axios.get(`/api/product/${id}`).then(({ data }) => {
     return dispatch({ type: PRODUCT_DETAIL, payload: data });
   });
 };
