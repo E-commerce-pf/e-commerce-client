@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUser } from '../../Redux/Actions/userActions' 
@@ -8,7 +9,6 @@ import { countries } from "../../Utils/countries";
 //COMPONENTES
 import { TextField, InputLabel } from "@mui/material";
 import { ToastContainer } from "react-toastify";
-import axios from 'axios';
 import { notifyError, notifySuccess } from "../../Utils/notifications";
 
 const validateData = (input, error, name) => {
@@ -44,6 +44,8 @@ const validateData = (input, error, name) => {
 
   return error;
 };
+
+let ignorarEstaVariable;
 
 const Register = () => {
   const dispatch = useDispatch();
