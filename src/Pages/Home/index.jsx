@@ -15,6 +15,7 @@ import { Paginate } from "../../Utils/paginate";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { Typography, Button } from "@mui/material";
+import ContactForm from "../../Components/ContactForm/ContactForm";
 
 export const Home = () => {
   const productsFilter = useSelector(
@@ -23,6 +24,9 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   const [pageNumber, setPageNumber] = useState(0);
+
+  const [toggle, setToggle] = useState(false);
+
   const elemPage = 8;
   useEffect(() => {
     productsService.getAllProducts().then(({ products }) => {
@@ -37,42 +41,44 @@ export const Home = () => {
   return (
     <div className={styles.containerHome}>
       <Landing />
-      <Navbar filter={true} />
+      <Navbar filter={true} state={toggle} setState={setToggle} />
+      {toggle && <ContactForm state={toggle} setState={setToggle} />}
+
       <ScoreMax />
       {/* <div className={styles.containerInfo3}>
       
        <img src={imgHome2} alt="imagen" width="100%" height="250px" />
       </div> */}
-      
+
       <div className={styles.containerInfo4}>
         <Filter />
         <div className={styles.prodct}>
-        <div>
-          <div className={styles.paginado_home}>
-            <Button
-              className={styles.paginado_btn}
-              onClick={() => {
-                setPageNumber(pageNumber - 1);
-              }}
-            >
-              <FaArrowCircleLeft /> Anterior
-            </Button>
-            <Button
-              className={styles.paginado_btn}
-              onClick={() => {
-                setPageNumber(pageNumber + 1);
-              }}
-            >
-              Siguiente <FaArrowCircleRight />
-            </Button>
+          <div>
+            <div className={styles.paginado_home}>
+              <Button
+                className={styles.paginado_btn}
+                onClick={() => {
+                  setPageNumber(pageNumber - 1);
+                }}
+              >
+                <FaArrowCircleLeft /> Anterior
+              </Button>
+              <Button
+                className={styles.paginado_btn}
+                onClick={() => {
+                  setPageNumber(pageNumber + 1);
+                }}
+              >
+                Siguiente <FaArrowCircleRight />
+              </Button>
+            </div>
+            <CardsProducts
+              products={Paginate(productsFilter, pageNumber, elemPage)}
+            />
           </div>
-          <CardsProducts
-            products={Paginate(productsFilter, pageNumber, elemPage)}
-          />
         </div>
       </div>
-        </div>
-        
+
       <Footer />
     </div>
   );
