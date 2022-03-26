@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const ClientHome = () => {
 
-    const navigate= useNavigate()
+    const navigate = useNavigate()
     const [miCarrito, setMiCarrito] = useState(false)
     const [miFavorito, setMiFavorito] = useState(false)
     const [miProducto, setMiProducto] = useState(false)
@@ -36,20 +36,25 @@ export const ClientHome = () => {
     }
     const { currentUser } = useSelector(state => state.userReducer)
 
-        if (currentUser === null) {
+    useEffect(() => {
+        
+    }, [])
 
-            return (
-                <>
-                    <div className="title_login">
-                        <h1>Debe iniciar sesión para ver esta interfaz</h1>
-                        <button onClick={() => navigate("/")} className="btn">
-                            Aceptar
-                        </button>
-                    </div>
-                </>
-            )
-        }
-    
+    if (currentUser === null) {
+
+        return (
+            <>
+                <div className="title_login">
+                    <h1>Debe iniciar sesión para ver esta interfaz</h1>
+                    <button onClick={() => navigate("/")} className="btn">
+                        Aceptar
+                    </button>
+                </div>
+            </>
+        )
+    }
+
+
     return (
         <div className={styles.contClient}>
             <NavbarClient />

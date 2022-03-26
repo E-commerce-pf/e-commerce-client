@@ -1,7 +1,8 @@
 import { GET_USER,LOGOUT_USER} from "../Actions/userActions";
 
 const initialState = {
-      currentUser : null
+      currentUser : null,
+      userId:null
 }
 
 const userReducer = (state = initialState, action )=>{
