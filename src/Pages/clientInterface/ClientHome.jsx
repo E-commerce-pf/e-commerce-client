@@ -35,12 +35,12 @@ export const ClientHome = () => {
         setMiCarrito(false)
         setMiProducto(false)
     }
-    const { currentUser,userId } = useSelector(state => state.userReducer)
+    const { currentUser} = useSelector(state => state.userReducer)
 
-    console.log(userId);
 
     useEffect(() => {
         dispatch(GetUserId(currentUser.userId))
+        notifySuccess(`Bienvenid@ ${currentUser.name}`)
     }, [currentUser]);
 
     if (currentUser === null) {

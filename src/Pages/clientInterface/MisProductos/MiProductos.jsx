@@ -3,10 +3,13 @@ import { useSelector } from 'react-redux'
 import styles from './MiProductos.module.scss'
 export const MiProductos = () => {
 
-    const { userId } = useSelector(state => state.userReducer)
+    const { Transactions } = useSelector(state => state.userReducer.userId)
     
+    let u=Transactions.map(el=>(el.cart.productsInCart))
+    u=u.map(el=>(el.map(el=>(el.product))))
+    console.log(u);
     return (
 
-        <div className={styles.contProduc}>Aqui van todos los productos a mi nombre </div>
+        <div className={styles.contProduc}>{u.id}</div>
     )
 }
