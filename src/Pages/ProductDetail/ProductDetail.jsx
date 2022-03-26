@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import AddToBag from '../../Components/AddToBag';
 import { Navbar } from '../../Components/Navbar/Navbar';
-import Footer from '../../Components/footer/index';
+import Footer from '../../Components/Footer/index';
 import { setProductInfo } from '../../Redux/Actions/productsActions';
 import style from './ProductDetail.module.scss'
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
