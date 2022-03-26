@@ -17,6 +17,11 @@ const userReducer = (state = initialState, action )=>{
                         ...state,
                         currentUser : null
                   }
+            case 'GET_USER_ID':
+                  return{
+                        ...state,
+                        userId:action.payload
+                  }
             default:
                   return state
       }
