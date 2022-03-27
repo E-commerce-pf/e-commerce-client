@@ -15,11 +15,19 @@ export const logoutUser= ()=>{
       }
 }
 
-export function DeleteFavorite (id) {
+export function DeleteFavorite (favorito) {
       return async (dispatch)=>{
-            const {data} =await axios.get(`/api/favorite`,id)
-            return dispatch({
-                  type:DELETE_FAVORITE, 
+            const {UserId:userId,id:favoriteId}=favorito
+            const dataToSend = {
+                  favoriteId,
+                  userId
+            }
+            // const {data} = await axios.delete(`/api/favorite`,{})
+            const {data} = await axios({
+                  method:"DELETE",
+                  url:`/api/favorite`,
+                  data:dataToSend
             })
+            return data;
       }
 }
