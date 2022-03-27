@@ -1,9 +1,7 @@
-import React from 'react'
-import styles from './MisFavoritos.module.scss'
+import React from "react";
+import styles from "./MisFavoritos.module.scss";
 
-export const MisFavoritos = () => {
-    return (
-        <div className={styles.contMisfav}>Aqui van mis favoritos</div> 
-    )
-}
-
+export const MisFavoritos = ({ Favorites }) => {
+  console.log(Favorites);
+  return <div className={styles.contMisfav}>Aqui van mis favoritos</div>;
+};
