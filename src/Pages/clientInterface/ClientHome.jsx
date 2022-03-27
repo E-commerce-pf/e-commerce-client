@@ -1,42 +1,58 @@
-import React, {useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiGift } from 'react-icons/bi';
 import { MdOutlineRateReview } from 'react-icons/md';
-import { MiProductos } from './MisProductos/MiProductos';
+import { MiProductos } from './MisProductos/MisProductos';
 import { MisFavoritos } from './MisFavoritos/MisFavoritos';
 import { NavbarClient } from './navbarCLient/NavbarClient';
 import { AiOutlineStar } from 'react-icons/ai';
 import styles from './ClientHome.module.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { MisReviews } from './MisReviews/MisReviews';
+import {MisProductos} from './MisProductos/MisProductos';
+import userService from '../../Services/user';
+import Loading from "../../Components/Loading/index";
+
+import { notifySuccess } from '../../Utils/notifications';
+
 export const ClientHome = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [misReviews, setMisReviews] = useState(false);
+    const [miFavorito, setMiFavorito] = useState(false);
+    const [miProducto, setMiProducto] = useState(false);
+    const [user, setUser] = useState(null);
+    const currentUser = useSelector((state) => state.userReducer.currentUser);
 
-    const navigate = useNavigate()
-    const [misReview, setMisReview] = useState(false)
-    const [miFavorito, setMiFavorito] = useState(false)
-    const [miProducto, setMiProducto] = useState(false)
-
-    const openReview = () => {
-        setMisReview(true)
-        setMiFavorito(false)
-        setMiProducto(false)
-    }
+    const openCar = () => {
+        setMisReviews(true);
+        setMiFavorito(false);
+        setMiProducto(false);
+    };
     const openProduct = () => {
-        setMiProducto(true)
-        setMisReview(false)
-        setMiFavorito(false)
-    }
+        setMiProducto(true);
+        setMisReviews(false);
+        setMiFavorito(false);
+    };
     const openFav = () => {
-        setMiFavorito(true)
-        setMisReview(false)
-        setMiProducto(false)
-    }
-    const { currentUser} = useSelector(state => state.userReducer)
+        setMiFavorito(true);
+        setMisReviews(false);
+        setMiProducto(false);
+    };
 
     console.log(currentUser);
-    if (currentUser === null) {
 
+    useEffect(() => {
+        userService.getUser(currentUser.userId).then((res) => {
+            setUser(res);
+        });
+        notifySuccess(`Bienvenid@ ${currentUser.name}`);
+    }, [dispatch, currentUser]);
+
+    console.log(user);
+
+    if (currentUser === null) {
         return (
             <>
                 <div className="title_login">
@@ -46,23 +62,42 @@ export const ClientHome = () => {
                     </button>
                 </div>
             </>
-        )
+        );
     }
 
+    if (!user) {
+        return <Loading />;
+    }
 
     return (
         <div className={styles.contClient}>
             <NavbarClient />
             <div className={styles.contButton}>
-                <button onClick={openReview}> <MdOutlineRateReview className={styles.btn} /> Mis reviews</button>
-                <button onClick={openProduct}> <BiGift className={styles.btn} /> Mis productos</button>
-                <button onClick={openFav}> <AiOutlineStar className={styles.btn} />Mis favoritos</button>
+                <button onClick={openCar}>
+                    {" "}
+                    <MdOutlineRateReview className={styles.btn} /> Mis reviews
+                </button>
+                <button onClick={openProduct}>
+                    {" "}
+                    <BiGift className={styles.btn} /> Mis productos
+                </button>
+                <button onClick={openFav}>
+                    {" "}
+                    <AiOutlineStar className={styles.btn} />
+                    Mis favoritos
+                </button>
             </div>
             <>
-                {
-                    misReview?<MisReviews/> :miFavorito ? <MisFavoritos /> : miProducto ? <MiProductos /> : false
-                }
+                {misReviews ? (
+                    <MisReviews />
+                ) : miFavorito ? (
+                    <MisFavoritos Favorites={user.Favorites} />
+                ) : miProducto ? (
+                    <MisProductos Transactions={user.Transactions} name={user.name} />
+                ) : (
+                    false
+                )}
             </>
         </div>
-    )
-}
+    );
+};
