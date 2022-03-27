@@ -34,7 +34,7 @@ export const MisCarritos = () => {
             {/* {userId.Transactions.map(e=>e.cart.productsInCart.map(e=>e.map((e)=>
             <div>Total de productos: {e.quantity.length}</div>)
             )
-            )} */}
+            )}-- */}
 
             {userId.Transactions? userId.Transactions.map((e)=> e.cart.productsInCart.map((e)=> e.product ?
             <div key={e.product.id}>
