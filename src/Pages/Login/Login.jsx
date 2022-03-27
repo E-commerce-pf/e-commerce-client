@@ -32,12 +32,12 @@ const Login = () => {
   gitHubProvider.addScope("repo");
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-  
+
   useEffect(() => {
-    if(currentUser){
+    if (currentUser) {
       navigate("/viewClient");
     }
-  } , [currentUser, navigate])
+  }, [currentUser, navigate])
 
   const signInGoogle = () => {
     signInWithPopup(auth, googleProvider)
@@ -50,14 +50,14 @@ const Login = () => {
           lastName: displayName[1],
           password: result.user.uid,
           loginWithSocial: true,
-          isAdmin : false
+          isAdmin: false
         }
         //Enviamos los datos a la api
-        axios.post('/api/user/login', {...user})
+        axios.post('/api/user/login', { ...user })
           .then((res) => {
             notifySuccess(res.data.success);
-            dispatch( getUser(res.data.user) );
-           
+            dispatch(getUser(res.data.user));
+
             navigate("/viewClient");
           })
           .catch((err) => {
@@ -76,12 +76,12 @@ const Login = () => {
           lastName: "",
           password: result.user.uid,
           loginWithSocial: true,
-          isAdmin : false
+          isAdmin: false
         }
-        axios.post('/api/user/login', {...user})
+        axios.post('/api/user/login', { ...user })
           .then((res) => {
             notifySuccess(res.data.success);
-            dispatch( getUser(res.data.user) );
+            dispatch(getUser(res.data.user));
 
             navigate("/viewClient");
           })
@@ -95,14 +95,13 @@ const Login = () => {
       });
   };
 
-  const handlerSubmit = (event)=>{
+  const handlerSubmit = (event) => {
     event.preventDefault();
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-    axios.post('/api/user/login', {email, password, isAdmin : false})
-      .then( res =>{
-        dispatch( getUser(res.data.user) )
-        notifySuccess(res.data.success);
+    axios.post('/api/user/login', { email, password, isAdmin: false })
+      .then(res => {
+        dispatch(getUser(res.data.user))
 
         navigate('/viewClient')
       })
@@ -123,16 +122,16 @@ const Login = () => {
         </div>
         <form className={styles.login2} onSubmit={handlerSubmit}>
           <h4>Email</h4>
-          <input 
-            type="email" 
-            placeholder="example@example.com" 
+          <input
+            type="email"
+            placeholder="example@example.com"
             id='email'
             autoComplete="off"
           />
           <h4>Password</h4>
-          <input 
-            type="password" 
-            placeholder="password" 
+          <input
+            type="password"
+            placeholder="password"
             id='password'
           />
           <button>Sign in</button>

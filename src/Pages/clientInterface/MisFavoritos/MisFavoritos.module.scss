@@ -1,3 +1,40 @@
-.contMisfav{
-    background-color: rgba(86, 88, 92, 0.123);
+.contFav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3rem;
+    height: 60vh;
+    padding: 10px
 }
+.contCard {
+    background-color: white;
+    min-width: 20vw;
+}
+.delete{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    padding:7px;
+    .svg {
+        font-size: 20px;
+    }
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #23263B;
+
+    h3 {
+        font-family: "ABeeZee";
+        font-size: 14px
+    }
+}
+.cardInfo1{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+

@@ -3,12 +3,8 @@ import styles from "./MiProductos.module.css";
 
 export const MisProductos = ({ Transactions, name }) => {
   
-  console.log(Transactions);
 
   let productsCart = Transactions.map((e) => e.cart.productsInCart);
-  console.log(productsCart, "productsCart");
-  let total = Transactions.map((e) => e.cart.totalPrice);
-  console.log(total, "total");
 
   return (
     <>

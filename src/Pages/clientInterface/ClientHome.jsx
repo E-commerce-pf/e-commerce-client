@@ -41,7 +41,6 @@ export const ClientHome = () => {
         setMiProducto(false);
     };
 
-    console.log(currentUser);
 
     useEffect(() => {
         userService.getUser(currentUser.userId).then((res) => {
