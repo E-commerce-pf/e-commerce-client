@@ -1,8 +1,7 @@
 import axios from 'axios';
 export const GET_USER = 'GET_USER';
 export const LOGOUT_USER ='LOGOUT_USER';
-export const GET_USER_ID='GET_USER_ID';
-export const GET_FAVORITE_USER="GET_FAVORITE_USER";
+export const DELETE_FAVORITE='DELETE_FAVORITE';
 
 export const getUser = (userData)=>{
       return dispatch =>{
@@ -16,12 +15,11 @@ export const logoutUser= ()=>{
       }
 }
 
-export function GetUserId (id) {
+export function DeleteFavorite (id) {
       return async (dispatch)=>{
-            const {data} =await axios.get(`/api/users/${id}`)
+            const {data} =await axios.get(`/api/favorite`,id)
             return dispatch({
-                  type:GET_USER_ID, 
-                  payload:data
+                  type:DELETE_FAVORITE, 
             })
       }
 }

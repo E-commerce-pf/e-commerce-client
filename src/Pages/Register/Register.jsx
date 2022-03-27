@@ -96,11 +96,7 @@ const Register = () => {
     await axios.post('/api/register', { ...userData })
       .then((res) => {
         notifySuccess(res.data.success);
-        dispatch( getUser(res.data.user) )
-        setTimeout(()=>{
           navigate('/login');
-        },4000)
-
       })
       .catch((err) => {
         notifyError(err.response.data.error);

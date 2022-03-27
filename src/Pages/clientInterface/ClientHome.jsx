@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BiGift } from 'react-icons/bi';
 import { MdOutlineRateReview } from 'react-icons/md';
-import { MiProductos } from './MisProductos/MisProductos';
 import { MisFavoritos } from './MisFavoritos/MisFavoritos';
 import { NavbarClient } from './navbarCLient/NavbarClient';
 import { AiOutlineStar } from 'react-icons/ai';
