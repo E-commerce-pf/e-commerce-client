@@ -1,0 +1,21 @@
+.contProduc{
+    background-color:rgba(86, 88, 92, 0.123);
+}
+.containerProd{
+    background-color: aquamarine;
+}
+.imG{
+    width:300px;
+    height:400px;
+}
+.containerProdInd{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    margin: 10px;
+
+    background-color: brown;
+}
+.prd{
+    background-color: coral;
+    margin: 20px;
+}

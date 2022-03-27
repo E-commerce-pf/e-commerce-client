@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BiGift } from 'react-icons/bi';
 import { BsCart4 } from 'react-icons/bs';
-import { MiProductos } from './MisProductos/MiProductos';
+import { MisProductos } from './MisProductos/MiProductos';
 import { MisFavoritos } from './MisFavoritos/MisFavoritos';
 import { NavbarClient } from './navbarCLient/NavbarClient';
 import { AiOutlineStar } from 'react-icons/ai';
@@ -12,6 +12,7 @@ import { notifySuccess } from '../../Utils/notifications';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import {GetUserId} from '../../Redux/Actions/userActions'
+
 export const ClientHome = () => {
 
     const dispatch = useDispatch()
@@ -35,13 +36,13 @@ export const ClientHome = () => {
         setMiCarrito(false)
         setMiProducto(false)
     }
-    const { currentUser} = useSelector(state => state.userReducer)
+    const { currentUser,userId} = useSelector(state => state.userReducer)
+    console.log(userId)
 
-
-    useEffect(() => {
-        dispatch(GetUserId(currentUser.userId))
-        notifySuccess(`Bienvenid@ ${currentUser.name}`)
-    }, [currentUser]);
+    // useEffect(() => {
+    //     dispatch(GetUserId(currentUser.userId))
+    //     notifySuccess(`Bienvenid@ ${currentUser.name}`)
+    // }, [currentUser]);
 
     if (currentUser === null) {
 
@@ -68,7 +69,7 @@ export const ClientHome = () => {
             </div>
             <>
                 {
-                    miCarrito ? <MisCarritos /> : miFavorito ? <MisFavoritos /> : miProducto ? <MiProductos /> : false
+                    miCarrito ? <MisCarritos /> : miFavorito ? <MisFavoritos /> : miProducto ? <MisProductos /> : false
                 }
             </>
         </div>
