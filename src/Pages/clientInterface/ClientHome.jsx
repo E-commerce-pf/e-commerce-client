@@ -10,10 +10,11 @@ import { MisCarritos } from './MisCarritos/MisCarritos';
 import { useSelector } from 'react-redux';
 import { notifySuccess } from '../../Utils/notifications';
 import { useNavigate } from 'react-router-dom';
-
-
+import {useDispatch} from 'react-redux'
+import {GetUserId} from '../../Redux/Actions/userActions'
 export const ClientHome = () => {
 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [miCarrito, setMiCarrito] = useState(false)
     const [miFavorito, setMiFavorito] = useState(false)
@@ -34,11 +35,13 @@ export const ClientHome = () => {
         setMiCarrito(false)
         setMiProducto(false)
     }
-    const { currentUser } = useSelector(state => state.userReducer)
+    const { currentUser,userId } = useSelector(state => state.userReducer)
 
-    useEffect(() => {
-        
-    }, [])
+    console.log(userId);
+
+    // useEffect(() => {
+    //     dispatch(GetUserId(currentUser.userId))
+    // }, [currentUser]);
 
     if (currentUser === null) {
 

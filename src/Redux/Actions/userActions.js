@@ -15,7 +15,7 @@ export const logoutUser= ()=>{
       }
 }
 
-export function userId (id) {
+export function GetUserId (id) {
       return async (dispatch)=>{
             const {data} =await axios.get(`/api/users/${id}`)
             return dispatch({
