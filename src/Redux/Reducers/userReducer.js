@@ -1,8 +1,8 @@
-import { GET_USER,LOGOUT_USER} from "../Actions/userActions";
+import { GET_USER,LOGOUT_USER,GET_USER_ID} from "../Actions/userActions";
 
 const initialState = {
       currentUser : null,
-      userId:null
+      userId:null,
 }
 
 const userReducer = (state = initialState, action )=>{
@@ -15,9 +15,10 @@ const userReducer = (state = initialState, action )=>{
             case LOGOUT_USER:
                   return { 
                         ...state,
-                        currentUser : null
+                        currentUser : null,
+                        userId:null
                   }
-            case 'GET_USER_ID':
+            case GET_USER_ID:
                   return{
                         ...state,
                         userId:action.payload

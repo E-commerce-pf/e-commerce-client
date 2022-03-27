@@ -32,6 +32,9 @@ export const NavbarClient = () => {
     const Home = () => {
         navigate('/')
     }
+    const usuario= () => {
+        navigate('/')
+    }
 
     const body = (
         <div className={classes.modal}>
