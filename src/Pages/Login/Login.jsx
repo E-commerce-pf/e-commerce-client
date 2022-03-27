@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../Redux/Actions/userActions";
 import { Link, useNavigate } from "react-router-dom";
 import everylogopf_gris from "../../Assets/Images/Everylogopf_gris.png";
@@ -31,6 +31,14 @@ const Login = () => {
   googleProvider.addScope("https://www.googleapis.com/auth/userinfo.profile");
   gitHubProvider.addScope("repo");
 
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
+  
+  useEffect(() => {
+    if(currentUser){
+      navigate("/viewClient");
+    }
+  } , [currentUser, navigate])
+
   const signInGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
@@ -49,9 +57,8 @@ const Login = () => {
           .then((res) => {
             notifySuccess(res.data.success);
             dispatch( getUser(res.data.user) );
-            setTimeout(() => {
-              navigate("/viewClient");
-            }, 3500);
+           
+            navigate("/viewClient");
           })
           .catch((err) => {
             notifyError(err.response.data.error);
@@ -76,9 +83,7 @@ const Login = () => {
             notifySuccess(res.data.success);
             dispatch( getUser(res.data.user) );
 
-            setTimeout(() => {
-              navigate("/viewClient");
-            }, 3500);
+            navigate("/viewClient");
           })
           .catch((err) => {
             notifyError(err.response.data.error);
@@ -99,9 +104,7 @@ const Login = () => {
         dispatch( getUser(res.data.user) )
         notifySuccess(res.data.success);
 
-        setTimeout(()=>{
-          navigate('/viewClient')
-        },3500)
+        navigate('/viewClient')
       })
       .catch(err => notifyError(err.response.data.error))
   }
