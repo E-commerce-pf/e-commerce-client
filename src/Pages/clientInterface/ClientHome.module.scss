@@ -6,6 +6,12 @@
 
 .contButton{
     display:flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom-width: 1px;
+    border-bottom-style: ridge;
+    padding-bottom: 20px;
+    border-color: rgba(16, 7, 58, 0.164);
     gap:.3rem;
     align-items:center;
     

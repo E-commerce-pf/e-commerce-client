@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./MiProductos.module.css";
 
 export const MisProductos = ({ Transactions, name }) => {
-  
+
 
   let productsCart = Transactions.map((e) => e.cart.productsInCart);
 
@@ -10,7 +10,10 @@ export const MisProductos = ({ Transactions, name }) => {
     <>
       <div className={styles.containerProd}>
         <div className={styles.constMiCar}>
-          Aqui puedes ver tus productos comprados {name}
+          <h1 className={styles.title2}>
+            Aqui puedes ver tus productos comprados {name}
+          </h1>
+
         </div>
 
         <div className={styles.containerProdInd}>
