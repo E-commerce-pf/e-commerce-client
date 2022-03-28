@@ -58,7 +58,9 @@ const Login = () => {
             notifySuccess(res.data.success);
             dispatch(getUser(res.data.user));
 
-            navigate("/viewClient");
+            setTimeout(()=>{
+              navigate("/viewClient");
+            },3500)
           })
           .catch((err) => {
             notifyError(err.response.data.error);
@@ -82,8 +84,10 @@ const Login = () => {
           .then((res) => {
             notifySuccess(res.data.success);
             dispatch(getUser(res.data.user));
-
-            navigate("/viewClient");
+            
+            setTimeout(()=>{
+              navigate("/viewClient");
+            },3500)
           })
           .catch((err) => {
             notifyError(err.response.data.error);
@@ -102,8 +106,7 @@ const Login = () => {
     axios.post('/api/user/login', { email, password, isAdmin: false })
       .then(res => {
         dispatch(getUser(res.data.user))
-
-        navigate('/viewClient')
+        navigate("/viewClient");
       })
       .catch(err => notifyError(err.response.data.error))
   }
