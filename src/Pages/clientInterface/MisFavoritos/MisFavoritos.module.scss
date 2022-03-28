@@ -5,8 +5,10 @@
     gap: 3rem;
 }
 .contCard {
-    background:linear-gradient(to top, #ebe3da18,rgba(76, 75, 85, 0.247));
+    box-shadow:20px 10px 25px rgba(3, 12, 54, 0.459), -20px -20px 35px rgb(215, 213, 224);
+    // background:linear-gradient(to top, #ebe3da18,rgba(76, 75, 85, 0.247));
     min-width: 20vw;
+    border-radius: 10px;
 }
 .delete{
     cursor: pointer;
@@ -17,7 +19,10 @@
         font-size: 20px;
     }
 }
-
+.parrafo{
+    
+    padding: 10px;
+}
 .cardInfo {
     display: flex;
     flex-direction: column;
@@ -27,12 +32,12 @@
 
     h3 {
         font-family: "ABeeZee";
-        font-size: 14px
+        font-size: 15px;
     }
     img{
         border-radius: 15px;
         border: none;
-        box-shadow: 1px 2px 3px black;
+        box-shadow: 1px 3px 4px rgba(19, 6, 63, 0.418)
     }
 }
 .cardInfo1{

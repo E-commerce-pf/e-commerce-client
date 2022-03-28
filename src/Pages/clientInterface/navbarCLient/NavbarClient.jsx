@@ -7,7 +7,9 @@ import Everylogopf from '../../../Assets/Images/Everylogopf.png'
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from '@material-ui/core';
 import {useDispatch} from 'react-redux';
-import {logoutUser} from '../../../Redux/Actions/userActions'
+import {logoutUser} from '../../../Redux/Actions/userActions';
+import { useSelector } from 'react-redux';
+import EditUser from '../editUser/EditUser'
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
@@ -25,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const NavbarClient = () => {
+    
+
     const classes = useStyles();
     const navigate = useNavigate()
     const [modal,setModal]=useState(false)
@@ -38,7 +42,7 @@ export const NavbarClient = () => {
 
     const body = (
         <div className={classes.modal}>
-            aqui se van a cambiar los datos del usuario
+            <EditUser/>
         </div>
     )
     const openCloseModal = () => {
