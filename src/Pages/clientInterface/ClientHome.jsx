@@ -43,18 +43,20 @@ export const ClientHome = () => {
 
   useEffect(() => {
     // dispatch(logoutUser())
-    userService
-      .getUser(currentUser.userId)
-      .then((res) => {
-        setUser(res);
-      })
-      .catch(() => {
-        dispatch(logoutUser());
-        notifySuccess("No se pudo cargar el usuario");
-        navigate("/login");
-      });
+    if(currentUser.userId){
+      userService.getUser(currentUser.userId)
+        .then((res) => {
+          setUser(res);
+        })
+        .catch(() => {
+          dispatch(logoutUser());
+          notifySuccess("No se pudo cargar el usuario");
+          navigate("/login");
+        });
+    }
+
     notifySuccess(`Bienvenid@ ${currentUser.name}`);
-  }, [navigate, dispatch, currentUser]);
+  }, [navigate, dispatch]);
 
   console.log(user);
 
