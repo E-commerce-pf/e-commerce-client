@@ -34,7 +34,7 @@ export const MisProductos = ({ Transactions, name }) => {
                     </h3>
                   </div>
                 ) : (
-                  <h2>No existe este producto</h2>
+                  <h2 className={styles.title}>No existe este producto</h2>
                 )
               )
             )

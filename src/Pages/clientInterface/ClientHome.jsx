@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux'
 import { MisReviews } from './MisReviews/MisReviews';
 import {MisProductos} from './MisProductos/MisProductos';
 import userService from '../../Services/user';
+import {logoutUser} from '../../Redux/Actions/userActions'
 import Loading from "../../Components/Loading/index";
 
 import { notifySuccess } from '../../Utils/notifications';
@@ -23,7 +24,7 @@ export const ClientHome = () => {
     const [miProducto, setMiProducto] = useState(false);
     const [user, setUser] = useState(null);
     const currentUser = useSelector((state) => state.userReducer.currentUser);
-
+    console.log(currentUser,'curretnUser')
     const openCar = () => {
         setMisReviews(true);
         setMiFavorito(false);
@@ -42,6 +43,7 @@ export const ClientHome = () => {
 
 
     useEffect(() => {
+        
         userService.getUser(currentUser.userId).then((res) => {
             setUser(res);
         });
