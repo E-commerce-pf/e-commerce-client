@@ -16,6 +16,7 @@ import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { Typography, Button } from "@mui/material";
 import ContactForm from "../../Components/ContactForm/ContactForm";
+import { logoutUser } from "../../Redux/Actions/userActions";
 
 export const Home = () => {
   const productsFilter = useSelector(

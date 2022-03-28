@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../Redux/Actions/userActions";
 import { Link, useNavigate } from "react-router-dom";
 import everylogopf_gris from "../../Assets/Images/Everylogopf_gris.png";
@@ -31,6 +31,14 @@ const Login = () => {
   googleProvider.addScope("https://www.googleapis.com/auth/userinfo.profile");
   gitHubProvider.addScope("repo");
 
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/viewClient");
+    }
+  }, [currentUser, navigate])
+
   const signInGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
@@ -42,16 +50,15 @@ const Login = () => {
           lastName: displayName[1],
           password: result.user.uid,
           loginWithSocial: true,
-          isAdmin : false
+          isAdmin: false
         }
         //Enviamos los datos a la api
-        axios.post('/api/user/login', {...user})
+        axios.post('/api/user/login', { ...user })
           .then((res) => {
             notifySuccess(res.data.success);
-            dispatch( getUser(res.data.user) );
-            setTimeout(() => {
-              navigate("/");
-            }, 3500);
+            dispatch(getUser(res.data.user));
+
+            navigate("/viewClient");
           })
           .catch((err) => {
             notifyError(err.response.data.error);
@@ -69,16 +76,14 @@ const Login = () => {
           lastName: "",
           password: result.user.uid,
           loginWithSocial: true,
-          isAdmin : false
+          isAdmin: false
         }
-        axios.post('/api/user/login', {...user})
+        axios.post('/api/user/login', { ...user })
           .then((res) => {
             notifySuccess(res.data.success);
-            dispatch( getUser(res.data.user) );
+            dispatch(getUser(res.data.user));
 
-            setTimeout(() => {
-              navigate("/");
-            }, 3500);
+            navigate("/viewClient");
           })
           .catch((err) => {
             notifyError(err.response.data.error);
@@ -90,18 +95,15 @@ const Login = () => {
       });
   };
 
-  const handlerSubmit = (event)=>{
+  const handlerSubmit = (event) => {
     event.preventDefault();
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-    axios.post('/api/user/login', {email, password, isAdmin : false})
-      .then( res =>{
-        dispatch( getUser(res.data.user) )
-        notifySuccess(res.data.success);
+    axios.post('/api/user/login', { email, password, isAdmin: false })
+      .then(res => {
+        dispatch(getUser(res.data.user))
 
-        setTimeout(()=>{
-          navigate('/')
-        },3500)
+        navigate('/viewClient')
       })
       .catch(err => notifyError(err.response.data.error))
   }
@@ -113,25 +115,23 @@ const Login = () => {
           <IoIosArrowBack /> Back
         </button>
       </div>
-
       <div className={styles.cardLogin}>
         <div className={styles.login1}>
           <h1>Login</h1>
           <img src={everylogopf_gris} alt="logo" width="124px" height="78px" />
         </div>
-
         <form className={styles.login2} onSubmit={handlerSubmit}>
           <h4>Email</h4>
-          <input 
-            type="email" 
-            placeholder="example@example.com" 
+          <input
+            type="email"
+            placeholder="example@example.com"
             id='email'
-
+            autoComplete="off"
           />
           <h4>Password</h4>
-          <input 
-            type="password" 
-            placeholder="password" 
+          <input
+            type="password"
+            placeholder="password"
             id='password'
           />
           <button>Sign in</button>
@@ -139,7 +139,6 @@ const Login = () => {
             create new account
           </Link>
         </form>
-        
         <div className={styles.login3}>
           <button onClick={signInGoogle}>
             {" "}
@@ -151,7 +150,6 @@ const Login = () => {
             Sign in with GitHub
           </button>
         </div>
-
       </div>
     </div>
   );

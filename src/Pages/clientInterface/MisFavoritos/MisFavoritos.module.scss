@@ -1,0 +1,44 @@
+.contFav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    padding: 10px;
+    gap: 3rem;
+}
+.contCard {
+    background:linear-gradient(to top, #ebe3da18,rgba(76, 75, 85, 0.247));
+    min-width: 20vw;
+}
+.delete{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    padding:7px;
+    .svg {
+        font-size: 20px;
+    }
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #23263B;
+
+    h3 {
+        font-family: "ABeeZee";
+        font-size: 14px
+    }
+    img{
+        border-radius: 15px;
+        border: none;
+        box-shadow: 1px 2px 3px black;
+    }
+}
+.cardInfo1{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+

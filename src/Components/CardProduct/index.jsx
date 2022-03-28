@@ -15,7 +15,10 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button, CardActionArea } from "@mui/material";
-import './CardProduct.modules.css'
+import "./CardProduct.modules.css";
+import { useSelector } from "react-redux";
+import { notifyError, notifySuccess } from "../../Utils/notifications";
+import favoritesService from "../../Services/favorites";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -44,14 +47,32 @@ const CardProduct = ({
     setExpanded(!expanded);
   };
 
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
+
+  const addFavorite = () => {
+    if (!currentUser) {
+      return notifyError("Debe iniciar sesión para agregar a favoritos");
+    }
+    favoritesService
+      .setFavorite(id, currentUser.userId)
+      .then((res) => {
+        notifySuccess("Producto agregado a favoritos");
+      })
+      .catch((err) => {
+        notifyError(err.message);
+      });
+  };
+
   return (
     <>
-      <Card sx={{ maxWidth: 355 }} >
+      <Card sx={{ maxWidth: 355 }}>
         <CardActionArea>
           <CardHeader
-          className="txt_card"
+            className="txt_card"
             title={title}
-            subheader={`AHORA: ${(price * ((discount - 1) * -1)).toFixed(2)}$ ANTES: ${price}$`}
+            subheader={`AHORA: ${(price * ((discount - 1) * -1)).toFixed(
+              2
+            )}$ ANTES: ${price}$`}
           />
           <CardMedia
             component="img"
@@ -61,7 +82,8 @@ const CardProduct = ({
           />
           <CardContent>
             <Typography variant="body6" color="text.primary">
-              {`STOCK: ${stock}`}<br></br>  {`DESCUENTO: ${discount * 100}%`}
+              {`STOCK: ${stock}`}
+              <br></br> {`DESCUENTO: ${discount * 100}%`}
             </Typography>{" "}
             <Typography variant="body2" color="textSecondary" component="p">
               {score && <Rating name="read-only" value={score} readOnly />}
@@ -72,8 +94,8 @@ const CardProduct = ({
             <IconButton aria-label="add to favorites">
               <AddToBag text={"Añadir al carrito"} id={id} />
             </IconButton>
-            <button  className='fav_icon'>
-              <FavoriteIcon className='fav_icon'  />
+            <button onClick={addFavorite} className="fav_icon">
+              <FavoriteIcon className="fav_icon" />
             </button>
             <ExpandMore
               expand={expanded}
@@ -85,10 +107,14 @@ const CardProduct = ({
             </ExpandMore>
           </CardActions>
         </CardActionArea>
-        <Collapse in={expanded} timeout="auto" unmountOnExit >
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography className='title_info' paragraph>INFORMACION ADICIONAL</Typography>
-            <Typography className='cardInfo' paragraph>{description}</Typography>
+            <Typography className="title_info" paragraph>
+              INFORMACION ADICIONAL
+            </Typography>
+            <Typography className="cardInfo" paragraph>
+              {description}
+            </Typography>
             <div>
               <Button variant="contained" color="primary">
                 <Link to={`/productDetail/${id}`}>Ver más</Link>
