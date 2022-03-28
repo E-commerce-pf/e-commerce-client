@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
-import imgHome2 from "../../Assets/Images/imgHome2jpg.jpg";
 import Loading from "../../Components/Loading";
 import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
@@ -14,9 +13,9 @@ import ScoreMax from "../../Components/ScoreMax/ScoreMax";
 import { Paginate } from "../../Utils/paginate";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
-import { Typography, Button } from "@mui/material";
+import {Button } from "@mui/material";
 import ContactForm from "../../Components/ContactForm/ContactForm";
-import { logoutUser } from "../../Redux/Actions/userActions";
+
 
 export const Home = () => {
   const productsFilter = useSelector(
@@ -28,7 +27,7 @@ export const Home = () => {
 
   const [toggle, setToggle] = useState(false);
 
-  const elemPage = 8;
+  const elemPage = 9;
   useEffect(() => {
     productsService.getAllProducts().then((products) => {
       dispatch(setAllProducts(products));
