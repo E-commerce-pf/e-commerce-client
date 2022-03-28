@@ -43,7 +43,7 @@ export const ClientHome = () => {
 
 
     useEffect(() => {
-        
+        // dispatch(logoutUser())
         userService.getUser(currentUser.userId).then((res) => {
             setUser(res);
         });
