@@ -6,7 +6,7 @@ export default function EditUser({ user }) {
   console.log(user);
 
   const [input, setInput] = useState({
-    name: "Dairo",
+    name: user.name,
     lastName: user.lastName,
     country: user.country,
   });
@@ -36,7 +36,7 @@ export default function EditUser({ user }) {
     <>
       <p>{input.name}</p>
       <p>{input.lastName}</p>
-      <p>{input.country}</p>
+      <p>Pais {input.country? input.country : ''}</p>
       <button onClick={handleSubmit}>Sent</button>
     </>
   );

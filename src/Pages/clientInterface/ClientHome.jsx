@@ -24,7 +24,7 @@ export const ClientHome = () => {
   const [miProducto, setMiProducto] = useState(false);
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-
+  console.log(currentUser,'currentUser')
   const openCar = () => {
     setMisReviews(true);
     setMiFavorito(false);
