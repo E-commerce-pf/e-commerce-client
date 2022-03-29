@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from '@material-ui/core';
 import {useDispatch} from 'react-redux';
 import {logoutUser} from '../../../Redux/Actions/userActions';
-import { useSelector } from 'react-redux';
 import EditUser from '../editUser/EditUser'
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const NavbarClient = () => {
+export const NavbarClient = ({user, setUser}) => {
     
 
     const classes = useStyles();
@@ -36,13 +35,10 @@ export const NavbarClient = () => {
     const Home = () => {
         navigate('/')
     }
-    const usuario= () => {
-        navigate('/')
-    }
 
     const body = (
         <div className={classes.modal}>
-            <EditUser/>
+            <EditUser  user={user} setUser={setUser}/>
         </div>
     )
     const openCloseModal = () => {

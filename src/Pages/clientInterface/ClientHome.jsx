@@ -24,7 +24,7 @@ export const ClientHome = () => {
   const [miProducto, setMiProducto] = useState(true);
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-  console.log(currentUser, "curretnUser");
+
   const openCar = () => {
     setMisReviews(true);
     setMiFavorito(false);
@@ -42,11 +42,12 @@ export const ClientHome = () => {
   };
 
   useEffect(() => {
-    // dispatch(logoutUser())
-    if(currentUser.userId){
-      userService.getUser(currentUser.userId)
+    if (currentUser.userId) {
+      userService
+        .getUser(currentUser.userId)
         .then((res) => {
           setUser(res);
+          notifySuccess(`Welcome ${res.name}`);
         })
         .catch(() => {
           dispatch(logoutUser());
@@ -55,7 +56,6 @@ export const ClientHome = () => {
         });
     }
 
-    notifySuccess(`Welcome ${currentUser.name}!`);
   }, [navigate, dispatch]);
 
   console.log(user);
@@ -79,7 +79,7 @@ export const ClientHome = () => {
 
   return (
     <div className={styles.contClient}>
-      <NavbarClient />
+      <NavbarClient user={user} />
       <div className={styles.contButton}>
         <button onClick={openCar}>
           {" "}
