@@ -1,0 +1,18 @@
+.locationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: rgba(86, 88, 92, 0.123);
+}
+
+.locationContainer__title {
+  font-size: 2rem;
+  color: #0a0046;
+}
+
+.mapContainer {
+  width: 100vw;
+  height: 90vh;
+  margin: 1rem 0;
+}
