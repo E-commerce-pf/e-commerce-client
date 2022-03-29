@@ -24,7 +24,7 @@ export const ClientHome = () => {
   const [miProducto, setMiProducto] = useState(false);
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-  console.log(currentUser, "curretnUser");
+
   const openCar = () => {
     setMisReviews(true);
     setMiFavorito(false);
@@ -42,23 +42,20 @@ export const ClientHome = () => {
   };
 
   useEffect(() => {
-    // dispatch(logoutUser())
-    if(currentUser.userId){
-      userService.getUser(currentUser.userId)
+    if (currentUser.userId) {
+      userService
+        .getUser(currentUser.userId)
         .then((res) => {
           setUser(res);
+          notifySuccess(`Bienvenid@ ${res.name}`);
         })
         .catch(() => {
           dispatch(logoutUser());
           notifySuccess("No se pudo cargar el usuario");
           navigate("/login");
         });
-    }
-
-    notifySuccess(`Bienvenid@ ${currentUser.name}`);
-  }, [navigate, dispatch]);
-
-  console.log(user);
+    }    
+  }, [navigate, dispatch, currentUser]);
 
   if (currentUser === null) {
     return (
@@ -79,7 +76,7 @@ export const ClientHome = () => {
 
   return (
     <div className={styles.contClient}>
-      <NavbarClient />
+      <NavbarClient user={user} />
       <div className={styles.contButton}>
         <button onClick={openCar}>
           {" "}

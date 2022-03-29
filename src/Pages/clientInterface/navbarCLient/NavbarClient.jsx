@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const NavbarClient = () => {
+export const NavbarClient = ({user}) => {
     
 
     const classes = useStyles();
@@ -42,7 +42,7 @@ export const NavbarClient = () => {
 
     const body = (
         <div className={classes.modal}>
-            <EditUser/>
+            <EditUser  user={user} />
         </div>
     )
     const openCloseModal = () => {
