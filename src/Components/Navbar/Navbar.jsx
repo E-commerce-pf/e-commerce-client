@@ -27,7 +27,7 @@ export const Navbar = ({ filter, state, setState }) => {
             <h2 onClick={() => setState(!state)}>
               <FaHeadphonesAlt /> Soporte
             </h2>
-            <h2>
+            <h2 onClick={() => navigate("/location")}>
               <HiOutlineLocationMarker /> Ubicacion
             </h2>
           </div>
