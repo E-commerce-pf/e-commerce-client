@@ -11,7 +11,7 @@ export const MisProductos = ({ Transactions, name }) => {
       <div className={styles.containerProd}>
         <div className={styles.constMiCar}>
           <h1 className={styles.title2}>
-            Aqui puedes ver tus productos comprados {name}
+          Here you can see your purchased products {name}
           </h1>
 
         </div>
@@ -34,7 +34,7 @@ export const MisProductos = ({ Transactions, name }) => {
                     </h3>
                   </div>
                 ) : (
-                  <h2 className={styles.title}>No existe este producto</h2>
+                  <h2 className={styles.title}>This product does not exist</h2>
                 )
               )
             )
