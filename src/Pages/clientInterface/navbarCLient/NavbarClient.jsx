@@ -18,7 +18,7 @@ import { HiMenu } from 'react-icons/hi'
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
-        height: '450px',
+        height: '300px',
         width: '600px',
         borderRadius: '5px',
         backgroundColor: '#23263B',
