@@ -14,6 +14,7 @@ import EditUser from './editUser/EditUser';
 import userService from "../../Services/user";
 import { logoutUser } from "../../Redux/Actions/userActions";
 import Loading from "../../Components/Loading/index";
+import {FaArchive} from 'react-icons/fa';
 
 import { notifySuccess } from "../../Utils/notifications";
 
@@ -104,7 +105,7 @@ export const ClientHome = () => {
         </button>
         <button onClick={openEdit}>
           {" "}
-          <AiOutlineStar className={styles.btn} />
+          <FaArchive className={styles.btn} />
           Mis datos
         </button>
       </div>
