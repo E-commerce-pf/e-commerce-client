@@ -26,7 +26,7 @@ const Filter = () => {
 
   const initialStateOrder = {
     orderBy: "stock",
-    order: "all",
+    order: "min-max",
   };
 
   const dispatch = useDispatch();
@@ -46,12 +46,22 @@ const Filter = () => {
     const name = event.target.name;
     setInputOrder({
       ...inputOrder,
-      [name]: event.target.value,
+      [name]:
+        name === "order"
+          ? inputOrder.order === "min-max"
+            ? "max-min"
+            : "min-max"
+          : event.target.value,
     });
     dispatch(
       setOrderProducts({
         ...inputOrder,
-        [name]: event.target.value,
+        [name]:
+          name === "order"
+            ? inputOrder.order === "min-max"
+              ? "max-min"
+              : "min-max"
+            : event.target.value,
       })
     );
   };
@@ -71,71 +81,88 @@ const Filter = () => {
 
   return (
     <div className={style.container}>
-      <div>
-        <Typography className={style.title}>Ordenar por</Typography>
-        <Select
-          name="orderBy"
-          aria-labelledby="orderBy"
-          value={inputOrder.orderBy}
-          onChange={handleChangeOrder}
-        >
-          <MenuItem value="stock">Cantidad</MenuItem>
-          <MenuItem value="sales">Vendidos</MenuItem>
-          <MenuItem value="discount">Descuentos</MenuItem>
-        </Select>
+      <Typography
+        variant="h3"
+        className={style.title}
+        style={{ textAlign: "center" }}
+      >
+        Ordenamientos
+      </Typography>
+      <div style={{ border: "1px solid blue", padding: 10 }}>
+        <div>
+          <Typography className={style.title}>Ordenar por</Typography>
+          <Select
+            name="orderBy"
+            aria-labelledby="orderBy"
+            value={inputOrder.orderBy}
+            onChange={handleChangeOrder}
+          >
+            <MenuItem value="stock">Cantidad</MenuItem>
+            <MenuItem value="sales">Vendidos</MenuItem>
+            <MenuItem value="discount">Descuentos</MenuItem>
+          </Select>
+        </div>
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            name="order"
+            onClick={handleChangeOrder}
+          >
+            {inputOrder.order === "min-max" ? "Min-Max" : "Max-Min"}
+          </Button>
+        </div>
       </div>
-      <div>
-        <Typography className={style.title}>Orden</Typography>
-        <Select
-          name="order"
-          aria-labelledby="order"
-          value={inputOrder.order}
-          onChange={handleChangeOrder}
-        >
-          <MenuItem value="all">Sin Ordenar</MenuItem>
-          <MenuItem value="min-max">Menor a mayor</MenuItem>
-          <MenuItem value="max-min">Mayor a menor</MenuItem>
-        </Select>
-      </div>
-      <div>
-        <Typography className={style.title}>Categorias</Typography>
-        <Select
-          name="category"
-          aria-labelledby="category"
-          value={input.category}
-          onChange={handleChange}
-        >
-          <MenuItem value="all">Todas</MenuItem>
-          {categories.map(({ id, name }) => {
-            return (
-              <MenuItem key={id} value={name}>
-                {name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </div>
-      <div>
-        <Typography className={style.title}>Precio USD (min - max) </Typography>
-        <Slider
-          aria-labelledby="price"
-          name="price"
-          value={input.price}
-          onChange={handleChange}
-          min={initialState.price[0]}
-          max={initialState.price[1]}
-          valueLabelDisplay="auto"
-          disableSwap
-        />
-      </div>
-      <div className={style.title}>
-        <TextField
-          label="Descripcion"
-          variant="outlined"
-          name="description"
-          onChange={handleChange}
-          value={input.description}
-        />
+      <Typography
+        variant="h3"
+        className={style.title}
+        style={{ textAlign: "center" }}
+      >
+        Filtros
+      </Typography>
+      <div style={{ border: "1px solid blue", padding: 10 }}>
+        <div>
+          <Typography className={style.title}>Categorias</Typography>
+          <Select
+            name="category"
+            aria-labelledby="category"
+            value={input.category}
+            onChange={handleChange}
+          >
+            <MenuItem value="all">Todas</MenuItem>
+            {categories.map(({ id, name }) => {
+              return (
+                <MenuItem key={id} value={name}>
+                  {name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </div>
+        <div>
+          <Typography className={style.title}>
+            Precio USD (min - max){" "}
+          </Typography>
+          <Slider
+            aria-labelledby="price"
+            name="price"
+            value={input.price}
+            onChange={handleChange}
+            min={initialState.price[0]}
+            max={initialState.price[1]}
+            valueLabelDisplay="auto"
+            disableSwap
+          />
+        </div>
+        <div className={style.title}>
+          <TextField
+            label="Descripcion"
+            variant="outlined"
+            name="description"
+            onChange={handleChange}
+            value={input.description}
+          />
+        </div>
       </div>
       <div>
         <Button
