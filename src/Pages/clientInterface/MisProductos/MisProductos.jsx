@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./MiProductos.module.css";
-
+import {useNavigate} from 'react-router-dom'
 export const MisProductos = ({ Transactions, name }) => {
 
 
   let productsCart = Transactions.map((e) => e.cart.productsInCart);
-
+  const navigate = useNavigate()
   return (
     <>
       <div className={styles.containerProd}>
@@ -21,7 +21,7 @@ export const MisProductos = ({ Transactions, name }) => {
             Transactions.map((e) =>
               e.cart.productsInCart.map((e) =>
                 e.product ? (
-                  <div className={styles.prd} key={e.product.id}>
+                  <div className={styles.prd} key={e.product.id}  onClick={() => navigate(`/productDetail/${e.product.id}`)}>
                     <h2 className={styles.title}>{e.product.title}</h2>
                     <img
                       className={styles.imG}
