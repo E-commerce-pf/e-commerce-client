@@ -5,11 +5,9 @@ import { BsPencilSquare } from 'react-icons/bs'
 import { RiLogoutBoxRLine } from 'react-icons/ri'
 import Everylogopf from '../../../Assets/Images/Everylogopf.png'
 import { makeStyles } from '@material-ui/core/styles';
-import { Modal } from '@material-ui/core';
 import {useDispatch} from 'react-redux';
 import {logoutUser} from '../../../Redux/Actions/userActions';
-import { useSelector } from 'react-redux';
-import EditUser from '../editUser/EditUser'
+
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
@@ -40,14 +38,14 @@ export const NavbarClient = ({user}) => {
         navigate('/')
     }
 
-    const body = (
-        <div className={classes.modal}>
-            <EditUser  user={user} />
-        </div>
-    )
-    const openCloseModal = () => {
-        setModal(!modal)
-    }
+    // const body = (
+    //     <div className={classes.modal}>
+    //         <EditUser  user={user} />
+    //     </div>
+    // )
+    // const openCloseModal = () => {
+    //     setModal(!modal)
+    // }
     const logout=()=>{
         dispatch(logoutUser())
         navigate('/')
@@ -59,13 +57,13 @@ export const NavbarClient = ({user}) => {
                     <img src={Everylogopf} alt="img" width="150px" height="100px" onClick={Home} />
                 </div>
                 <div className={styles.homeFLC}>
-                    <BsPencilSquare className={styles.btn} onClick={() => openCloseModal()}/>
+                    {/* <BsPencilSquare className={styles.btn} onClick={() => openCloseModal()}/> */}
                     <RiLogoutBoxRLine className={styles.btn} onClick={logout}/>
                 </div>
             </div>
-            <Modal open={modal} onClose={openCloseModal}>
+            {/* <Modal open={modal} onClose={openCloseModal}>
                 {body}
-            </Modal>
+            </Modal> */}
         </>
     )
 }

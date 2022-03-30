@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { MisReviews } from "./MisReviews/MisReviews";
 import { MisProductos } from "./MisProductos/MisProductos";
+import EditUser from './editUser/EditUser';
 import userService from "../../Services/user";
 import { logoutUser } from "../../Redux/Actions/userActions";
 import Loading from "../../Components/Loading/index";
@@ -22,6 +23,7 @@ export const ClientHome = () => {
   const [misReviews, setMisReviews] = useState(false);
   const [miFavorito, setMiFavorito] = useState(false);
   const [miProducto, setMiProducto] = useState(false);
+  const [miEdit, setMiEdit] = useState(false);
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   console.log(currentUser,'currentUser')
@@ -29,14 +31,23 @@ export const ClientHome = () => {
     setMisReviews(true);
     setMiFavorito(false);
     setMiProducto(false);
+    setMiEdit(false);
   };
   const openProduct = () => {
     setMiProducto(true);
     setMisReviews(false);
     setMiFavorito(false);
+    setMiEdit(false);
   };
   const openFav = () => {
     setMiFavorito(true);
+    setMisReviews(false);
+    setMiProducto(false);
+    setMiEdit(false);
+  };
+  const openEdit = () => {
+    setMiEdit(true);
+    setMiFavorito(false);
     setMisReviews(false);
     setMiProducto(false);
   };
@@ -91,6 +102,11 @@ export const ClientHome = () => {
           <AiOutlineStar className={styles.btn} />
           Mis favoritos
         </button>
+        <button onClick={openEdit}>
+          {" "}
+          <AiOutlineStar className={styles.btn} />
+          Mis datos
+        </button>
       </div>
       <>
         {misReviews ? (
@@ -99,6 +115,8 @@ export const ClientHome = () => {
           <MisFavoritos Favorites={user.Favorites} setUser={setUser} />
         ) : miProducto ? (
           <MisProductos Transactions={user.Transactions} name={user.name} />
+        ) : miEdit ? (
+          <EditUser user={user}/>
         ) : (
           false
         )}
