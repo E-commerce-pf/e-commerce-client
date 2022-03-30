@@ -38,7 +38,6 @@ export default function Order() {
 
   return (
     <div>
-      <Typography variant="h1">Order</Typography>
       <Select name="orderBy" value={order.orderBy} onChange={handleChange}>
         <MenuItem value="stock">Stock</MenuItem>
         <MenuItem value="price">Price</MenuItem>

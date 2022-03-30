@@ -54,17 +54,10 @@ const Filter = ({ category }) => {
   };
 
   return (
-    <div className={style.container}>
-      <Typography
-        variant="h3"
-        className={style.title}
-        style={{ textAlign: "center" }}
-      >
-        Filtros
-      </Typography>
+    <div>
       <div style={{ border: "1px solid blue", padding: 10 }}>
         <div>
-          <Typography className={style.title}>Categorias</Typography>
+          <Typography>Categorias</Typography>
           <Select
             name="category"
             aria-labelledby="category"
@@ -82,9 +75,7 @@ const Filter = ({ category }) => {
           </Select>
         </div>
         <div>
-          <Typography className={style.title}>
-            Precio USD (min - max){" "}
-          </Typography>
+          <Typography>Precio USD (min - max)</Typography>
           <Slider
             aria-labelledby="price"
             name="price"
@@ -96,7 +87,7 @@ const Filter = ({ category }) => {
             disableSwap
           />
         </div>
-        <div className={style.title}>
+        <div>
           <TextField
             label="Descripcion"
             variant="outlined"

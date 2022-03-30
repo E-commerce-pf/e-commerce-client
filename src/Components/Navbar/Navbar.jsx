@@ -36,24 +36,29 @@ export const Navbar = ({ filter, state, setState }) => {
             </Link>
           </div>
 
-          <button value="all" onClick={handleOnClick}>
-            View All
-          </button>
+          {filter ? (
+            <>
+              <button value="all" onClick={handleOnClick}>
+                View All
+              </button>
 
-          <div className={styles.selectCP}>
-            <select onChange={handleOnClick}>
-              <option value="all">Todas las categorias</option>
-              {categories.map(({ id, name }) => (
-                <option key={id} value={name}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </div>
+              <div className={styles.selectCP}>
+                <select onChange={handleOnClick}>
+                  <option value="all">Todas las categorias</option>
+                  {categories.map(({ id, name }) => (
+                    <option key={id} value={name}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-          <div className={styles.inputS}>
-            <SearchBar />
-          </div>
+              <div className={styles.inputS}>
+                <SearchBar />
+              </div>
+            </>
+          ) : null}
+
           <div className={styles.homeSU}>
             <h2 onClick={() => setState(!state)}>
               <FaHeadphonesAlt /> Soporte
