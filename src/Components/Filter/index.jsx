@@ -20,7 +20,6 @@ import { useDispatch } from "react-redux";
 const Filter = () => {
   const initialState = {
     description: "",
-    title: "",
     price: [0, 2500],
     category: "all",
   };
@@ -136,15 +135,6 @@ const Filter = () => {
           name="description"
           onChange={handleChange}
           value={input.description}
-        />
-      </div>
-      <div className={style.title}>
-        <TextField
-          label="Titulo"
-          variant="outlined"
-          name="title"
-          value={input.title}
-          onChange={handleChange}
         />
       </div>
       <div>
