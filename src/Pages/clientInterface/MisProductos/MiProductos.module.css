@@ -32,6 +32,7 @@
     border-bottom-style: inset;
     border-color: rgba(3, 3, 44, 0.329); */
     margin: 20px;
+    cursor: pointer;
 }
 .parrafo{
     background-color: transparent;
