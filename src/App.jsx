@@ -11,6 +11,7 @@ import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
 
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>

@@ -21,9 +21,10 @@ export const ClientHome = () => {
   const navigate = useNavigate();
   const [misReviews, setMisReviews] = useState(false);
   const [miFavorito, setMiFavorito] = useState(false);
-  const [miProducto, setMiProducto] = useState(false);
+  const [miProducto, setMiProducto] = useState(true);
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
+
   const openCar = () => {
     setMisReviews(true);
     setMiFavorito(false);
@@ -41,15 +42,16 @@ export const ClientHome = () => {
   };
 
   useEffect(() => {
-    // dispatch(logoutUser())
-    if(currentUser.userId){
-      userService.getUser(currentUser.userId)
+    if (currentUser.userId) {
+      userService
+        .getUser(currentUser.userId)
         .then((res) => {
           setUser(res);
+          notifySuccess(`Welcome ${res.name}`);
         })
         .catch(() => {
           dispatch(logoutUser());
-          notifySuccess("No se pudo cargar el usuario");
+          notifySuccess("Failed to load user");
           navigate("/login");
         });
     }
@@ -61,9 +63,9 @@ export const ClientHome = () => {
     return (
       <>
         <div className="title_login">
-          <h1>Debe iniciar sesión para ver esta interfaz</h1>
+          <h1>You must login to see this interface</h1>
           <button onClick={() => navigate("/")} className="btn">
-            Aceptar
+          To accept
           </button>
         </div>
       </>
@@ -76,20 +78,20 @@ export const ClientHome = () => {
 
   return (
     <div className={styles.contClient}>
-      <NavbarClient />
+      <NavbarClient user={user} setUser={setUser}/>
       <div className={styles.contButton}>
         <button onClick={openCar}>
           {" "}
-          <MdOutlineRateReview className={styles.btn} /> Mis reviews
+          <MdOutlineRateReview className={styles.btn} /> My reviews
         </button>
         <button onClick={openProduct}>
           {" "}
-          <BiGift className={styles.btn} /> Mis productos
+          <BiGift className={styles.btn} /> My products
         </button>
         <button onClick={openFav}>
           {" "}
           <AiOutlineStar className={styles.btn} />
-          Mis favoritos
+          My favourites
         </button>
       </div>
       <>
