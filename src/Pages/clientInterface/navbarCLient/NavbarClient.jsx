@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import styles from './NavbarClient.module.scss'
 import Everylogopf from '../../../Assets/Images/Everylogopf.png'
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../Redux/Actions/userActions';
 import { Menu, MenuItem, Modal, IconButton } from '@material-ui/core';
 import EditUser from '../editUser/EditUser'
@@ -14,7 +14,7 @@ import { IoLogoVercel } from "react-icons/io5";
 import { FiLogOut } from 'react-icons/fi'
 import { FaPencilAlt, FaUserCircle } from 'react-icons/fa'
 import { HiMenu } from 'react-icons/hi'
-
+import { addProductToCartDb, removeProductToCartDb, removeToLocalStorageIds } from '../../../Utils/shoppingBag'
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-export const NavbarClient = ({ user, setUser }) => {
+export const NavbarClient = ({user,setUser }) => {
 
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -68,6 +68,7 @@ export const NavbarClient = ({ user, setUser }) => {
     const [modal, setModal] = useState(false)
     const dispatch = useDispatch()
     const open = Boolean(anchorEl);
+    const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
     const Home = () => {
         navigate('/')
     }
@@ -84,14 +85,21 @@ export const NavbarClient = ({ user, setUser }) => {
     const openCloseModal = () => {
         setModal(!modal)
     }
-    const logout = () => {
-        dispatch(logoutUser())
-        navigate('/')
+    const logout=()=>{
+        if(bagProducts.length)
+        bagProducts.forEach(p=>{
+            addProductToCartDb(p.id,user.id,p.amount)
+        })
+        else removeProductToCartDb("all",user.id)
+        
+        removeToLocalStorageIds()
+        dispatch(logoutUser());
+        navigate('/');
     }
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+    console.log(user)
     return (
         <>
             <div className={styles.containerInfo1}>

@@ -32,7 +32,6 @@ const Login = () => {
   gitHubProvider.addScope("repo");
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-
   useEffect(() => {
     if (currentUser) {
       navigate("/viewClient");
@@ -42,7 +41,6 @@ const Login = () => {
   const signInGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        console.log(result);
         const displayName = result.user.displayName.split(" ");
         const user = {
           email: result.user.email,

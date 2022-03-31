@@ -19,7 +19,6 @@ import "./CardProduct.modules.css";
 import { useSelector } from "react-redux";
 import { notifyError, notifySuccess } from "../../Utils/notifications";
 import favoritesService from "../../Services/favorites";
-
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -40,8 +39,10 @@ const CardProduct = ({
   discount,
   score,
   description,
+  bagProducts,
 }) => {
   const [expanded, setExpanded] = React.useState(false);
+  const user=useSelector((store) => store.userReducer.currentUser);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -92,7 +93,7 @@ const CardProduct = ({
 
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
-              <AddToBag text={"Añadir al carrito"} id={id} />
+              <AddToBag text={"Añadir al carrito"} id={id} user={user} bagProducts={bagProducts} />
             </IconButton>
             <button onClick={addFavorite} className="fav_icon">
               <FavoriteIcon className="fav_icon" />

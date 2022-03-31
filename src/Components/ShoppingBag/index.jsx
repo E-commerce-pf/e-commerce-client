@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { BiShoppingBag } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { setIdBagProducts } from "../../Redux/Actions/productsActions";
+import { getCart } from "../../Redux/Actions/userActions";
 import {
-  addToLocalStorageIds,
   getToLocalStorageIds,
+  removeToLocalStorageIds,
+  removeProductToCartDb,
 } from "../../Utils/shoppingBag";
 import Swal from "sweetalert2";
 import CartShoppingBag from "../CartShoppingBag";
@@ -15,26 +17,16 @@ import { notifyError } from "../../Utils/notifications";
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
+  const user=useSelector((store) => store.userReducer.currentUser);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const ids = getToLocalStorageIds();
     dispatch(setIdBagProducts(ids));
+    if(user){
+      dispatch(getCart(user.userId))
+    }
   }, [dispatch]);
 
-  useEffect(() => {
-    return () => {
-      addToLocalStorageIds(
-        bagProducts.map((product) => {
-          return {
-            id: product.id,
-            amount: product.amount,
-          };
-        })
-      );
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const getTotalProducts = (products) => {
     return products.reduce((acc, product) => acc + product.amount, 0);
@@ -53,6 +45,9 @@ const ShoppingBag = () => {
         if (result.isConfirmed) {
           Swal.fire("Listo", "", "success");
           dispatch(setIdBagProducts([]));
+          removeToLocalStorageIds();
+          if(user)
+          removeProductToCartDb("all",user.userId)
         }
       });
     } else {

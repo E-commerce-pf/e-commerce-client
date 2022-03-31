@@ -58,7 +58,6 @@ export const ClientHome = () => {
 
   }, [navigate, dispatch]);
 
-  console.log(user);
 
   if (currentUser === null) {
     return (
@@ -79,7 +78,7 @@ export const ClientHome = () => {
 
   return (
     <div className={styles.contClient}>
-      <NavbarClient user={user} />
+      <NavbarClient user={user} setUser={setUser}/>
       <div className={styles.contButton}>
         <button onClick={openCar}>
           {" "}

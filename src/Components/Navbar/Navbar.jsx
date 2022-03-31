@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaHeadphonesAlt } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { IoPersonOutline } from "react-icons/io5";
@@ -8,8 +8,23 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import ShoppingBag from "../ShoppingBag";
 
+import categoriesService from "../../Services/category";
+
 export const Navbar = ({ filter, state, setState }) => {
   const navigate = useNavigate();
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    categoriesService.getAllCategories().then((data) => {
+      setCategories(data);
+    });
+  }, []);
+
+  const handleOnClick = (event) => {
+    navigate(`/products/${event.target.value}`);
+  };
+
   return (
     <>
       {" "}
@@ -20,9 +35,30 @@ export const Navbar = ({ filter, state, setState }) => {
               <img src={Everylogopf} alt="img" width="150px" height="100px" />
             </Link>
           </div>
-          <div className={styles.inputS}>
-            <SearchBar />
-          </div>
+
+          {filter ? (
+            <>
+              <button value="all" onClick={handleOnClick}>
+                View All
+              </button>
+
+              <div className={styles.selectCP}>
+                <select onChange={handleOnClick}>
+                  <option value="all">Todas las categorias</option>
+                  {categories.map(({ id, name }) => (
+                    <option key={id} value={name}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.inputS}>
+                <SearchBar />
+              </div>
+            </>
+          ) : null}
+
           <div className={styles.homeSU}>
             <h2 onClick={() => setState(!state)}>
               <FaHeadphonesAlt /> Soporte
