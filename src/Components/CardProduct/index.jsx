@@ -53,12 +53,12 @@ const CardProduct = ({
 
   const addFavorite = () => {
     if (!currentUser) {
-      return notifyError("Debe iniciar sesión para agregar a favoritos");
+      return notifyError("You must be logged in to add to favorites");
     }
     favoritesService
       .setFavorite(id, currentUser.userId)
       .then((res) => {
-        notifySuccess("Producto agregado a favoritos");
+        notifySuccess("The product was added to favorites");
       })
       .catch((err) => {
         notifyError(err.message);
