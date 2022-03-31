@@ -19,6 +19,7 @@ import "./CardProduct.modules.css";
 import { useSelector } from "react-redux";
 import { notifyError, notifySuccess } from "../../Utils/notifications";
 import favoritesService from "../../Services/favorites";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -42,7 +43,7 @@ const CardProduct = ({
   bagProducts,
 }) => {
   const [expanded, setExpanded] = React.useState(false);
-  const user=useSelector((store) => store.userReducer.currentUser);
+  const user = useSelector((store) => store.userReducer.currentUser);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -71,9 +72,9 @@ const CardProduct = ({
           <CardHeader
             className="txt_card"
             title={title}
-            subheader={`AHORA: ${(price * ((discount - 1) * -1)).toFixed(
+            subheader={`NOW: $${(price * ((discount - 1) * -1)).toFixed(
               2
-            )}$ ANTES: ${price}$`}
+            )} BEFORE: $${price}`}
           />
           <CardMedia
             component="img"
@@ -84,7 +85,7 @@ const CardProduct = ({
           <CardContent>
             <Typography variant="body6" color="text.primary">
               {`STOCK: ${stock}`}
-              <br></br> {`DESCUENTO: ${discount * 100}%`}
+              <br></br> {`DISCOUNT: ${discount * 100} %`}
             </Typography>{" "}
             <Typography variant="body2" color="textSecondary" component="p">
               {score && <Rating name="read-only" value={score} readOnly />}
@@ -93,7 +94,12 @@ const CardProduct = ({
 
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
-              <AddToBag text={"Añadir al carrito"} id={id} user={user} bagProducts={bagProducts} />
+              <AddToBag
+                text={"Añadir al carrito"}
+                id={id}
+                user={user}
+                bagProducts={bagProducts}
+              />
             </IconButton>
             <button onClick={addFavorite} className="fav_icon">
               <FavoriteIcon className="fav_icon" />
@@ -111,14 +117,14 @@ const CardProduct = ({
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography className="title_info" paragraph>
-              INFORMACION ADICIONAL
+              MORE INFO:
             </Typography>
             <Typography className="cardInfo" paragraph>
               {description}
             </Typography>
             <div>
               <Button variant="contained" color="primary">
-                <Link to={`/productDetail/${id}`}>Ver más</Link>
+                <Link to={`/productDetail/${id}`}>Details</Link>
               </Button>
             </div>
           </CardContent>

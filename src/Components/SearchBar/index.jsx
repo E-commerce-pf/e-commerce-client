@@ -23,7 +23,7 @@ const SearchBar = () => {
         }
       }}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Buscar" />}
+      renderInput={(params) => <TextField {...params} label="Search" />}
     />
   );
 };

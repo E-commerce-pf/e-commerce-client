@@ -44,9 +44,15 @@ export const Navbar = ({ filter, state, setState }) => {
 
               <div className={styles.selectCP}>
                 <select onChange={handleOnClick}>
-                  <option value="all">Todas las categorias</option>
+                  <option style={{ textAlign: "center" }} value="all">
+                    All categories
+                  </option>
                   {categories.map(({ id, name }) => (
-                    <option key={id} value={name}>
+                    <option
+                      style={{ textAlign: "center" }}
+                      key={id}
+                      value={name}
+                    >
                       {name}
                     </option>
                   ))}
@@ -61,10 +67,10 @@ export const Navbar = ({ filter, state, setState }) => {
 
           <div className={styles.homeSU}>
             <h2 onClick={() => setState(!state)}>
-              <FaHeadphonesAlt /> Soporte
+              <FaHeadphonesAlt /> Support
             </h2>
             <h2 onClick={() => navigate("/location")}>
-              <HiOutlineLocationMarker /> Ubicacion
+              <HiOutlineLocationMarker /> Location
             </h2>
           </div>
           <div className={styles.homeFLC}>
