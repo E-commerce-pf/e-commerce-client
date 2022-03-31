@@ -1,13 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { addProductToBag } from '../../Redux/Actions/productsActions';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { addToLocalStorageIds, addProductToCartDb } from '../../Utils/shoppingBag';
+import { notifyError } from "../../Utils/notifications";
 
-const AddToBag = ({ text, id }) => {
+const AddToBag = ({ text, id, user,bagProducts}) => {
 	const dispatch = useDispatch();
-
+	const stockSucess=(product)=>{
+		return product.amount+1<=product.stock;
+	}
 	const addToCart = (id) => {
-		dispatch(addProductToBag(id));
+		let product=bagProducts.find(p=>p.id===id);
+		if(!product||stockSucess(product)){
+			dispatch(addProductToBag(id));
+			addToLocalStorageIds(id);	
+		} else {
+			notifyError(`Maximum stock reached ${product.amount}`)
+		}
 	};
 
 	return (

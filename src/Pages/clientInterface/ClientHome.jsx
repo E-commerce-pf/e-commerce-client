@@ -24,7 +24,6 @@ export const ClientHome = () => {
   const [miProducto, setMiProducto] = useState(false);
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-  console.log(currentUser, "curretnUser");
   const openCar = () => {
     setMisReviews(true);
     setMiFavorito(false);
@@ -55,10 +54,8 @@ export const ClientHome = () => {
         });
     }
 
-    notifySuccess(`Bienvenid@ ${currentUser.name}`);
   }, [navigate, dispatch]);
 
-  console.log(user);
 
   if (currentUser === null) {
     return (
