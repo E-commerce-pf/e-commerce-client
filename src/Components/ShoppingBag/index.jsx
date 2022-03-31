@@ -17,16 +17,15 @@ import { notifyError } from "../../Utils/notifications";
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
-  const user=useSelector((store) => store.userReducer.currentUser);
+  const user = useSelector((store) => store.userReducer.currentUser);
   const dispatch = useDispatch();
   useEffect(() => {
     const ids = getToLocalStorageIds();
     dispatch(setIdBagProducts(ids));
-    if(user){
-      dispatch(getCart(user.userId))
+    if (user) {
+      dispatch(getCart(user.userId));
     }
   }, [dispatch]);
-
 
   const getTotalProducts = (products) => {
     return products.reduce((acc, product) => acc + product.amount, 0);
@@ -36,22 +35,21 @@ const ShoppingBag = () => {
     if (bagProducts.length !== 0) {
       setCartOpen(false);
       Swal.fire({
-        title: "Seguro deseas eliminar el carrito de compras?",
+        title: "Are you sure do you want to empty the shopping cart?",
         showDenyButton: true,
         showCancelButton: true,
-        confirmButtonText: "Si",
+        confirmButtonText: "Yes",
         denyButtonText: "No",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire("Listo", "", "success");
+          Swal.fire("Done", "", "success");
           dispatch(setIdBagProducts([]));
           removeToLocalStorageIds();
-          if(user)
-          removeProductToCartDb("all",user.userId)
+          if (user) removeProductToCartDb("all", user.userId);
         }
       });
     } else {
-      notifyError("No tienes productos en el carrito!")
+      notifyError("You don't have products in the cart!");
     }
   };
 
