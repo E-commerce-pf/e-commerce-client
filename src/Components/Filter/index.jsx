@@ -54,49 +54,48 @@ const Filter = ({ category }) => {
   };
 
   return (
-    <div>
-      <div style={{ border: "1px solid blue", padding: 10 }}>
-        <div>
-          <Typography>Categorias</Typography>
-          <Select
-            name="category"
-            aria-labelledby="category"
-            value={input.category}
-            onChange={handleChange}
-          >
-            <MenuItem value="all">Todas</MenuItem>
-            {categories.map(({ id, name }) => {
-              return (
-                <MenuItem key={id} value={name}>
-                  {name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </div>
-        <div>
-          <Typography>Precio USD (min - max)</Typography>
-          <Slider
-            aria-labelledby="price"
-            name="price"
-            value={input.price}
-            onChange={handleChange}
-            min={initialState.price[0]}
-            max={initialState.price[1]}
-            valueLabelDisplay="auto"
-            disableSwap
-          />
-        </div>
-        <div>
-          <TextField
-            label="Descripcion"
-            variant="outlined"
-            name="description"
-            onChange={handleChange}
-            value={input.description}
-          />
-        </div>
+    <div className={style.container}>
+      <div>
+        <Typography>Categories</Typography>
+        <Select
+          name="category"
+          aria-labelledby="category"
+          value={input.category}
+          onChange={handleChange}
+        >
+          <MenuItem value="all">All</MenuItem>
+          {categories.map(({ id, name }) => {
+            return (
+              <MenuItem key={id} value={name}>
+                {name}
+              </MenuItem>
+            );
+          })}
+        </Select>
       </div>
+      <div>
+        <Typography>Price USD (min - max)</Typography>
+        <Slider
+          aria-labelledby="price"
+          name="price"
+          value={input.price}
+          onChange={handleChange}
+          min={initialState.price[0]}
+          max={initialState.price[1]}
+          valueLabelDisplay="auto"
+          disableSwap
+        />
+      </div>
+      <div>
+        <TextField
+          label="Description"
+          variant="outlined"
+          name="description"
+          onChange={handleChange}
+          value={input.description}
+        />
+      </div>
+
       <div>
         <Button
           variant="contained"
@@ -105,7 +104,7 @@ const Filter = ({ category }) => {
             dispatch(clearFilter());
           }}
         >
-          Limpiar filtros
+          Clear filter
         </Button>
       </div>
     </div>

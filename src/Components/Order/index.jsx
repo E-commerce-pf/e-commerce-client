@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Typography, Select, MenuItem, Button } from "@mui/material";
+import { Select, MenuItem, Button } from "@mui/material";
 
 import { setOrderProducts } from "../../Redux/Actions/productsActions";
 
@@ -37,20 +37,26 @@ export default function Order() {
   };
 
   return (
-    <div>
-      <Select name="orderBy" value={order.orderBy} onChange={handleChange}>
-        <MenuItem value="stock">Stock</MenuItem>
-        <MenuItem value="price">Price</MenuItem>
-        <MenuItem value="discount">discount</MenuItem>
-      </Select>
+    <div style={{ width: "30%", marginTop: 50, marginRight: 10 }}>
       <Button
         variant="contained"
         name="order"
         color="primary"
         onClick={handleChange}
+        sx={{ width: "100%" }}
       >
         {order.order === "min-max" ? "Max-Min" : "Min-Max"}
       </Button>
+      <Select
+        name="orderBy"
+        value={order.orderBy}
+        onChange={handleChange}
+        sx={{ width: "100%" }}
+      >
+        <MenuItem value="stock">Stock</MenuItem>
+        <MenuItem value="price">Price</MenuItem>
+        <MenuItem value="discount">Discount</MenuItem>
+      </Select>
     </div>
   );
 }

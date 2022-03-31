@@ -13,6 +13,8 @@ import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 import { paginate } from "../../Utils/paginate";
 
+import style from "./ViewProducts.module.scss";
+
 export default function ViewProducts() {
   const { category } = useParams();
   const dispatch = useDispatch();
@@ -43,17 +45,21 @@ export default function ViewProducts() {
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <Navbar />
       <Filter category={category} />
-      <Order />
-      <div>
-        <button onClick={previous}>Anterior</button>
-        <button onClick={next}>Siguiente</button>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <Order />
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <button onClick={previous}>Previous</button>
+            <button onClick={next}>Next</button>
+          </div>
+          <CardsProducts
+            products={paginate(productsFilter, page, elementsPerPage)}
+          />
+        </div>
       </div>
-      <CardsProducts
-        products={paginate(productsFilter, page, elementsPerPage)}
-      />
       <Footer />
     </div>
   );
