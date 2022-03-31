@@ -111,7 +111,7 @@ export const ClientHome = () => {
       </div>
       <>
         {misReviews ? (
-          <MisReviews />
+          <MisReviews userId={user.id}/>
         ) : miFavorito ? (
           <MisFavoritos Favorites={user.Favorites} setUser={setUser} />
         ) : miProducto ? (
