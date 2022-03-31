@@ -27,8 +27,8 @@ const isInCategory = (categories, category) => {
 const isIn = (product, payload) => {
   return (
     isInCategory(product.Categories, payload.category) &&
-    toLower(product.title).includes(toLower(payload.title)) &&
-    toLower(product.description).includes(toLower(payload.description)) &&
+    (toLower(product.title).includes(toLower(payload.description)) ||
+      toLower(product.description).includes(toLower(payload.description))) &&
     isInRange(product.price, payload.price[0], payload.price[1])
   );
 };
