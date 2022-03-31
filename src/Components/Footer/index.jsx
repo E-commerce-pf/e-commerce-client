@@ -6,21 +6,21 @@ const Footer = () => {
     <footer className={styled.container}>
       <div className={styled.footerContent}>
         <div>
-          <h3>Acerca de</h3>
+          <h3>About</h3>
           <ul>
-            <li>Quienes Somos</li>
+            <li>About us</li>
           </ul>
         </div>
         <div>
-          <h3>Términos y condiciones</h3>
+          <h3>Terms and conditions</h3>
           <ul>
-            <li>Quienes Somos</li>
+            <li>About us</li>
           </ul>
         </div>
         <div>
-          <h3>Ayuda / PQR</h3>
+          <h3>Help / FAQ</h3>
           <ul>
-            <li>Quienes Somos</li>
+            <li>About us</li>
           </ul>
         </div>
       </div>
