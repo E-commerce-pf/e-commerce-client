@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Select, MenuItem, Button } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
 
 import { setOrderProducts } from "../../Redux/Actions/productsActions";
+import style from "./Order.module.scss";
 
 export default function Order() {
   const dispatch = useDispatch();
@@ -37,16 +38,10 @@ export default function Order() {
   };
 
   return (
-    <div style={{ width: "30%", marginTop: 50, marginRight: 10 }}>
-      <Button
-        variant="contained"
-        name="order"
-        color="primary"
-        onClick={handleChange}
-        sx={{ width: "100%" }}
-      >
+    <div className={style.container}>
+      <button name="order" onClick={handleChange} style={{ width: "100%" }}>
         {order.order === "min-max" ? "Max-Min" : "Min-Max"}
-      </Button>
+      </button>
       <Select
         name="orderBy"
         value={order.orderBy}

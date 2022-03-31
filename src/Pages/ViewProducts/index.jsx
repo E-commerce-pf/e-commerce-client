@@ -51,13 +51,13 @@ export default function ViewProducts() {
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Order />
         <div>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <button onClick={previous}>Previous</button>
-            <button onClick={next}>Next</button>
-          </div>
           <CardsProducts
             products={paginate(productsFilter, page, elementsPerPage)}
           />
+          <div className={style.paginate}>
+            <button onClick={previous}>Previous</button>
+            <button onClick={next}>Next</button>
+          </div>
         </div>
       </div>
       <Footer />
