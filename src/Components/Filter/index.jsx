@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  MenuItem,
-  Select,
-  Slider,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { MenuItem, Select, Slider } from "@mui/material";
 import {
   setFilterProducts,
   clearFilter,
@@ -55,9 +48,40 @@ const Filter = ({ category }) => {
 
   return (
     <div className={style.container}>
-      <div>
-        <Typography>Categories</Typography>
+      <button
+        onClick={() => {
+          setInput(initialState);
+          dispatch(clearFilter());
+        }}
+      >
+        Clear filter
+      </button>
+
+      <div style={{ width: "15%" }}>
+        <span>Price USD (min - max)</span>
+        <Slider
+          aria-labelledby="price"
+          name="price"
+          value={input.price}
+          onChange={handleChange}
+          min={initialState.price[0]}
+          max={initialState.price[1]}
+          valueLabelDisplay="auto"
+          disableSwap
+        />
+      </div>
+
+      <input
+        value={input.description}
+        placeholder="Search"
+        name="description"
+        autoComplete="off"
+        onChange={handleChange}
+      />
+
+      <div style={{ display: "flex", flexDirection: "column", width: "10%" }}>
         <Select
+          sx={{ width: "100%" }}
           name="category"
           aria-labelledby="category"
           value={input.category}
@@ -72,40 +96,6 @@ const Filter = ({ category }) => {
             );
           })}
         </Select>
-      </div>
-      <div>
-        <Typography>Price USD (min - max)</Typography>
-        <Slider
-          aria-labelledby="price"
-          name="price"
-          value={input.price}
-          onChange={handleChange}
-          min={initialState.price[0]}
-          max={initialState.price[1]}
-          valueLabelDisplay="auto"
-          disableSwap
-        />
-      </div>
-      <div>
-        <TextField
-          label="Description"
-          variant="outlined"
-          name="description"
-          onChange={handleChange}
-          value={input.description}
-        />
-      </div>
-
-      <div>
-        <Button
-          variant="contained"
-          onClick={() => {
-            setInput(initialState);
-            dispatch(clearFilter());
-          }}
-        >
-          Clear filter
-        </Button>
       </div>
     </div>
   );
