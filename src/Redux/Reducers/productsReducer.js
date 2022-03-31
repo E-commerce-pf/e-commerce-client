@@ -9,6 +9,7 @@ import {
   SET_ALL_PRODUCTS,
   SET_ID_BAG_PRODUCTS,
 } from "../Actions/productsActions";
+import { GET_CART } from "../Actions/userActions";
 
 const toLower = (str) => {
   return str.toLowerCase();
@@ -45,6 +46,26 @@ const productsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         productInfo: payload,
+      };
+    case GET_CART:
+      let combined=[...payload,...state.bagProducts]
+      let newBagProducts=[];
+      let i;
+      combined.forEach(p=>{
+        if(newBagProducts.find((j,index)=>{
+          i=index
+          return j.id===p.id
+        }))
+        newBagProducts[i]={...p,amount:combined[i].amount+p.amount}
+        else
+        newBagProducts.push(p)
+      })
+      return {
+        ...state,
+        bagProducts: newBagProducts.map(({ id, amount }) => {
+          const aux = state.allProducts.find((product) => product.id === id);
+          return { ...aux, amount };
+        }),
       };
     case SET_ALL_PRODUCTS:
       return {

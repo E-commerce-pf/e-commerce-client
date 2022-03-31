@@ -1,8 +1,22 @@
 import CardItem from "../CartItem";
 import styled from "./CartShoppingBag.module.css";
 import { FaRegFrownOpen } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+import { notifyError } from "../../Utils/notifications";
+import { addProductToCartDb } from "../../Utils/shoppingBag";
 
 const CartShoppingBag = ({ cartItems, deleteCart }) => {
+  const user=useSelector((store) => store.userReducer.currentUser);
+  const buyProduct = ()=>{
+    if(!user) {notifyError("You are not logged in")}
+    else {
+      if(cartItems.length)
+      cartItems.forEach(p=>{
+          addProductToCartDb(p.id,user.userId,p.amount)
+      })
+      else notifyError("You have no products in the cartt")
+    }
+  }
   return (
     <aside className={styled.container}>
       <h1 className={styled.text_shop}>SHOPPING BAG</h1>
@@ -26,7 +40,7 @@ const CartShoppingBag = ({ cartItems, deleteCart }) => {
         <button className={styled.btn_quitar} onClick={deleteCart}>
           Eliminar carrito
         </button>
-        <button className={styled.btn_comprar}>Continuar compra</button>
+        <button className={styled.btn_comprar} onClick={buyProduct}>Continuar compra</button>
       </div>
     </aside>
   );

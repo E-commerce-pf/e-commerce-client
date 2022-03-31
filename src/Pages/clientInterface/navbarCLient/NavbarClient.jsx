@@ -10,6 +10,7 @@ import {useDispatch} from 'react-redux';
 import {logoutUser} from '../../../Redux/Actions/userActions';
 import { useSelector } from 'react-redux';
 import EditUser from '../editUser/EditUser'
+import { addProductToCartDb, removeProductToCartDb, removeToLocalStorageIds } from '../../../Utils/shoppingBag'
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
@@ -33,6 +34,8 @@ export const NavbarClient = () => {
     const navigate = useNavigate()
     const [modal,setModal]=useState(false)
     const dispatch= useDispatch()
+    const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
+    const user=useSelector((store) => store.userReducer.currentUser);
     const Home = () => {
         navigate('/')
     }
@@ -49,8 +52,15 @@ export const NavbarClient = () => {
         setModal(!modal)
     }
     const logout=()=>{
-        dispatch(logoutUser())
-        navigate('/')
+        if(bagProducts.length)
+        bagProducts.forEach(p=>{
+            addProductToCartDb(p.id,user.userId,p.amount)
+        })
+        else removeProductToCartDb("all",user.userId)
+        
+        removeToLocalStorageIds()
+        dispatch(logoutUser());
+        navigate('/');
     }
     return (
         <>

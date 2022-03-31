@@ -26,6 +26,7 @@ export const addProductToBag = (id) => {
   return { type: ADD_PRODUCT_TO_BAG, payload: id };
 };
 
+
 export const removeProductToBag = (id) => {
   return { type: REMOVE_PRODUCT_TO_BAG, payload: id };
 };
