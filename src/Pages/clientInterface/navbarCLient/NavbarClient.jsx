@@ -131,9 +131,9 @@ export const NavbarClient = ({user,setUser }) => {
                     <a href='https://respaldo-everyones-store.vercel.app/ ' target="_blank"><MenuItem className={classes.menuItem}> <IoLogoVercel className={classes.emoticon} /> Link deploy</MenuItem></a>
                 </Menu>
             </div>
-            <Modal open={modal} onClose={openCloseModal}>
+            {/* <Modal open={modal} onClose={openCloseModal}>
                 {body}
-            </Modal>
+            </Modal> */}
         </>
     )
 }
