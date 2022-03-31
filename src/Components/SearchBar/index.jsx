@@ -1,6 +1,7 @@
 import { Autocomplete, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
@@ -23,7 +24,7 @@ const SearchBar = () => {
         }
       }}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Buscar" />}
+      renderInput={(params) => <TextField {...params} label="Search" />}
     />
   );
 };
