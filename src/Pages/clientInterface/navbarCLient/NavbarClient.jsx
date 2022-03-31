@@ -69,6 +69,7 @@ export const NavbarClient = ({user,setUser }) => {
     const dispatch = useDispatch()
     const open = Boolean(anchorEl);
     const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
+    const userId=useSelector((store) => store.userReducer.currentUser);
     const Home = () => {
         navigate('/')
     }
@@ -88,9 +89,9 @@ export const NavbarClient = ({user,setUser }) => {
     const logout=()=>{
         if(bagProducts.length)
         bagProducts.forEach(p=>{
-            addProductToCartDb(p.id,user.id,p.amount)
+            addProductToCartDb(p.id,userId.userId,p.amount)
         })
-        else removeProductToCartDb("all",user.id)
+        else removeProductToCartDb("all",userId.userId)
         
         removeToLocalStorageIds()
         dispatch(logoutUser());
@@ -99,7 +100,7 @@ export const NavbarClient = ({user,setUser }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    console.log(user)
+
     return (
         <>
             <div className={styles.containerInfo1}>
