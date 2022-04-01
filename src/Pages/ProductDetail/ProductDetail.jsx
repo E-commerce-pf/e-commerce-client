@@ -53,7 +53,7 @@ export const ProductDetail = () => {
         {data.length > 0 ? (
           <Carousel
             data={data}
-            time={6000}
+            time={4000}
             width="600px"
             //   height="600px"
             //   captionStyle={captionStyle}
