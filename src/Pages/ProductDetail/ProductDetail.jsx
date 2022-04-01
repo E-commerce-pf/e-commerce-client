@@ -15,6 +15,7 @@ export const ProductDetail = () => {
     const {productId}=useParams();
     let reviews=useSelector(state=>state.reviewReducer.allReviews)||[];
     let product=useSelector(state=>state.productsReducer.productInfo)||{};
+    console.log(product,'product')
     let [index,setIndex]=useState(0);
     let prom= ()=>{
         return product.Reviews?.reduce((acc, { score }) => acc += score, 0) / product.Reviews?.length || 0
@@ -41,19 +42,19 @@ export const ProductDetail = () => {
                 <div className={style.container_dos}>
                     <h2 className={style.title_}>{product.title&&product.title[0].toUpperCase()+product.title?.slice(1)}</h2>
                     <div className={style.opinion}>
-                    {<Rating  name='read-only' value={prom()} readOnly />} <span className={style.span_}>{product.Reviews?.length} opiniones</span>
+                    {<Rating  name='read-only' value={prom()} readOnly />} <span className={style.span_}>{product.Reviews?.length} Reviews</span>
                     </div>
                     <p className={style.descrip}>{product.description}</p>
                     <div className={style.buyContainer}>
                     <p className={style.price}>usd{product.price}</p>
-                    <p className={style.descrip}>{product.stock} Disponibles</p>
-                    <p className={style.descrip}>{product.sales} Vendidos</p>
+                    <p className={style.descrip}>{product.stock} Available</p>
+                    <p className={style.descrip}>{product.sales} Sold</p>
                     <AddToBag  id={productId} />
                     </div>
                 </div>
             </div>
             <div  className={style.container_tres}>
-                <h2 className={style.comentarios}>Comentarios</h2>
+                <h2 className={style.comentarios}>Comments</h2>
                 <div className={style.containerScore}>
                     {product.Reviews?.length?reviews?.slice(index,index+3).map((r,i)=>
                         <div key={i}>
@@ -61,10 +62,11 @@ export const ProductDetail = () => {
                             <p>{r.userName}</p>
                             <p>{r.comment[0].toUpperCase()+r.comment.slice(1)}</p>
                         </div>
-                    ):<p className={style.placeho} >Aun no hay opiniones de este producto</p>}
+                    ):<p className={style.placeho} >There are no reviews for this product yet.
+                    </p>}
                     <div className={style.buttons}>
-                        {index-3>=0&&<button className={style.prev} onClick={prev}><FaArrowCircleLeft /> Anterior</button>}
-                        {index+3<product.Reviews?.length&&<button className={style.next} onClick={next}>Siguiente<FaArrowCircleRight/></button>}
+                        {index-3>=0&&<button className={style.prev} onClick={prev}><FaArrowCircleLeft /> Previous</button>}
+                        {index+3<product.Reviews?.length&&<button className={style.next} onClick={next}>Next<FaArrowCircleRight/></button>}
                     </div>
                 </div>
             </div>

@@ -24,6 +24,7 @@ export const ClientHome = () => {
   const [misReviews, setMisReviews] = useState(false);
   const [miFavorito, setMiFavorito] = useState(false);
   const [miProducto, setMiProducto] = useState(true);
+  const [miEdit,setMiEdit]=useState(false)
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   console.log(currentUser,'currentUser')
