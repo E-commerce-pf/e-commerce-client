@@ -20,9 +20,10 @@ export default function EditUser({ user, setUser }) {
           return {
               ...user,
               name: info.name,
+              lastName:info.lastName
           }
       })
-
+      toast.success('Updated data')
   } catch (error) {
       toast.error("Algo salió mal")
   } 
