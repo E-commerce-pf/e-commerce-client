@@ -4,9 +4,15 @@ import { FaRegFrownOpen } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { notifyError } from "../../Utils/notifications";
 import { addProductToCartDb } from "../../Utils/shoppingBag";
+import { useNavigate } from "react-router-dom";
+
+import cartService from "../../Services/cart";
 
 const CartShoppingBag = ({ cartItems, deleteCart }) => {
   const user = useSelector((store) => store.userReducer.currentUser);
+
+  const navigate = useNavigate();
+
   const buyProduct = () => {
     if (!user) {
       notifyError("You aren't logged in");
@@ -16,6 +22,12 @@ const CartShoppingBag = ({ cartItems, deleteCart }) => {
           addProductToCartDb(p.id, user.userId, p.amount);
         });
       else notifyError("You don't have products in the cart");
+    
+      cartService.getCart(user.userId).then((data) => {
+        navigate(`/order/${data.cart.id}`);
+      }).catch(() => {
+        notifyError("Tu usuario no esta en la data base!")
+      });
     }
   };
   return (
