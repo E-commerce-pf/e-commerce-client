@@ -22,6 +22,7 @@
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "nodemailer": "^6.7.2",
     "react": "^17.0.2",
+    "react-carousel-minimal": "^1.4.1",
     "react-dom": "^17.0.2",
     "react-elastic-carousel": "^0.11.5",
     "react-icons": "^4.3.1",
