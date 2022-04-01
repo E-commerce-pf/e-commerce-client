@@ -29,7 +29,7 @@ export const steps = [
   },
   {
     id: "6",
-    message: "Hi {previousValue}, nice to meet you! 😊",
+    message: "Hi {previousValue}, nice to meet you! 😀",
     hideInput: true,
     trigger: "7",
   },
