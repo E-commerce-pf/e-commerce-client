@@ -5,6 +5,7 @@ export const MisProductos = ({ Transactions, name }) => {
 
 
   let productsCart = Transactions.map((e) => e.cart.productsInCart);
+  
 
   return (
     <>

@@ -3,6 +3,8 @@ import styles from './MisReviews.module.css'
 import {reviewUserId} from '../../../Redux/Actions/userId';
 import {useSelector,useDispatch} from 'react-redux';
 import { Link } from "react-router-dom";
+import Rating from "@mui/material/Rating";
+import Loading from '../../../Components/Loading';
 
 
 export const MisReviews = ({userId}) => {
@@ -20,24 +22,27 @@ console.log(reviewUserId,'useEffect')
         <>
         {reviewsUser !== null? 
     reviewsUser.map((e)=>(
-        // <div key={e.ProductId}>
-        //     <div>
-        //     <div>{e.Product.title}</div>
-        //     <div>{e.Product.description}</div>
-        //     <img src={e.Product.image} alt='img_prod'/>
-        //     <div>{e.score}</div>
-        //     <div>{e.comment}</div>
-        //     </div>
-            
-        //     <div>
-        //     <Link to={`/productDetail/${e.ProductId}`}>ver producto</Link>
-            
-        //     </div>
-
-        // </div>
-        <div>v</div>
+        <div className={styles.containerR} key={e.ProductId}>
+            <div className={styles.containerProd}> 
+            <div className={styles.title}>{e.Product.title}</div>
+            <div className={styles.desc}>{e.Product.description}</div>
+            <div className={styles.score}>
+            {e.score && <Rating name="read-only" value={e.score} readOnly />}
+            </div>
+            <div className={styles.desc}>{e.comment}</div>
+            <div className={styles.btn1}>
+            <Link className={styles.btn} to={`/productDetail/${e.ProductId}`}>ver producto</Link>
+            </div>
+            </div>
+            <div>
+            <img className={styles.Img} src={e.Product.image} alt='img_prod'/>
+            </div>
+        </div>
+       
     )):
-    <div>cargando</div>
+    <div>
+        <Loading/>
+    </div>
     }
         </>
     )
