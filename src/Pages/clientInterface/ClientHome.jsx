@@ -102,7 +102,7 @@ export const ClientHome = () => {
         ) : miFavorito ? (
           <MisFavoritos Favorites={user.Favorites} setUser={setUser} />
         ) : miProducto ? (
-          <MisProductos Transactions={user.Transactions} name={user.name} />
+          <MisProductos Transactions={user.Transactions} name={user.name} user={user} setUser={setUser}/>
         ) : (
           false
         )}

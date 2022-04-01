@@ -22,17 +22,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const MisProductos = ({ Transactions, name }) => {
+export const MisProductos = ({ Transactions, name ,user,setUser}) => {
 
 
-  let productsCart = Transactions.map((e) => e.cart.productsInCart);
+  let productsCart = Transactions.map((e) => (e.cart.productsInCart.product));
+
   const navigate = useNavigate()
   const classes = useStyles();
   const [modal, setModal] = useState(false)
 
   const body = (
     <div className={classes.modal}>
-      <ReviewUser  />
+      <ReviewUser  user={user} setUser={setUser} productsCart={productsCart}/>
     </div>
 )
 const openCloseModal = () => {
