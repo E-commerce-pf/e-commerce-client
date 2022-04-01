@@ -10,13 +10,19 @@ import theme from "./Components/temaConfig";
 import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
-
+import ChatBot from "react-simple-chatbot";
+import { steps } from "./Services/chatBot";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
+        <ChatBot
+          steps={steps}
+          floating={true}
+          headerTitle={"ChatBot Everyones Store"}
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
