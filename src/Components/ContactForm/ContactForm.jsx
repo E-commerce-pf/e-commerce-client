@@ -53,27 +53,27 @@ const ContactForm = ({ state, setState }) => {
   return (
     <form ref={form} className={styles.modal}>
       <div align="center">
-        <h2>Datos de contacto</h2>
+        <h2>Contact information</h2>
       </div>
       <TextField
         name="fullname"
-        label="Nombre completo"
+        label="Full name"
         className={styles.textfield}
         required
       />
       <br />
       <TextField
         name="email"
-        label="Correo Electrónico"
+        label="Email"
         className={styles.textfield}
         required
       />
       <br /> <br />
       <div align="right">
         <Button onClick={handleSubmit} color="primary">
-          Enviar
+          Submit
         </Button>
-        <Button onClick={() => setState(!state)}>Cancelar</Button>
+        <Button onClick={() => setState(!state)}>Cancel</Button>
       </div>
     </form>
   );

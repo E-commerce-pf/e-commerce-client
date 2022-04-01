@@ -1,61 +1,37 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  MenuItem,
-  Select,
-  Slider,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { MenuItem, Select, Slider } from "@mui/material";
 import {
   setFilterProducts,
   clearFilter,
-  setOrderProducts,
 } from "../../Redux/Actions/productsActions";
 
 import categoriesService from "../../Services/category";
 import style from "./Filter.module.scss";
 import { useDispatch } from "react-redux";
 
-const Filter = () => {
+const Filter = ({ category }) => {
   const initialState = {
     description: "",
-    title: "",
     price: [0, 2500],
     category: "all",
   };
 
-  const initialStateOrder = {
-    orderBy: "stock",
-    order: "all",
-  };
-
   const dispatch = useDispatch();
 
-  const [input, setInput] = useState(initialState);
-  const [inputOrder, setInputOrder] = useState(initialStateOrder);
-
+  const [input, setInput] = useState({
+    ...initialState,
+    category,
+  });
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     categoriesService.getAllCategories().then((data) => {
       setCategories(data);
     });
-  }, []);
+    dispatch(setFilterProducts({ ...input }));
 
-  const handleChangeOrder = (event) => {
-    const name = event.target.name;
-    setInputOrder({
-      ...inputOrder,
-      [name]: event.target.value,
-    });
-    dispatch(
-      setOrderProducts({
-        ...inputOrder,
-        [name]: event.target.value,
-      })
-    );
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   const handleChange = (event) => {
     setInput({
@@ -72,52 +48,17 @@ const Filter = () => {
 
   return (
     <div className={style.container}>
-      <div>
-        <Typography className={style.title}>Ordenar por</Typography>
-        <Select
-          name="orderBy"
-          aria-labelledby="orderBy"
-          value={inputOrder.orderBy}
-          onChange={handleChangeOrder}
-        >
-          <MenuItem value="stock">Cantidad</MenuItem>
-          <MenuItem value="sales">Vendidos</MenuItem>
-          <MenuItem value="discount">Descuentos</MenuItem>
-        </Select>
-      </div>
-      <div>
-        <Typography className={style.title}>Orden</Typography>
-        <Select
-          name="order"
-          aria-labelledby="order"
-          value={inputOrder.order}
-          onChange={handleChangeOrder}
-        >
-          <MenuItem value="all">Sin Ordenar</MenuItem>
-          <MenuItem value="min-max">Menor a mayor</MenuItem>
-          <MenuItem value="max-min">Mayor a menor</MenuItem>
-        </Select>
-      </div>
-      <div>
-        <Typography className={style.title}>Categorias</Typography>
-        <Select
-          name="category"
-          aria-labelledby="category"
-          value={input.category}
-          onChange={handleChange}
-        >
-          <MenuItem value="all">Todas</MenuItem>
-          {categories.map(({ id, name }) => {
-            return (
-              <MenuItem key={id} value={name}>
-                {name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </div>
-      <div>
-        <Typography className={style.title}>Precio USD (min - max) </Typography>
+      <button
+        onClick={() => {
+          setInput(initialState);
+          dispatch(clearFilter());
+        }}
+      >
+        Clear filter
+      </button>
+
+      <div style={{ width: "15%" }}>
+        <span>Price USD (min - max)</span>
         <Slider
           aria-labelledby="price"
           name="price"
@@ -129,35 +70,32 @@ const Filter = () => {
           disableSwap
         />
       </div>
-      <div className={style.title}>
-        <TextField
-          label="Descripcion"
-          variant="outlined"
-          name="description"
+
+      <input
+        value={input.description}
+        placeholder="Search"
+        name="description"
+        autoComplete="off"
+        onChange={handleChange}
+      />
+
+      <div style={{ display: "flex", flexDirection: "column", width: "10%" }}>
+        <Select
+          sx={{ width: "100%" }}
+          name="category"
+          aria-labelledby="category"
+          value={input.category}
           onChange={handleChange}
-          value={input.description}
-        />
-      </div>
-      <div className={style.title}>
-        <TextField
-          label="Titulo"
-          variant="outlined"
-          name="title"
-          value={input.title}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <Button
-          variant="contained"
-          onClick={() => {
-            setInput(initialState);
-            setInputOrder(initialStateOrder);
-            dispatch(clearFilter());
-          }}
         >
-          Limpiar filtros
-        </Button>
+          <MenuItem value="all">All</MenuItem>
+          {categories.map(({ id, name }) => {
+            return (
+              <MenuItem key={id} value={name}>
+                {name}
+              </MenuItem>
+            );
+          })}
+        </Select>
       </div>
     </div>
   );

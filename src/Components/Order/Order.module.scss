@@ -1,11 +1,7 @@
-@use "../../config/styles/colors.scss";
-
 .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin: 15px;
+  width: 30%;
+  margin-top: 50px;
+  margin-right: 10px;
 
   button {
     font-size: 2em;
@@ -27,21 +23,5 @@
     background-color: rgba(217, 217, 224, 0.658);
     color: rgb(6, 6, 114);
     border-color: rgb(15, 15, 148);
-  }
-
-  input {
-    font-size: 2em;
-    padding: 10px;
-    width: 30%;
-    font-size: 15px;
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all ease-in 0.5s;
-  }
-
-  span {
-    text-align: center;
-    font-size: 1rem;
   }
 }

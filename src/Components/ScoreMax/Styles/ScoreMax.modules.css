@@ -10,9 +10,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 25px;
   text-shadow: 1px 1px 1px  rgb(203, 193, 214);
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   color: rgb(17, 17, 77);
+}
+
+
+.no_found_score {
+  font-size: 16px;
 }

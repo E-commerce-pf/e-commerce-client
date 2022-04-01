@@ -1,43 +1,65 @@
 import React, { useState } from "react";
+import styles from './EditUser.module.scss'
+import {IoSendSharp} from "react-icons/io5"
+import { countries } from "../../../Utils/countries";
 import userService from "../../../Services/user";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
-export default function EditUser({ user }) {
-  console.log(user);
+export default function EditUser({ user, setUser }) {
 
-  const [input, setInput] = useState({
-    name: user.name,
-    lastName: user.lastName,
-    country: user.country,
-  });
+  const [info,setInfo]=useState({
+    name:'',
+    lastName:'',
+    country:''
+  })
 
-  const handleSubmit = (e) => {
-    Swal.fire({
-      title: "Seguro deseas editar tu info pendejo?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Si",
-      denyButtonText: "No",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Listo", "", "success");
-        userService.editUser(user.id, input).then((res) => {
-          setInput({
-            name: res.name,
-            lastName: res.lastName,
-            country: res.country,
-          });
-        });
-      }
-    });
-  };
+  const handlePut=async ()=>{
+    try {
+      await userService.editUser(user.id, info)
+      setUser(user => {
+          return {
+              ...user,
+              name: info.name,
+          }
+      })
 
+  } catch (error) {
+      toast.error("Algo salió mal")
+  } 
+  }
   return (
-    <>
-      <p>{input.name}</p>
-      <p>{input.lastName}</p>
-      <p>Pais {input.country? input.country : ''}</p>
-      <button onClick={handleSubmit}>Sent</button>
-    </>
+    <div className={styles.contEdit}>
+      <h2>Data to edit</h2>
+      <div className={styles.contInput}>
+      <input type="text"
+        placeholder={`${user.name}`}
+        className={styles.input}
+        onChange={(e)=>{
+          setInfo({...info,name:e.target.value}) 
+        }}/>
+      <input type="text"
+        placeholder={`${user.lastName}`} 
+        className={styles.input}
+        onChange={(e)=>{
+          setInfo({...info,lastName:e.target.value}) 
+        }}/>
+      </div>
+      <div className={styles.contSelect}>
+      <select defaultValue={user.country} onChange={(e)=>{ setInfo({...info,country:e.target.value})}}>
+        {
+          countries.map((country, index) => {
+            return (
+              <option key={index} name={country.value}>
+                {country.value}
+              </option>
+            );
+          }
+          )
+        }
+      </select>
+      <button className={styles.btnEdit} onClick={handlePut}>  Send <IoSendSharp className={styles.emoticon}/></button>
+      </div>
+    </div>
+
   );
 }
