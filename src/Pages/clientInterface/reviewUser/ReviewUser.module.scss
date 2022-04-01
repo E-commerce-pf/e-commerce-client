@@ -1,0 +1,25 @@
+.contRev{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'ABeeZee';
+    color:white;
+    gap: 2rem;
+    h2{
+        font-size: 30px;
+        padding: 0;
+        margin: 0;
+        
+    }
+    span{
+        font-size: 20px;
+    }
+}
+.textare{
+    height: 100px;
+    width: 300px;
+}
+.btn{
+    height: 30px;
+}

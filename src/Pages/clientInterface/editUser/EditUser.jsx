@@ -10,7 +10,10 @@ export default function EditUser({ user, setUser }) {
   const [info,setInfo]=useState({
     name:'',
     lastName:'',
-    country:''
+    country:'',
+    city:'',
+    phone:'',
+    address:''
   })
 
   const handlePut=async ()=>{
@@ -20,7 +23,8 @@ export default function EditUser({ user, setUser }) {
           return {
               ...user,
               name: info.name,
-              lastName:info.lastName
+              lastName:info.lastName,
+              country:info.country
           }
       })
       toast.success('Updated data')
@@ -58,8 +62,30 @@ export default function EditUser({ user, setUser }) {
           )
         }
       </select>
-      <button className={styles.btnEdit} onClick={handlePut}>  Send <IoSendSharp className={styles.emoticon}/></button>
+      <input type="text" 
+      placeholder='City'
+      onChange={(e)=>{
+        setInfo({...info,city:e.target.value}) 
+      }}
+      className={styles.inputCity}
+      />
       </div>
+      <div className={styles.contInput}>
+      <input type="text"
+      placeholder='Phone'
+      onChange={(e)=>{
+        setInfo({...info,phone:e.target.value}) 
+      }}
+      className={styles.input}
+      />
+      <input type="text"
+      placeholder='Address'
+      onChange={(e)=>{
+        setInfo({...info,address:e.target.value}) 
+      }}
+      className={styles.input}/>
+      </div>
+      <button className={styles.btnEdit} onClick={handlePut}>  Send <IoSendSharp className={styles.emoticon}/></button>
     </div>
 
   );

@@ -26,6 +26,7 @@
     "react-elastic-carousel": "^0.11.5",
     "react-icons": "^4.3.1",
     "react-leaflet": "^3.2.5",
+    "react-rating": "^2.0.5",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",

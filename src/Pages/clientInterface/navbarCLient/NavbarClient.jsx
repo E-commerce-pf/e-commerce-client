@@ -18,7 +18,7 @@ import { addProductToCartDb, removeProductToCartDb, removeToLocalStorageIds } fr
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
-        height: '300px',
+        height: '400px',
         width: '600px',
         borderRadius: '5px',
         backgroundColor: '#23263B',
@@ -70,9 +70,6 @@ export const NavbarClient = ({user,setUser }) => {
     const open = Boolean(anchorEl);
     const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
     const userId=useSelector((store) => store.userReducer.currentUser);
-    const Home = () => {
-        navigate('/')
-    }
 
     const body = (
         <div className={classes.modal}>
@@ -106,7 +103,7 @@ export const NavbarClient = ({user,setUser }) => {
             <div className={styles.containerInfo1}>
                 <div className={classes.container}>
                     <button onClick={handleClick} className={styles.btn}><HiMenu className={classes.emoticon} /></button>
-                    <img src={Everylogopf} alt="img" width="150px" height="100px" onClick={Home} />
+                    <img src={Everylogopf} alt="img" width="150px" height="100px" onClick={()=>navigate('/products/all')} />
                 </div>
                 <Menu
                     id="fade-menu"
@@ -118,7 +115,7 @@ export const NavbarClient = ({user,setUser }) => {
                 >
                     <h2 className={classes.title}><FaUserCircle className={classes.emoticon} />  {user.name} {user.lastName}</h2>
 
-                    <Link to='/'><MenuItem className={classes.menuItem}> <ImHome className={classes.emoticon} /> Home</MenuItem></Link>
+                    <Link to='/products/all'><MenuItem className={classes.menuItem}> <ImHome className={classes.emoticon} /> Home</MenuItem></Link>
 
                     <MenuItem className={classes.menuItem} onClick={() => openCloseModal()}> <FaPencilAlt className={classes.emoticon} /> Edit my profile</MenuItem>
 
