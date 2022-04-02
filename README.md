@@ -2,7 +2,6 @@
 
 https://everyones-store.vercel.app/
 
-## Deploy Develop
+## Deploy [RESPALDO]
 
 https://respaldo-everyones-store.vercel.app/
-Probando deploy 2

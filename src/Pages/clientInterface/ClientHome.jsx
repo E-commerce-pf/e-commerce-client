@@ -17,6 +17,7 @@ import Loading from "../../Components/Loading/index";
 import { notifySuccess } from "../../Utils/notifications";
 
 export const ClientHome = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [misReviews, setMisReviews] = useState(false);
@@ -24,7 +25,7 @@ export const ClientHome = () => {
   const [miProducto, setMiProducto] = useState(true);
   const [user, setUser] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-  console.log(currentUser,'currentUser')
+
   const openCar = () => {
     setMisReviews(true);
     setMiFavorito(false);
@@ -48,7 +49,7 @@ export const ClientHome = () => {
         .getUser(currentUser.userId)
         .then((res) => {
           setUser(res);
-          notifySuccess(`Welcome ${res.name}`);
+          
         })
         .catch(() => {
           dispatch(logoutUser());
@@ -66,7 +67,7 @@ export const ClientHome = () => {
         <div className="title_login">
           <h1>You must login to see this interface</h1>
           <button onClick={() => navigate("/")} className="btn">
-          To accept
+            To accept
           </button>
         </div>
       </>
@@ -79,7 +80,7 @@ export const ClientHome = () => {
 
   return (
     <div className={styles.contClient}>
-      <NavbarClient user={user} setUser={setUser}/>
+      <NavbarClient user={user} setUser={setUser} />
       <div className={styles.contButton}>
         <button onClick={openCar}>
           {" "}
@@ -94,15 +95,15 @@ export const ClientHome = () => {
           <AiOutlineStar className={styles.btn} />
           My favourites
         </button>
-        
+
       </div>
       <>
         {misReviews ? (
-          <MisReviews userId={user.id}/>
+          <MisReviews userId={user.id} />
         ) : miFavorito ? (
           <MisFavoritos Favorites={user.Favorites} setUser={setUser} />
         ) : miProducto ? (
-          <MisProductos Transactions={user.Transactions} name={user.name} />
+          <MisProductos Transactions={user.Transactions} name={user.name} user={user} setUser={setUser} />
         ) : (
           false
         )}

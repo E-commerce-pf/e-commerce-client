@@ -78,9 +78,9 @@ const CardProduct = ({
           />
           <CardMedia
             component="img"
-            height="200"
-            image={image}
-            alt="Paella dish"
+            height="auto"
+            image={image[0]}
+            alt="Main product image"
           />
           <CardContent>
             <Typography variant="body6" color="text.primary">
