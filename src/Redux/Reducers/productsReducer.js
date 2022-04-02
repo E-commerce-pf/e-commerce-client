@@ -63,7 +63,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         bagProducts: newBagProducts.map(({ id, amount }) => {
-          const aux = state.allProducts.find((product) => product.id === id);
+          const aux = state.allProducts?.find((product) => product.id === id);
           return { ...aux, amount };
         }),
       };
@@ -112,7 +112,6 @@ const productsReducer = (state = initialState, { type, payload }) => {
       const newProductCart = state.allProducts.find((product) => {
         return product.id === payload;
       });
-
       if (!newProductCart) {
         return {
           ...state,

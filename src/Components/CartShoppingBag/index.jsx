@@ -18,16 +18,10 @@ const CartShoppingBag = ({ cartItems, deleteCart }) => {
       notifyError("You aren't logged in");
     } else {
       if (cartItems.length)
-        cartItems.forEach((p) => {
-          addProductToCartDb(p.id, user.userId, p.amount);
-        });
+        addProductToCartDb(user.userId, cartItems);
       else notifyError("You don't have products in the cart");
-    
-      cartService.getCart(user.userId).then((data) => {
-        navigate(`/order/${data.cart.id}`);
-      }).catch(() => {
-        notifyError("Tu usuario no esta en la data base!")
-      });
+      
+      navigate(`/order/${data.cart.id}`);
     }
   };
   return (

@@ -84,13 +84,13 @@ export const NavbarClient = ({ user, setUser }) => {
     const openCloseModal = () => {
         setModal(!modal)
     }
-    const logout = () => {
-        if (bagProducts.length)
-            bagProducts.forEach(p => {
-                addProductToCartDb(p.id, userId.userId, p.amount)
-            })
-        else removeProductToCartDb("all", userId.userId)
-
+    const logout=()=>{
+        let userId=user.id
+        console.log(userId)
+        if(bagProducts.length)
+        addProductToCartDb(userId, bagProducts);
+        else removeProductToCartDb("all",userId.userId)
+        
         removeToLocalStorageIds()
         dispatch(logoutUser());
         navigate('/');
