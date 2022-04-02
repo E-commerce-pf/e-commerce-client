@@ -36,7 +36,7 @@ export const MisFavoritos = ({ Favorites, setUser }) => {
         <div className={styles.contFav}>
             {
                 Favorites.map(el => (
-                    
+
                     <div key={el.id} className={styles.contCard}>
                         <div className={styles.delete}><MdDeleteForever className={styles.svg} onClick={() => deleteFav(el)} /></div>
                         <div onClick={() => navigate(`/productDetail/${el.Product.id}`)} className={styles.cardInfo}>
