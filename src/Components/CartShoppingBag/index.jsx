@@ -1,27 +1,25 @@
 import CardItem from "../CartItem";
 import styled from "./CartShoppingBag.module.css";
 import { FaRegFrownOpen } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { notifyError } from "../../Utils/notifications";
 import { addProductToCartDb } from "../../Utils/shoppingBag";
-import { useNavigate } from "react-router-dom";
+import { newCartChange } from "../../Redux/Actions/productsActions";
 
-import cartService from "../../Services/cart";
 
 const CartShoppingBag = ({ cartItems, deleteCart }) => {
   const user = useSelector((store) => store.userReducer.currentUser);
-
-  const navigate = useNavigate();
-
+  const cartChange = useSelector((store) => store.productsReducer.cartChange);
+  const dispatch=useDispatch();
   const buyProduct = () => {
     if (!user) {
       notifyError("You aren't logged in");
     } else {
-      if (cartItems.length)
-        addProductToCartDb(user.userId, cartItems);
+      if (cartItems.length){
+        dispatch(newCartChange(false));
+        addProductToCartDb(user.userId, cartItems,cartChange);
+      }
       else notifyError("You don't have products in the cart");
-      
-      navigate(`/order/${data.cart.id}`);
     }
   };
   return (
@@ -39,7 +37,7 @@ const CartShoppingBag = ({ cartItems, deleteCart }) => {
       <p className={styled.text_total}>
         Total amount:{" "}
         {cartItems
-          .reduce((acum, product) => product.price * product.amount + acum, 0)
+          .reduce((acum, product) => product.price*(1-product.discount) * product.amount + acum, 0)
           .toFixed(2)}{" "}
         $
       </p>

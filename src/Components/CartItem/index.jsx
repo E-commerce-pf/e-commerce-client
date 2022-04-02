@@ -12,7 +12,7 @@ import {
   removeProductToCartDb,
 } from "../../Utils/shoppingBag";
 
-const CartItem = ({ title, price, id, amount, quantity }) => {
+const CartItem = ({ title, price, id, amount, discount }) => {
   const dispatch = useDispatch();
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
   const user = useSelector((store) => store.userReducer.currentUser);
@@ -30,8 +30,8 @@ const CartItem = ({ title, price, id, amount, quantity }) => {
       </button>
       <p className={styled.text_shp}>{title}</p>
       <div className={styled.price}>
-        <p className={styled.text_shp}>Precio: {price}$</p>
-        <p className={styled.text_shp}>Total: {price * amount}$</p>
+        <p className={styled.text_shp}>Precio: {discount?<span className={styled.discount}>{price}</span>:null} {price*(1-discount)}$</p>
+        <p className={styled.text_shp}>Total: {price*(1-discount) * amount}$</p>
       </div>
       <div className={styled.button}>
         <RemoveToBag text={"-"} id={id} user={user} />

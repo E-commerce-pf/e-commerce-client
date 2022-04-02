@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const getToLocalStorageIds = () => {
   return JSON.parse(localStorage.getItem("shoppingBag") || "[]");
 };
@@ -38,16 +39,18 @@ export const removeToLocalStorageIds = () => {
 };
 
 
-export const addProductToCartDb = (userId,cart)=>{
+export const addProductToCartDb = (userId,cart,cartChange)=>{
   return removeProductToCartDb("all",userId).then(async ()=>{
-    for(let i=0;i<cart.length;i++){
-      await axios({
-        method:"POST",
-        url: `/api/cart/${cart[i].id}`,
-        data:{userId,quantity:cart[i].amount}
-      })
+    if(cartChange){
+      for(let i=0;i<cart.length;i++){
+        await axios({
+          method:"POST",
+          url: `/api/cart/${cart[i].id}`,
+          data:{userId,quantity:cart[i].amount}
+        })
+      }
     }
-})
+}).then(()=>window.location.href="/order")
 }
 export const removeProductToCartDb = (productId,userId)=> {
   return axios({

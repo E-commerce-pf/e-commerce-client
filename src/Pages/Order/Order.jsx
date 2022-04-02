@@ -25,13 +25,13 @@ export default function Order() {
                           <input />
                       </form>
                   </div>
-                    {cart?.map(({title,image,amount,price},i)=>
+                    {cart?.map(({title,image,amount,price,discount},i)=>
                       <div key={i} className={style.containerProduct}>
                         <img src={image[0]} alt="Product image"/>
                         <div> 
                           <p>{title}</p>
                           <p className={style.description}>Cantidad: {amount}</p>
-                          <p className={style.description}>$ {price} c/u</p>
+                          <p className={style.description}>{discount?<span className={style.discount}>$ {price}</span>:null} $ {price*(1-discount)} c/u</p>
                         </div>                       
                       </div>
                       )}
@@ -44,7 +44,7 @@ export default function Order() {
                   </div>
                   <div className={style.container_summary}>
                     <p>Total price</p>
-                    <p>{cart?.reduce((acc,{price,amount})=>acc+=amount*price,0)}</p>
+                    <p>{cart?.reduce((acc,{price,discount,amount})=>acc+=amount*price*(1-discount),0)}</p>
                   </div>
                 </div>
             </div>
