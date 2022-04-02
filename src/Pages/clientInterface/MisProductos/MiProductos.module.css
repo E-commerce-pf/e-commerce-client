@@ -67,3 +67,14 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color:rgb(9, 9, 85);
 }
+.btnSend{
+    background-color: rgb(9, 9, 85);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+}

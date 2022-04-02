@@ -3,17 +3,27 @@ import Rating from "react-rating";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import Styles from './ReviewUser.module.scss'
 import {IoSendSharp} from "react-icons/io5"
+import userService from '../../../Services/user';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { PostReview } from '../../../Redux/Actions/userActions';
 
-export default function ReviewUser({user,setUser,productsCart}) {
+export default function ReviewUser({user,setUser,id}) {
     const [review, setReview] = useState({
         score: '',
         comment:'',
         userId:user.id,
-        productId:user.productId
+        productId:id
     })
+    const dispatch=useDispatch()
+
     const handlePostReview=()=>{
-        console.log(review,productsCart);
-        
+        try {
+            dispatch(PostReview(review))
+            toast.success('Review posted')
+        } catch (error) {
+            toast.error(error)
+        }
     }
     return (
         <div className={Styles.contRev}>

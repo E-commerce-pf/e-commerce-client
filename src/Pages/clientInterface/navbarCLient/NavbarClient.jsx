@@ -15,6 +15,7 @@ import { FiLogOut } from 'react-icons/fi'
 import { FaPencilAlt, FaUserCircle } from 'react-icons/fa'
 import { HiMenu } from 'react-icons/hi'
 import { addProductToCartDb, removeProductToCartDb, removeToLocalStorageIds } from '../../../Utils/shoppingBag'
+
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
@@ -41,13 +42,13 @@ const useStyles = makeStyles((theme) => ({
         height: '30px',
         padding: '20px',
         fontFamily: 'ABeeZee',
-        fontSize:'16px'
+        fontSize: '16px'
     },
     menuItem: {
         color: '#23263B',
         fontFamily: 'ABeeZee',
-        fontSize:'15px',
-        '&:hover':{
+        fontSize: '15px',
+        '&:hover': {
             color: 'white',
             backgroundColor: '#23263B'
         }
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-export const NavbarClient = ({user,setUser }) => {
+export const NavbarClient = ({ user, setUser }) => {
 
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -69,7 +70,7 @@ export const NavbarClient = ({user,setUser }) => {
     const dispatch = useDispatch()
     const open = Boolean(anchorEl);
     const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
-    const userId=useSelector((store) => store.userReducer.currentUser);
+    const userId = useSelector((store) => store.userReducer.currentUser);
 
     const body = (
         <div className={classes.modal}>
@@ -83,13 +84,13 @@ export const NavbarClient = ({user,setUser }) => {
     const openCloseModal = () => {
         setModal(!modal)
     }
-    const logout=()=>{
-        if(bagProducts.length)
-        bagProducts.forEach(p=>{
-            addProductToCartDb(p.id,userId.userId,p.amount)
-        })
-        else removeProductToCartDb("all",userId.userId)
-        
+    const logout = () => {
+        if (bagProducts.length)
+            bagProducts.forEach(p => {
+                addProductToCartDb(p.id, userId.userId, p.amount)
+            })
+        else removeProductToCartDb("all", userId.userId)
+
         removeToLocalStorageIds()
         dispatch(logoutUser());
         navigate('/');
@@ -103,7 +104,7 @@ export const NavbarClient = ({user,setUser }) => {
             <div className={styles.containerInfo1}>
                 <div className={classes.container}>
                     <button onClick={handleClick} className={styles.btn}><HiMenu className={classes.emoticon} /></button>
-                    <img src={Everylogopf} alt="img" width="150px" height="100px" onClick={()=>navigate('/products/all')} />
+                    <img src={Everylogopf} alt="img" width="150px" height="100px" onClick={() => navigate('/products/all')} />
                 </div>
                 <Menu
                     id="fade-menu"
