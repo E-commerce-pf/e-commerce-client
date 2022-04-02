@@ -5,7 +5,7 @@ import { countries } from "../../../Utils/countries";
 import userService from "../../../Services/user";
 import { toast } from "react-toastify";
 
-export default function EditUser({ user, setUser }) {
+export default function EditUser({ user, setUser ,setModal}) {
 
   const [info, setInfo] = useState({
     name: '',
@@ -28,6 +28,7 @@ export default function EditUser({ user, setUser }) {
         }
       })
       toast.success('Updated data')
+        setModal(false)
     } catch (error) {
       toast.error("Algo salió mal")
     }

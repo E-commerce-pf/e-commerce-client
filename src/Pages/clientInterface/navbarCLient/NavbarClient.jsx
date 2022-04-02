@@ -74,7 +74,7 @@ export const NavbarClient = ({ user, setUser }) => {
 
     const body = (
         <div className={classes.modal}>
-            <EditUser user={user} setUser={setUser} />
+            <EditUser user={user} setUser={setUser} setModal={setModal}/>
         </div>
     )
     const handleClick = (event) => {

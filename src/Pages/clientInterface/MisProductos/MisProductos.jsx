@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const MisProductos = ({ Transactions, name, user, setUser }) => {
+export const MisProductos = ({ Transactions, user }) => {
 
 
 
@@ -34,7 +34,7 @@ export const MisProductos = ({ Transactions, name, user, setUser }) => {
 
   const body = (
     <div className={classes.modal}>
-      <ReviewUser user={user} setUser={setUser} id={id} />
+      <ReviewUser user={user}  setModal={ setModal} id={id} />
     </div>
   )
   const openCloseModal = () => {

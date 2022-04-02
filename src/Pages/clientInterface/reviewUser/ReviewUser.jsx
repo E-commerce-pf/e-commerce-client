@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { PostReview } from '../../../Redux/Actions/userActions';
 
-export default function ReviewUser({user,setUser,id}) {
+export default function ReviewUser({user,id, setModal}) {
     const [review, setReview] = useState({
         score: '',
         comment:'',
@@ -21,6 +21,9 @@ export default function ReviewUser({user,setUser,id}) {
         try {
             dispatch(PostReview(review))
             toast.success('Review posted')
+            setTimeout(() => {
+            setModal(false)
+            }, 1000);
         } catch (error) {
             toast.error(error)
         }
