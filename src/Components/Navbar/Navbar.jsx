@@ -7,8 +7,22 @@ import styles from "./Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import ShoppingBag from "../ShoppingBag";
-
+import {motion} from 'framer-motion'
 import categoriesService from "../../Services/category";
+
+const containerVariants={
+  hidden:{
+    opacity:0,
+    y:'50vh'
+  },
+  show:{
+    opacity:1,
+    y:0,
+    transition:{
+      type:'spring',
+    }
+  }
+}
 
 export const Navbar = ({ filter, state, setState }) => {
   const navigate = useNavigate();
@@ -28,7 +42,11 @@ export const Navbar = ({ filter, state, setState }) => {
   return (
     <>
       {" "}
-      <div className={styles.navbar}>
+      <motion.div className={styles.navbar}
+      variants={containerVariants}
+      initial='hidden'
+      animate='show'
+      >
         <div className={styles.containerInfo1}>
           <div className={styles.homeImg}>
             <Link to="/">
@@ -96,7 +114,7 @@ export const Navbar = ({ filter, state, setState }) => {
                         <option>Precio</option>
                     </select>
                 </div> */}
-      </div>
+      </motion.div>
     </>
   );
 };
