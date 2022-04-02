@@ -19,6 +19,7 @@ import "./CardProduct.modules.css";
 import { useSelector } from "react-redux";
 import { notifyError, notifySuccess } from "../../Utils/notifications";
 import favoritesService from "../../Services/favorites";
+import Stock from "../Stock/Stock";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -68,6 +69,7 @@ const CardProduct = ({
   return (
     <>
       <Card sx={{ maxWidth: 355 }}>
+        {stock<=0&&<Stock />}
         <CardActionArea>
           <CardHeader
             className="txt_card"
@@ -93,14 +95,14 @@ const CardProduct = ({
           </CardContent>
 
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
+            {stock>0&&<IconButton aria-label="add to favorites">
               <AddToBag
                 text={"Añadir al carrito"}
                 id={id}
                 user={user}
                 bagProducts={bagProducts}
               />
-            </IconButton>
+            </IconButton>}
             <button onClick={addFavorite} className="fav_icon">
               <FavoriteIcon className="fav_icon" />
             </button>

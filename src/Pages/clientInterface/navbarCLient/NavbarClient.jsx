@@ -86,7 +86,6 @@ export const NavbarClient = ({ user, setUser }) => {
     }
     const logout=()=>{
         let userId=user.id
-        console.log(userId)
         if(bagProducts.length)
         addProductToCartDb(userId, bagProducts);
         else removeProductToCartDb("all",userId.userId)

@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.discount {
+  text-decoration: line-through;
+}
+
 .price {
   display: flex;
   flex-direction: row;

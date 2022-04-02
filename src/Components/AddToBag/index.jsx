@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { addProductToBag } from '../../Redux/Actions/productsActions';
+import { addProductToBag, newCartChange } from '../../Redux/Actions/productsActions';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { addToLocalStorageIds, addProductToCartDb } from '../../Utils/shoppingBag';
 import { notifyError } from "../../Utils/notifications";
@@ -11,6 +11,7 @@ const AddToBag = ({ text, id, user,bagProducts}) => {
 		return product.amount+1<=product.stock;
 	}
 	const addToCart = (id) => {
+		dispatch(newCartChange(true));
 		let product=bagProducts.find(p=>p.id===id);
 		if(!product||stockSucess(product)){
 			dispatch(addProductToBag(id));

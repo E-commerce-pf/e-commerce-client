@@ -5,6 +5,7 @@ export const ADD_PRODUCT_TO_BAG = "ADD_PRODUCT_TO_BAG";
 export const REMOVE_PRODUCT_TO_BAG = "REMOVE_PRODUCT_TO_BAG";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
+export const CART_CHANGE = "CART_CHANGE";
 export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const PRODUCT_DETAIL = "PRODUCT_DETAIL";
 export const REMOVE_ALL_PRODUCT_TO_BAG = "REMOVE_ALL_PRODUCT_TO_BAG";
@@ -16,6 +17,9 @@ export const setProductInfo = (id) => (dispatch) => {
 };
 export const setAllProducts = (data) => {
   return { type: SET_ALL_PRODUCTS, payload: data };
+};
+export const newCartChange = (payload) => {
+  return { type: CART_CHANGE, payload };
 };
 
 export const setIdBagProducts = (ids) => {
