@@ -69,7 +69,6 @@ export const NavbarClient = ({user,setUser }) => {
     const dispatch = useDispatch()
     const open = Boolean(anchorEl);
     const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
-    const userId=useSelector((store) => store.userReducer.currentUser);
     const Home = () => {
         navigate('/')
     }
@@ -87,10 +86,10 @@ export const NavbarClient = ({user,setUser }) => {
         setModal(!modal)
     }
     const logout=()=>{
+        let userId=user.id
+        console.log(userId)
         if(bagProducts.length)
-        bagProducts.forEach(p=>{
-            addProductToCartDb(p.id,userId.userId,p.amount)
-        })
+        addProductToCartDb(userId, bagProducts);
         else removeProductToCartDb("all",userId.userId)
         
         removeToLocalStorageIds()

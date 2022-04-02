@@ -10,7 +10,7 @@ import ShoppingBag from "../ShoppingBag";
 
 import categoriesService from "../../Services/category";
 
-export const Navbar = ({ filter, state, setState }) => {
+export const Navbar = ({ filter, state, setState,noCart }) => {
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState([]);
@@ -80,7 +80,7 @@ export const Navbar = ({ filter, state, setState }) => {
                 onClick={() => navigate("/login")}
               />
             </button>
-            <ShoppingBag />
+            {noCart!==true&&<ShoppingBag />}
           </div>
         </div>
         {/* {filter!==false&&<div className={styles.containerInfo2}>

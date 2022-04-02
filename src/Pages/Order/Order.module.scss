@@ -1,0 +1,77 @@
+h2 {
+    font-size: 18px;
+}
+p{
+    font-size: 15px;
+}
+.container{
+    display: grid;
+    grid-template-columns: 60% 30%;
+    .direction {
+        margin-bottom: 60px;
+    }
+}
+.containerProduct{
+    display: grid;
+    grid-template-columns: 65px calc(100% - 65px);
+    img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+}
+.container_summary{
+    display: flex;
+    justify-content: space-between;
+}
+.description {
+    color: #737373e8;
+    font-size: 12px;
+}
+.btn_comprar {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    font-size: 15px;
+    border-bottom-style: double;
+    border-top-style: double;
+    height: 40px;
+    color: blanchedalmond;
+    text-shadow: 1px 1px 2px rgb(19, 101, 168);
+    border-color: rgba(15, 55, 235, 0.233);
+    background-color: rgba(8, 25, 119, 0.973);
+    transition: all ease-in 0.5s;
+    cursor: pointer;
+}
+.btn_comprar:hover {
+    color: rgba(8, 25, 119, 0.973);
+    text-shadow: 1px 1px 2px rgb(97, 131, 216);
+    border-color: rgba(75, 90, 156, 0.233);
+    background-color: rgba(187, 190, 207, 0.801);
+}
+.bought {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    font-size: 15px;
+    border-bottom-style: double;
+    border-top-style: double;
+    height: 40px;
+    color: blanchedalmond;
+    text-shadow: 1px 1px 2px rgb(19, 101, 168);
+    border-color: rgba(15, 55, 235, 0.233);
+    background-color: rgb(128, 128, 128,0.973);
+    transition: all ease-in 0.5s;
+}
+.bought:hover {
+    color: rgba(8, 25, 119, 0.973);
+    text-shadow: 1px 1px 2px rgb(97, 131, 216);
+    border-color: rgba(75, 90, 156, 0.233);
+    background-color: rgba(187, 190, 207, 0.801);
+}

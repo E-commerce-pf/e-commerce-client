@@ -10,6 +10,7 @@ import theme from "./Components/temaConfig";
 import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
+import Order from "./Pages/Order/Order";
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/viewClient" element={<ClientHome />} />
           <Route path="/location" element={<Location />} />
           <Route path="/products/:category" element={<ViewProducts />} />
+          <Route path="/order" element={<Order />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <ToastContainer />
