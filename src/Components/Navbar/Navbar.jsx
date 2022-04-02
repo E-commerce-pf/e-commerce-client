@@ -1,33 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { FaHeadphonesAlt } from "react-icons/fa";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { IoPersonOutline } from "react-icons/io5";
-import Everylogopf from "../../Assets/Images/Everylogopf.png";
-import styles from "./Navbar.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import SearchBar from "../SearchBar";
-import ShoppingBag from "../ShoppingBag";
+import React, { useState, useEffect } from 'react';
+import { FaHeadphonesAlt } from 'react-icons/fa';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { IoPersonOutline } from 'react-icons/io5';
+import Everylogopf from '../../Assets/Images/Everylogopf_gris.png';
+import styles from './Navbar.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import SearchBar from '../SearchBar';
+import ShoppingBag from '../ShoppingBag';
 
-import categoriesService from "../../Services/category";
+
+import categoriesService from '../../Services/category';
+
 
 export const Navbar = ({ filter, state, setState }) => {
-  const navigate = useNavigate();
 
-  const [categories, setCategories] = useState([]);
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    categoriesService.getAllCategories().then((data) => {
-      setCategories(data);
-    });
-  }, []);
+	const [categories, setCategories] = useState([]);
 
-  const handleOnClick = (event) => {
-    navigate(`/products/${event.target.value}`);
-  };
+	useEffect(() => {
+		categoriesService.getAllCategories().then((data) => {
+			setCategories(data);
+		});
+	}, []);
 
-  return (
-    <>
-      {" "}
+	const handleOnClick = (event) => {
+		navigate(`/products/${event.target.value}`);
+	};
+
+	return (
+		<>
+			{" "}
       <div className={styles.navbar}>
         <div className={styles.containerInfo1}>
           <div className={styles.homeImg}>
@@ -83,20 +86,11 @@ export const Navbar = ({ filter, state, setState }) => {
             <ShoppingBag />
           </div>
         </div>
-        {/* {filter!==false&&<div className={styles.containerInfo2}>
-                <div className={styles.selectCP}>
-                    <select>
-                        <option>categoria</option>
-                        <option>categoria</option>
-                        <option>categoria</option>
-                    </select>
-                    <select>
-                        <option>Precio</option>
-                        <option>Precio</option>
-                        <option>Precio</option>
-                    </select>
-                </div> */}
       </div>
-    </>
-  );
+
+			
+			
+		
+		</>
+	);
 };

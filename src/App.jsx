@@ -5,17 +5,15 @@ import { Home } from "./Pages/Home/index";
 import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
 import Register from "./Pages/Register/Register";
 import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "@material-ui/styles";
-import theme from "./Components/temaConfig";
-import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
+import Container from "@material-ui/core/Container";
+
+
 
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
       <Container>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -29,7 +27,7 @@ const App = () => {
         </Routes>
         <ToastContainer />
       </Container>
-    </ThemeProvider>
+ 
   );
 };
 

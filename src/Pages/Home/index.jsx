@@ -9,6 +9,7 @@ import ScoreMax from "../../Components/ScoreMax/ScoreMax";
 import ContactForm from "../../Components/ContactForm/ContactForm";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 
@@ -28,11 +29,13 @@ export const Home = () => {
 
   return (
     <div className={styles.containerHome}>
+     
       <Landing />
       <Navbar filter={true} state={toggle} setState={setToggle} />
       {toggle && <ContactForm state={toggle} setState={setToggle} />}
       <ScoreMax />
       <Footer />
+     
     </div>
   );
 };
