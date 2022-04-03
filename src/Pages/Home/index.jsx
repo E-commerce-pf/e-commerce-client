@@ -8,6 +8,7 @@ import {Navbar} from "../../Components/Navbar/Navbar";
 import ScoreMax from "../../Components/ScoreMax/ScoreMax";
 import ContactForm from "../../Components/ContactForm/ContactForm";
 import { useDispatch, useSelector } from "react-redux";
+import SegPresentacion from '../../Components/Seg_Presentacion/SegPresentacion'
 
 import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
@@ -44,6 +45,7 @@ export const Home = () => {
 
   return (
     <motion.div className={styles.containerHome}>
+      <SegPresentacion/>
       <motion.div
       variants={cardVariants}
       initial="offscreen"

@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={styled.footer}>
-        <motionimg src={Logo} alt="Logo Everyone's Store" />
+        <img src={Logo} alt="Logo Everyone's Store" />
       </div>
     </footer>
   );
