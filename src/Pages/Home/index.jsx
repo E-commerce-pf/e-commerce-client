@@ -45,7 +45,6 @@ export const Home = () => {
 
   return (
     <motion.div className={styles.containerHome}>
-      <SegPresentacion/>
       <motion.div
       variants={cardVariants}
       initial="offscreen"
@@ -77,6 +76,13 @@ export const Home = () => {
     whileInView="onscreen"
     viewport={{ once: false, amount: 0 }}>
       <ScoreMax />
+    </motion.div>
+    <motion.div
+    variants={cardVariants}
+    initial="offscreen"
+    whileInView="onscreen"
+    viewport={{ once: false, amount: 0 }}>
+    <SegPresentacion/>
     </motion.div>
     <motion.div
     variants={cardVariants}
