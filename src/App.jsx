@@ -5,11 +5,23 @@ import { Home } from "./Pages/Home/index";
 import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
 import Register from "./Pages/Register/Register";
 import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./Components/temaConfig";
+import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
+import Order from "./Pages/Order/Order";
+import ChatBot from "react-simple-chatbot";
+import { steps } from "./Services/chatBot";
+
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container>
         <ChatBot
           steps={steps}
+          floating={true}
           headerTitle={"ChatBot Everyones Store"}
         />
         <Routes>
@@ -25,7 +37,7 @@ import ViewProducts from "./Pages/ViewProducts";
         </Routes>
         <ToastContainer />
       </Container>
- 
+    </ThemeProvider>
   );
 };
 
