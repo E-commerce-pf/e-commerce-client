@@ -50,7 +50,7 @@ export const Navbar = ({ filter, state, setState }) => {
         <div className={styles.containerInfo1}>
           <div className={styles.homeImg}>
             <Link to="/">
-              <img src={Everylogopf} alt="img" width="150px" height="100px" />
+              <motionimg src={Everylogopf} alt="img" width="150px" height="100px" />
             </Link>
           </div>
 

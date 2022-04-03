@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 import { motion } from "framer-motion";
-
+import Presentation from '../../Components/Presentation/Presentation'
 const cardVariants= {
   offscreen: {
     x: 400
@@ -52,6 +52,15 @@ export const Home = () => {
       <Navbar filter={true} state={toggle} setState={setToggle} />
       {toggle && <ContactForm state={toggle} setState={setToggle} />}
     </motion.div>
+    <motion.div
+    variants={cardVariants}
+    initial="offscreen"
+    whileInView="onscreen"
+    viewport={{ once: false, amount: 0 }}
+    >
+      <Presentation/>
+    </motion.div>
+    <br/>
     <motion.div 
     variants={cardVariants}
     initial="offscreen"
