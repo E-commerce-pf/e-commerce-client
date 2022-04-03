@@ -17,12 +17,13 @@ import { notifyError } from "../../Utils/notifications";
 const ShoppingBag = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
+  const cartChange = useSelector((store) => store.productsReducer.cartChange);
   const user = useSelector((store) => store.userReducer.currentUser);
   const dispatch = useDispatch();
   useEffect(() => {
     const ids = getToLocalStorageIds();
     dispatch(setIdBagProducts(ids));
-    if (user) {
+    if (user&&cartChange) {
       dispatch(getCart(user.userId));
     }
   }, [dispatch]);

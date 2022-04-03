@@ -7,14 +7,11 @@ import Register from "./Pages/Register/Register";
 import { ToastContainer } from "react-toastify";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
-import Container from "@material-ui/core/Container";
-
-
-
-
-const App = () => {
-  return (
       <Container>
+        <ChatBot
+          steps={steps}
+          headerTitle={"ChatBot Everyones Store"}
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -23,6 +20,7 @@ const App = () => {
           <Route path="/viewClient" element={<ClientHome />} />
           <Route path="/location" element={<Location />} />
           <Route path="/products/:category" element={<ViewProducts />} />
+          <Route path="/order" element={<Order />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <ToastContainer />

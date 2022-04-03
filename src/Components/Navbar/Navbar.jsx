@@ -76,193 +76,93 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-export const Navbar = ({ filter, state, setState }) => {
-	const [open, setOpen] = React.useState(false);
-	const [age, setAge] = React.useState('');
+export const Navbar = ({ filter, state, setState,noCart }) => {
+  const navigate = useNavigate();
 
-	const handleChange = (event) => {
-		setAge(Number(event.target.value) || '');
-	};
+  const [categories, setCategories] = useState([]);
 
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
+  useEffect(() => {
+    categoriesService.getAllCategories().then((data) => {
+      setCategories(data);
+    });
+  }, []);
 
-	const handleClose = (event, reason) => {
-		if (reason !== 'backdropClick') {
-			setOpen(false);
-		}
-	};
-	const navigate = useNavigate();
-	const [categories, setCategories] = useState([]);
-	useEffect(() => {
-		categoriesService.getAllCategories().then((data) => {
-			setCategories(data);
-		});
-	}, []);
+  const handleOnClick = (event) => {
+    navigate(`/products/${event.target.value}`);
+  };
 
-	const handleOnClick = (event) => {
-		navigate(`/products/${event.target.value}`);
-	};
+  return (
+    <>
+      {" "}
+      <div className={styles.navbar}>
+        <div className={styles.containerInfo1}>
+          <div className={styles.homeImg}>
+            <Link to="/">
+              <img src={Everylogopf} alt="img" width="150px" height="100px" />
+            </Link>
+          </div>
 
-	const [anchorEl, setAnchorEl] = React.useState(null);
-	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+          {filter ? (
+            <>
+              <button value="all" onClick={handleOnClick}>
+                View All
+              </button>
 
-	const isMenuOpen = Boolean(anchorEl);
-	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+              <div className={styles.selectCP}>
+                <select onChange={handleOnClick}>
+                  <option style={{ textAlign: "center" }} value="all">
+                    All categories
+                  </option>
+                  {categories.map(({ id, name }) => (
+                    <option
+                      style={{ textAlign: "center" }}
+                      key={id}
+                      value={name}
+                    >
+                      {name}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-	const handleProfileMenuOpen = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
+              <div className={styles.inputS}>
+                <SearchBar />
+              </div>
+            </>
+          ) : null}
 
-	const handleMobileMenuClose = () => {
-		setMobileMoreAnchorEl(null);
-	};
-
-	const handleMenuClose = () => {
-		setAnchorEl(null);
-		handleMobileMenuClose();
-	};
-
-	const handleMobileMenuOpen = (event) => {
-		setMobileMoreAnchorEl(event.currentTarget);
-	};
-
-	const menuId = 'primary-search-account-menu';
-	const renderMenu = (
-		<Menu
-			anchorEl={anchorEl}
-			anchorOrigin={{
-				vertical: 'top',
-				horizontal: 'right',
-			}}
-			id={menuId}
-			keepMounted
-			transformOrigin={{
-				vertical: 'top',
-				horizontal: 'right',
-			}}
-			open={isMenuOpen}
-			onClose={handleMenuClose}
-		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
-		</Menu>
-	);
-
-	const mobileMenuId = 'primary-search-account-menu-mobile';
-	const renderMobileMenu = (
-		<Menu
-			anchorEl={mobileMoreAnchorEl}
-			anchorOrigin={{
-				vertical: 'top',
-				horizontal: 'right',
-			}}
-			id={mobileMenuId}
-			keepMounted
-			transformOrigin={{
-				vertical: 'top',
-				horizontal: 'right',
-			}}
-			open={isMobileMenuOpen}
-			onClose={handleMobileMenuClose}
-		>
-			<MenuItem>
-				<IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-					<Badge badgeContent={4} color='error'>
-						<MailIcon />
-					</Badge>
-				</IconButton>
-				<p>Messages</p>
-			</MenuItem>
-			<MenuItem>
-				<IconButton
-					size='large'
-					aria-label='show 17 new notifications'
-					color='inherit'
-				>
-					<Badge badgeContent={17} color='error'>
-						<NotificationsIcon />
-					</Badge>
-				</IconButton>
-				<p>Notifications</p>
-			</MenuItem>
-			<MenuItem onClick={handleProfileMenuOpen}>
-				<IconButton
-					size='large'
-					aria-label='account of current user'
-					aria-controls='primary-search-account-menu'
-					aria-haspopup='true'
-					color='inherit'
-				>
-					<AccountCircle />
-				</IconButton>
-				<p>Profile</p>
-			</MenuItem>
-		</Menu>
-	);
-
-	return (
-			<>
-				{" "}
-		  <div className={styles.navbar}>
-		    <div className={styles.containerInfo1}>
-		      <div className={styles.homeImg}>
-		        <Link to="/">
-		          <img src={Everylogopf} alt="img" width="150px" height="100px" />
-		        </Link>
-		      </div>
-
-		      {filter ? (
-		        <>
-		          <button value="all" onClick={handleOnClick}>
-		            View All
-		          </button>
-
-		          <div className={styles.selectCP}>
-		            <select onChange={handleOnClick}>
-		              <option style={{ textAlign: "center" }} value="all">
-		                All categories
-		              </option>
-		              {categories.map(({ id, name }) => (
-		                <option
-		                  style={{ textAlign: "center" }}
-		                  key={id}
-		                  value={name}
-		                >
-		                  {name}
-		                </option>
-		              ))}
-		            </select>
-		          </div>
-
-		          <div className={styles.inputS}>
-		            <SearchBar />
-		          </div>
-		        </>
-		      ) : null}
-
-		      <div className={styles.homeSU}>
-		        <h2 onClick={() => setState(!state)}>
-		          <FaHeadphonesAlt /> Support
-		        </h2>
-		        <h2 onClick={() => navigate("/location")}>
-		          <HiOutlineLocationMarker /> Location
-		        </h2>
-		      </div>
-		      <div className={styles.homeFLC}>
-		        <button className={styles.login_}>
-		          <IoPersonOutline
-		            className={styles.login}
-		            onClick={() => navigate("/login")}
-		          />
-		        </button>
-		        <ShoppingBag />
-		      </div>
-		    </div>
-		  </div>
-
-			</>
-	
-	);
+          <div className={styles.homeSU}>
+            <h2 onClick={() => setState(!state)}>
+              <FaHeadphonesAlt /> Support
+            </h2>
+            <h2 onClick={() => navigate("/location")}>
+              <HiOutlineLocationMarker /> Location
+            </h2>
+          </div>
+          <div className={styles.homeFLC}>
+            <button className={styles.login_}>
+              <IoPersonOutline
+                className={styles.login}
+                onClick={() => navigate("/login")}
+              />
+            </button>
+            {noCart!==true&&<ShoppingBag />}
+          </div>
+        </div>
+        {/* {filter!==false&&<div className={styles.containerInfo2}>
+                <div className={styles.selectCP}>
+                    <select>
+                        <option>categoria</option>
+                        <option>categoria</option>
+                        <option>categoria</option>
+                    </select>
+                    <select>
+                        <option>Precio</option>
+                        <option>Precio</option>
+                        <option>Precio</option>
+                    </select>
+                </div> */}
+      </div>
+    </>
+  );
 };
