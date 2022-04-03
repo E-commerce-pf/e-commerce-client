@@ -24,11 +24,11 @@ const Landing = () => {
           focusOnSelect={false}
           verticalMode
         >
-          <motionimg className="img-carrousel" src={IMG1} alt="carousel1" />
+          <img className="img-carrousel" src={IMG1} alt="carousel1" />
 
-          <motionimg className="img-carrousel" src={IMG2} alt="carousel2" />
+          <img className="img-carrousel" src={IMG2} alt="carousel2" />
 
-          <motionimg className="img-carrousel" src={IMG3} alt="carousel3" />
+          <img className="img-carrousel" src={IMG3} alt="carousel3" />
         </Carousel>
       </div>
     </div>
