@@ -7,10 +7,13 @@ const getUser = async (id) => {
 const editUser = async (id, newData) => {
   return (await axios.put(`/api/users/${id}`, newData)).data;
 };
-
+const reviewUser = async ( review) => {
+  return (await axios.post(`/api/review`, review)).data;
+};
 const userService = {
   getUser,
   editUser,
+  reviewUser
 };
 
 export default userService;

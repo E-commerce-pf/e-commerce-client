@@ -105,6 +105,7 @@ const Login = () => {
       .then(res => {
         dispatch(getUser(res.data.user))
         navigate("/viewClient");
+        notifySuccess(`Welcome ${res.data.user.name}`);
       })
       .catch(err => notifyError(err.response.data.error))
   }

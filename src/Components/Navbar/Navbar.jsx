@@ -7,24 +7,10 @@ import styles from "./Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import ShoppingBag from "../ShoppingBag";
-import {motion} from 'framer-motion'
+
 import categoriesService from "../../Services/category";
 
-const containerVariants={
-  hidden:{
-    opacity:0,
-    y:'50vh'
-  },
-  show:{
-    opacity:1,
-    y:0,
-    transition:{
-      type:'spring',
-    }
-  }
-}
-
-export const Navbar = ({ filter, state, setState }) => {
+export const Navbar = ({ filter, state, setState,noCart }) => {
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState([]);
@@ -42,15 +28,11 @@ export const Navbar = ({ filter, state, setState }) => {
   return (
     <>
       {" "}
-      <motion.div className={styles.navbar}
-      variants={containerVariants}
-      initial='hidden'
-      animate='show'
-      >
+      <div className={styles.navbar}>
         <div className={styles.containerInfo1}>
           <div className={styles.homeImg}>
             <Link to="/">
-              <motionimg src={Everylogopf} alt="img" width="150px" height="100px" />
+              <img src={Everylogopf} alt="img" width="150px" height="100px" />
             </Link>
           </div>
 
@@ -98,7 +80,7 @@ export const Navbar = ({ filter, state, setState }) => {
                 onClick={() => navigate("/login")}
               />
             </button>
-            <ShoppingBag />
+            {noCart!==true&&<ShoppingBag />}
           </div>
         </div>
         {/* {filter!==false&&<div className={styles.containerInfo2}>
@@ -114,7 +96,7 @@ export const Navbar = ({ filter, state, setState }) => {
                         <option>Precio</option>
                     </select>
                 </div> */}
-      </motion.div>
+      </div>
     </>
   );
 };

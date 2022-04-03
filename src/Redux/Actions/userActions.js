@@ -39,3 +39,13 @@ export function DeleteFavorite (favorito) {
             return data;
       }
 }
+
+export function PostReview (review){
+      return async (dispatch)=>{
+            const {data} = await axios({
+                  method:"POST",
+                  url:`/api/review`,
+                  data:review
+            })
+      }
+}

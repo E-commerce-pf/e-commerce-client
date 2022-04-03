@@ -1,5 +1,6 @@
 import {
   ADD_PRODUCT_TO_BAG,
+  CART_CHANGE,
   CLEAR_FILTER,
   FILTER_PRODUCTS,
   ORDER_PRODUCTS,
@@ -38,10 +39,17 @@ const initialState = {
   bagProducts: [],
   productInfo: {},
   produtsFilter: null,
+  cartChange:false
 };
 
 const productsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case CART_CHANGE:
+      console.log(state,payload)
+      return {
+        ...state,
+        cartChange: payload,
+      };
     case PRODUCT_DETAIL:
       return {
         ...state,
@@ -63,7 +71,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         bagProducts: newBagProducts.map(({ id, amount }) => {
-          const aux = state.allProducts.find((product) => product.id === id);
+          const aux = state.allProducts?.find((product) => product.id === id);
           return { ...aux, amount };
         }),
       };
@@ -112,7 +120,6 @@ const productsReducer = (state = initialState, { type, payload }) => {
       const newProductCart = state.allProducts.find((product) => {
         return product.id === payload;
       });
-
       if (!newProductCart) {
         return {
           ...state,

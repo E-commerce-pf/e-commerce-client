@@ -1,0 +1,36 @@
+.contRev{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'ABeeZee';
+    color:white;
+    gap: 2rem;
+    h2{
+        font-size: 30px;
+        padding: 0;
+        margin: 0;
+        
+    }
+    span{
+        font-size: 20px;
+    }
+}
+.textare{
+    height: 100px;
+    width: 300px;
+}
+.btnEdit {
+    display: flex;
+    height: 30px;
+    width: 90px;
+    font-size: 20px;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.emoticon {
+    font-size: 20px;
+    color: #23263B;
+}

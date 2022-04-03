@@ -9,7 +9,7 @@ import storage from 'redux-persist/lib/storage';
 const persistCongif = {
   key : 'root',
   storage,
-  whitelist : ['userReducer']
+  whitelist : ['userReducer',"productsReducer"]
 };
 
 const persistedReducer = persistReducer(persistCongif, rootReducer);
