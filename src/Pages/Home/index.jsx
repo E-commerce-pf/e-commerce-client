@@ -45,14 +45,10 @@ export const Home = () => {
 
   return (
     <motion.div className={styles.containerHome}>
-      <motion.div
-      variants={cardVariants}
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: false, amount: 0 }}>
+      <div>
       <Navbar filter={true} state={toggle} setState={setToggle} />
       {toggle && <ContactForm state={toggle} setState={setToggle} />}
-    </motion.div>
+    </div>
     <motion.div
     variants={cardVariants}
     initial="offscreen"
