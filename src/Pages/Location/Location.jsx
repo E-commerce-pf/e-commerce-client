@@ -12,7 +12,8 @@ import "leaflet-defaulticon-compatibility";
 import style from "./Location.module.css";
 import {Navbar} from '../../Components/Navbar/Navbar'
 import mapa from './image/Maps.png';
-import {GiShop} from 'react-icons/gi'
+import {GiShop} from 'react-icons/gi';
+import {motion} from 'framer-motion';
 
 // const position = [4.653, -74.109];
 
@@ -40,7 +41,7 @@ const Location = ({ storeLocations }) => {
    {name:'Fernandez,Santiago del Estero',coordenadas:[-26.952, -61.790]},
    {name:'Cartagena,Bolivar,Colombia',coordenadas:[10.424,-75.551]},
    {name:'Sierra Grande,Rio Negro,Argentina',coordenadas:[-41.606, -65.355]},
-   {name:'Bogota,Cundinamarca,Colombia',coordenadas:[-4.212, -74.236]},
+   {name:'Bogota,Cundinamarca,Colombia',coordenadas:[4.710, -74.072]},
    {name:'Baranquilla,Atlantico,Colombia',coordenadas:[11.003, -74.811]},
    {name:'ciudad 6',coordenadas:[-34.598, -58.372]},
 ];
@@ -59,7 +60,7 @@ const Location = ({ storeLocations }) => {
           {storesLocations &&
             storesLocations.map((location,index ) => (
            <div key={Math.random(index)}>
-             <p className={style.segundo_title}><GiShop/> {location.name}</p>
+             <p className={style.segundo_title}><GiShop/>{' '} {location.name}</p>
            </div>
             ))}
         </div>
