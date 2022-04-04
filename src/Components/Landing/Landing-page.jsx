@@ -1,8 +1,9 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
-import IMG1 from "./img-landing/img-car.png";
-import IMG2 from "./img-landing/img-car2.png";
-import IMG3 from "./img-landing/img-car3.png";
+import IMG1 from "./images/consola.jpeg";
+import IMG2 from "./images/drone.jpeg";
+import IMG3 from "./images/pc.jpeg";
+import IMG4 from "./images/watch.jpeg";
 import "./styles/landingPage.modules.css";
 
 const Landing = () => {
@@ -29,6 +30,8 @@ const Landing = () => {
           <img className="img-carrousel" src={IMG2} alt="carousel2" />
 
           <img className="img-carrousel" src={IMG3} alt="carousel3" />
+
+          <img className="img-carrousel" src={IMG4} alt="carousel4" />
         </Carousel>
       </div>
     </div>
