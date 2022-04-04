@@ -10,6 +10,9 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css"; // Re-uses images from ~leaflet package
 import "leaflet-defaulticon-compatibility";
 import style from "./Location.module.css";
+import {Navbar} from '../../Components/Navbar/Navbar'
+import mapa from './image/Maps.png';
+import {GiShop} from 'react-icons/gi'
 
 // const position = [4.653, -74.109];
 
@@ -34,42 +37,62 @@ const LocationMarker = () => {
 
 const Location = ({ storeLocations }) => {
   const storesLocations = storeLocations || [
-    [4.653, -74.109],
-    [6.241, -75.587],
-    [3.476, -76.527],
-    [-34.598, -58.372],
-    [-31.412, -64.204],
-    [-32.926, -60.668],
-  ];
+   {name:'Fernandez,Santiago del Estero',coordenadas:[-26.952, -61.790]},
+   {name:'Cartagena,Bolivar,Colombia',coordenadas:[10.424,-75.551]},
+   {name:'Sierra Grande,Rio Negro,Argentina',coordenadas:[-41.606, -65.355]},
+   {name:'Bogota,Cundinamarca,Colombia',coordenadas:[-4.212, -74.236]},
+   {name:'Baranquilla,Atlantico,Colombia',coordenadas:[11.003, -74.811]},
+   {name:'ciudad 6',coordenadas:[-34.598, -58.372]},
+];
+
+  console.log(storesLocations,'storeLocation')
 
   return (
-    <div className={style.locationContainer}>
-      <h1 className={style.locationContainer__title}>Our branches</h1>
-      <MapContainer
-        center={[-17.836, -63.135]}
-        zoom={4}
-        className={style.mapContainer}
-      >
-        <TileLayer
-          attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-          url="https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=x7WNBsgZXrBHLVt6nP31"
-        />
-
-        <LocationMarker />
-
-        {storesLocations &&
-          storesLocations.map((location) => (
-            <Marker key={location} position={location}>
-              <Popup>Sucursal EveryOnes Store</Popup>
-            </Marker>
-          ))}
-
-        {/* <Marker position={[4.653, -74.109]}>
-          <Popup>Sucursal EveryOnes Store</Popup>
-        </Marker> */}
-      </MapContainer>
+    <div>
+        <Navbar/>
+        <h1 className={style.locationContainer__title}>Our branches</h1>
+      <div className={style.locationContainer}>
+        <div className={style.Cities}>
+          <img className={style.img_mapa} src={mapa} alt='mapa_local' />
+          <h2 className={style.title_cities}>Selling points</h2>
+          <p className={style.segundo_title}>Find our nearest branch</p>
+          {storesLocations &&
+            storesLocations.map((location) => (
+           <div>
+             <p className={style.segundo_title}><GiShop/> {location.name}</p>
+           </div>
+            ))}
+        </div>
+        <MapContainer
+          center={[-17.836, -63.135]}
+          zoom={4}
+          className={style.mapContainer}
+        >
+          <TileLayer
+            attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+            url="https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=x7WNBsgZXrBHLVt6nP31"
+          />
+  
+          <LocationMarker />
+  
+          {storesLocations &&
+            storesLocations.map((location,index) => (
+              <Marker key={Math.random(index)} position={location.coordenadas}>
+                <Popup>
+                  <h2>Sucursal Everyones Store</h2>
+                  <h4>{location.name}</h4>
+                </Popup>
+              </Marker>
+            ))} 
+  
+          {/* <Marker position={[4.653, -74.109]}>
+            <Popup>Sucursal EveryOnes Store</Popup>
+          </Marker>
+            </div>*/}
+       </MapContainer> 
+      </div>
     </div>
-  );
-};
+    );
+  };
 
 export default Location;

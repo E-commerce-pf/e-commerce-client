@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 
 const Presentation = () => {
   return (
+      
     <div className={style.container_pres}>
         <h2 className={style.txt}>
         TIenda especializada en productos de tecnología: <br/> computación, gaming, celulares y otros productos.

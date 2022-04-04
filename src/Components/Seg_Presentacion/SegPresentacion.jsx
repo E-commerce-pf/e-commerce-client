@@ -21,7 +21,7 @@ const SegPresentacion = () => {
       </div>
       <div className={style.containerItem}>
         {categories.map(({ id, name,image }) => (
-        <div className={style.item}>
+        <div key={id} className={style.item}>
           <motion.div
            whileHover={{
             scale: [1, 2, 2, 1, 1],
