@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import styles from "./MiProductos.module.css";
+import styles from "./ProductComplete.module.css";
 import { useNavigate } from 'react-router-dom'
 import { Modal } from "@material-ui/core";
-import { Reviews } from "@mui/icons-material";
-import ReviewUser from '../reviewUser/ReviewUser'
+import ReviewUser from '../../reviewUser/ReviewUser'
 import { makeStyles } from "@material-ui/core/styles";
-import { handleBreakpoints } from "@mui/system";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -23,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const MisProductos = ({ Transactions, user }) => {
+export const ProductComplete = ({ Transactions, user }) => {
 
 
 
@@ -50,6 +48,7 @@ export const MisProductos = ({ Transactions, user }) => {
         <div className={styles.containerProdInd}>
           {Transactions ? (
             Transactions.map((e) =>
+            e.state==='complete'&&
               e.cart.productsInCart.map((e) =>
                 e.product ? (
 
@@ -61,7 +60,6 @@ export const MisProductos = ({ Transactions, user }) => {
                       alt="img_carrito"
                       onClick={() => navigate(`/productDetail/${e.product.id}`)}
                     />
-                    {/* <h3>Precio:{e.product.price}</h3> */}
                     <h3 className={styles.parrafo}>
                       Descripcion:{e.product.description}
                     </h3>
@@ -82,8 +80,6 @@ export const MisProductos = ({ Transactions, user }) => {
             <h1 className={styles.parrafo}>No hay productos aun</h1>
           )}
           <div>
-            {/* {userId.Transactions.map(e=>
-            <div>Total: {e.cart.totalPrice}</div>)} */}
           </div>
           <Modal open={modal} onClose={openCloseModal}>
             {body}
