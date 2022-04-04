@@ -10,6 +10,7 @@ import ViewProducts from "./Pages/ViewProducts";
 import Order from "./Pages/Order/Order";
 import ChatBot from "react-simple-chatbot";
 import { steps } from "./Services/chatBot";
+import { MyShopping } from "./Pages/clientInterface/miShopping/MyShopping";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
           <Route path="/viewClient" element={<ClientHome />} />
+          <Route path="/viewClient/myShopping" element={<MyShopping />} />
           <Route path="/location" element={<Location />} />
           <Route path="/products/:category" element={<ViewProducts />} />
           <Route path="/order" element={<Order />} />

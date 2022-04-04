@@ -15,7 +15,8 @@ import { FiLogOut } from 'react-icons/fi'
 import { FaPencilAlt, FaUserCircle } from 'react-icons/fa'
 import { HiMenu } from 'react-icons/hi'
 import { addProductToCartDb, removeProductToCartDb, removeToLocalStorageIds } from '../../../Utils/shoppingBag'
-
+import {AiTwotoneShopping} from 'react-icons/ai'
+import {MdOutlineReviews} from 'react-icons/md'
 const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
@@ -69,6 +70,7 @@ export const NavbarClient = ({ user, setUser }) => {
     const [modal, setModal] = useState(false)
     const dispatch = useDispatch()
     const open = Boolean(anchorEl);
+    const cartChange = useSelector((store) => store.productsReducer.cartChange);
     const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
     const userId = useSelector((store) => store.userReducer.currentUser);
 
@@ -87,7 +89,7 @@ export const NavbarClient = ({ user, setUser }) => {
     const logout=()=>{
         let userId=user.id
         if(bagProducts.length)
-        addProductToCartDb(userId, bagProducts);
+        addProductToCartDb(userId, bagProducts,cartChange,true);
         else removeProductToCartDb("all",userId.userId)
         
         removeToLocalStorageIds()
@@ -117,8 +119,9 @@ export const NavbarClient = ({ user, setUser }) => {
 
                     <Link to='/products/all'><MenuItem className={classes.menuItem}> <ImHome className={classes.emoticon} /> Home</MenuItem></Link>
 
+                    <Link to='/viewClient/myShopping'><MenuItem className={classes.menuItem}><AiTwotoneShopping className={classes.emoticon}/>My shopping</MenuItem></Link>
+                    <Link to='/viewClient'><MenuItem className={classes.menuItem}><MdOutlineReviews className={classes.emoticon}/>Reviews and favorites</MenuItem></Link>
                     <MenuItem className={classes.menuItem} onClick={() => openCloseModal()}> <FaPencilAlt className={classes.emoticon} /> Edit my profile</MenuItem>
-
                     <MenuItem className={classes.menuItem} onClick={logout}><FiLogOut className={classes.emoticon} /> Logout</MenuItem>
 
                     <h2 className={classes.title}>Social media</h2>
