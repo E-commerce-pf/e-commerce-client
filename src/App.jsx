@@ -6,7 +6,7 @@ import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
 import Register from "./Pages/Register/Register";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "@material-ui/styles";
-import theme from "./Components/temaConfig";
+import Theme from "../src/Components/themes";
 import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
@@ -16,7 +16,7 @@ import { steps } from "./Services/chatBot";
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={Theme.default}>
       <CssBaseline />
       <Container>
         <ChatBot

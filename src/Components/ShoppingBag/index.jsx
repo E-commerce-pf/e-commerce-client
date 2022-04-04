@@ -1,6 +1,7 @@
 import { Badge, Drawer } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { BiShoppingBag } from "react-icons/bi";
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import { setIdBagProducts } from "../../Redux/Actions/productsActions";
 import { getCart } from "../../Redux/Actions/userActions";
@@ -59,11 +60,11 @@ const ShoppingBag = () => {
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
         <CartShoppingBag cartItems={bagProducts} deleteCart={deleteCart} />
       </Drawer>
-      <button className="shopping_container" onClick={() => setCartOpen(true)}>
+      <IconButton onClick={() => setCartOpen(true)}>
         <Badge badgeContent={getTotalProducts(bagProducts)} color="error">
-          <BiShoppingBag className="bolsa" />
+          <ShoppingBagIcon className="bolsa" />
         </Badge>
-      </button>
+      </IconButton>
     </div>
   );
 };

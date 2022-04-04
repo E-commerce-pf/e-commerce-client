@@ -1,102 +1,186 @@
-import React, { useState, useEffect } from "react";
-import { FaHeadphonesAlt } from "react-icons/fa";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { IoPersonOutline } from "react-icons/io5";
-import Everylogopf from "../../Assets/Images/Everylogopf.png";
-import styles from "./Navbar.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import SearchBar from "../SearchBar";
-import ShoppingBag from "../ShoppingBag";
+import React, { useState, useEffect } from 'react';
+import { FaHeadphonesAlt } from 'react-icons/fa';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+import logoWhite from '../../Assets/Images/logoWhite.png';
+import { Link, useNavigate } from 'react-router-dom';
+import SearchBar from '../SearchBar';
+import ShoppingBag from '../ShoppingBag';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import PersonIcon from '@mui/icons-material/Person';
 
-import categoriesService from "../../Services/category";
+import MoreIcon from '@mui/icons-material/MoreVert';
+import categoriesService from '../../Services/category';
 
-export const Navbar = ({ filter, state, setState,noCart }) => {
-  const navigate = useNavigate();
+export const Navbar = ({ filter, state, setState, noCart }) => {
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const [categories, setCategories] = useState([]);
+	const isMenuOpen = Boolean(anchorEl);
+	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  useEffect(() => {
-    categoriesService.getAllCategories().then((data) => {
-      setCategories(data);
-    });
-  }, []);
+	const handleProfileMenuOpen = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
 
-  const handleOnClick = (event) => {
-    navigate(`/products/${event.target.value}`);
-  };
+	const handleMobileMenuClose = () => {
+		setMobileMoreAnchorEl(null);
+	};
 
-  return (
-    <>
-      {" "}
-      <div className={styles.navbar}>
-        <div className={styles.containerInfo1}>
-          <div className={styles.homeImg}>
-            <Link to="/">
-              <img src={Everylogopf} alt="img" width="150px" height="100px" />
-            </Link>
-          </div>
+	const handleMenuClose = () => {
+		setAnchorEl(null);
+		handleMobileMenuClose();
+	};
 
-          {filter ? (
-            <>
-              <button value="all" onClick={handleOnClick}>
-                View All
-              </button>
+	const handleMobileMenuOpen = (event) => {
+		setMobileMoreAnchorEl(event.currentTarget);
+	};
 
-              <div className={styles.selectCP}>
-                <select onChange={handleOnClick}>
-                  <option style={{ textAlign: "center" }} value="all">
-                    All categories
-                  </option>
-                  {categories.map(({ id, name }) => (
-                    <option
-                      style={{ textAlign: "center" }}
-                      key={id}
-                      value={name}
-                    >
-                      {name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+	const menuId = 'primary-search-account-menu';
+	const renderMenu = (
+		<Menu
+			anchorEl={anchorEl}
+			anchorOrigin={{
+				vertical: 'top',
+				horizontal: 'right',
+			}}
+			id={menuId}
+			keepMounted
+			transformOrigin={{
+				vertical: 'top',
+				horizontal: 'right',
+			}}
+			open={isMenuOpen}
+			onClose={handleMenuClose}
+		>
+			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+		</Menu>
+	);
 
-              <div className={styles.inputS}>
-                <SearchBar />
-              </div>
-            </>
-          ) : null}
+	const mobileMenuId = 'primary-search-account-menu-mobile';
+	const renderMobileMenu = (
+		<Menu
+			anchorEl={mobileMoreAnchorEl}
+			anchorOrigin={{
+				vertical: 'top',
+				horizontal: 'right',
+			}}
+			id={mobileMenuId}
+			keepMounted
+			transformOrigin={{
+				vertical: 'top',
+				horizontal: 'right',
+			}}
+			open={isMobileMenuOpen}
+			onClose={handleMobileMenuClose}
+		>
+			<MenuItem>
+				<IconButton size='large' aria-label='show 4 new mails' color='inherit'>
+					<Badge >
+						<PersonIcon/>
+					</Badge>
+				</IconButton>
+				<p>Profile</p>
+			</MenuItem>
+			<MenuItem>
+				<IconButton >
+					<Badge >
+					{noCart!==true&&<ShoppingBag />}
+					</Badge>
+				</IconButton>
+				<p>Shopping Bag</p>
+			</MenuItem>
+			<MenuItem onClick={handleProfileMenuOpen}>
+			</MenuItem>
+		</Menu>
+	);
 
-          <div className={styles.homeSU}>
-            <h2 onClick={() => setState(!state)}>
-              <FaHeadphonesAlt /> Support
-            </h2>
-            <h2 onClick={() => navigate("/location")}>
-              <HiOutlineLocationMarker /> Location
-            </h2>
-          </div>
-          <div className={styles.homeFLC}>
-            <button className={styles.login_}>
-              <IoPersonOutline
-                className={styles.login}
-                onClick={() => navigate("/login")}
-              />
-            </button>
-            {noCart!==true&&<ShoppingBag />}
-          </div>
-        </div>
-        {/* {filter!==false&&<div className={styles.containerInfo2}>
-                <div className={styles.selectCP}>
-                    <select>
-                        <option>categoria</option>
-                        <option>categoria</option>
-                        <option>categoria</option>
-                    </select>
-                    <select>
-                        <option>Precio</option>
-                        <option>Precio</option>
-                        <option>Precio</option>
-                    </select>
-                </div> */}
-      </div>
-    </>
-  );
+	const navigate = useNavigate();
+
+	const [categories, setCategories] = useState([]);
+
+	useEffect(() => {
+		categoriesService.getAllCategories().then((data) => {
+			setCategories(data);
+		});
+	}, []);
+
+	const handleOnClick = (event) => {
+		navigate(`/products/${event.target.value}`);
+	};
+
+	return (
+		<>
+			<Box sx={{ flexGrow: 1 }}>
+				<AppBar position='static'>
+					<Toolbar>
+						<Link to='/'>
+							<img src={logoWhite} alt='img' width='50px' height='70px' />
+						</Link>
+						<>
+							<SearchBar />
+						</>
+						<>
+							<IconButton
+								onClick={() => setState(!state)}
+								color='inherit'
+								aria-label='open drawer'
+							>
+								<FaHeadphonesAlt /> Support
+							</IconButton>
+							<IconButton
+								color='inherit'
+								aria-label='open drawer'
+								onClick={() => navigate('/location')}
+							>
+								<HiOutlineLocationMarker /> Location
+							</IconButton>
+						</>
+						<Box sx={{ flexGrow: 1 }} />
+						<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+							<IconButton
+								size='large'
+								aria-label='show 4 new mails'
+								color='inherit'
+							>
+								<Badge onClick={() => navigate('/login')}>
+									<PersonIcon />
+								</Badge>
+							</IconButton>
+							<IconButton
+								size='large'
+								aria-label='show 17 new notifications'
+								color='inherit'
+							>
+								<Badge>
+								{noCart!==true&&<ShoppingBag />}
+								</Badge>
+							</IconButton>
+						
+						</Box>
+						<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+							<IconButton
+								size='large'
+								aria-label='show more'
+								aria-controls={mobileMenuId}
+								aria-haspopup='true'
+								onClick={handleMobileMenuOpen}
+								color='inherit'
+							>
+								<MoreIcon />
+							</IconButton>
+						</Box>
+					</Toolbar>
+				</AppBar>
+				{renderMobileMenu}
+				{renderMenu}
+			</Box>
+		</>
+	);
 };
