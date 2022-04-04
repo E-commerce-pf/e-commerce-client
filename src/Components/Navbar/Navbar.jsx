@@ -89,7 +89,7 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 				<p>Profile</p>
 			</MenuItem>
 			<MenuItem>
-				<IconButton >
+				<IconButton  size='large' aria-label='show 11 new notifications' color='inherit'>
 					<Badge >
 					{noCart!==true&&<ShoppingBag />}
 					</Badge>

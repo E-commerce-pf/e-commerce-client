@@ -5,9 +5,6 @@ import { Home } from "./Pages/Home/index";
 import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
 import Register from "./Pages/Register/Register";
 import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "@material-ui/styles";
-import Theme from "../src/Components/themes";
-import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
 import Order from "./Pages/Order/Order";
@@ -16,9 +13,7 @@ import { steps } from "./Services/chatBot";
 
 const App = () => {
   return (
-    <ThemeProvider theme={Theme.default}>
-      <CssBaseline />
-      <Container>
+      <>
         <ChatBot
           steps={steps}
           floating={true}
@@ -36,8 +31,7 @@ const App = () => {
           <Route path="*" element={<Home />} />
         </Routes>
         <ToastContainer />
-      </Container>
-    </ThemeProvider>
+      </>
   );
 };
 
