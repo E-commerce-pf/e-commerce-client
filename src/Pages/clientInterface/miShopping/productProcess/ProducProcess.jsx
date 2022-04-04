@@ -10,9 +10,10 @@ export const ProductProcess = ({ Transactions }) => {
         <>
             <div className={styles.containerProd}>
                 <div className={styles.containerProdInd}>
+                    {console.log(Transactions)}
                     {Transactions ? (
                         Transactions.map((e) =>
-                            e.state==='process'&&
+                            e.state==='process'&&e.token&&
                             e.cart.productsInCart.map((e) =>
                                 e.product ? (
 
