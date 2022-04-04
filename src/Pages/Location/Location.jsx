@@ -11,9 +11,27 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 import style from "./Location.module.css";
 import {Navbar} from '../../Components/Navbar/Navbar'
-import mapa from './image/Maps.png';
+import mapa from './image/location.png';
 import {GiShop} from 'react-icons/gi';
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
+
+const cardVariants= {
+  offscreen: {
+    x: 10
+  },
+  onscreen: {
+    scale: [1, 2, 2, 1, 1],
+    x:10,
+    y:[10,35,45,-45,-35,10],
+    // rotate: [0, 0, 270, 270, 0],
+    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+    transition: {
+      type:'tween',
+      bounce: 0,
+      duration: 2
+    }
+  }
+};
 
 // const position = [4.653, -74.109];
 
@@ -43,7 +61,7 @@ const Location = ({ storeLocations }) => {
    {name:'Sierra Grande,Rio Negro,Argentina',coordenadas:[-41.606, -65.355]},
    {name:'Bogota,Cundinamarca,Colombia',coordenadas:[4.710, -74.072]},
    {name:'Baranquilla,Atlantico,Colombia',coordenadas:[11.003, -74.811]},
-   {name:'ciudad 6',coordenadas:[-34.598, -58.372]},
+   {name:'Tupungato,Mendoza,Argentina',coordenadas:[-33.372, -69.147]},
 ];
 
   console.log(storesLocations,'storeLocation')
@@ -54,7 +72,13 @@ const Location = ({ storeLocations }) => {
         <h1 className={style.locationContainer__title}>Our branches</h1>
       <div className={style.locationContainer}>
         <div className={style.Cities}>
-          <img className={style.img_mapa} src={mapa} alt='mapa_local' />
+
+          <motion.img 
+            variants={cardVariants}
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: false, amount: 0 }}
+          className={style.img_mapa} src={mapa} alt='mapa_local' />
           <h2 className={style.title_cities}>Selling points</h2>
           <p className={style.segundo_title}>Find our nearest branch</p>
           {storesLocations &&

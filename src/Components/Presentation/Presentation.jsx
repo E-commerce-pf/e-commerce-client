@@ -11,7 +11,8 @@ const Presentation = () => {
       
     <div className={style.container_pres}>
         <h2 className={style.txt}>
-        TIenda especializada en productos de tecnología: <br/> computación, gaming, celulares y otros productos.
+        Store specializing in technology products: <br/> computing, gaming, cell phones and other products.
+
         </h2>
         <div className={style.imagenes}>
         <motion.img
