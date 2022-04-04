@@ -64,7 +64,7 @@ export default function EditUser({ user, setUser ,setModal}) {
           }
         </select>
         <input type="text"
-          placeholder='City'
+          placeholder={`${user.city||"City"}`}
           onChange={(e) => {
             setInfo({ ...info, city: e.target.value })
           }}
@@ -73,14 +73,14 @@ export default function EditUser({ user, setUser ,setModal}) {
       </div>
       <div className={styles.contInput}>
         <input type="text"
-          placeholder='Phone'
+          placeholder={`${user.phone||"Phone"}`}
           onChange={(e) => {
             setInfo({ ...info, phone: e.target.value })
           }}
           className={styles.input}
         />
         <input type="text"
-          placeholder='Address'
+          placeholder={`${user.address||"Address"}`}
           onChange={(e) => {
             setInfo({ ...info, address: e.target.value })
           }}

@@ -1,5 +1,5 @@
 h2 {
-    font-size: 18px;
+    font-size: 20px;
 }
 p{
     font-size: 15px;
@@ -24,6 +24,33 @@ p{
     display: flex;
     justify-content: space-between;
 }
+.containerForm{
+    display: flex;
+    justify-content: space-around;
+    div {
+        input {
+             border: 1px solid rgba(8, 25, 119, 0.5);
+             border-radius: 15px;
+             height: 50%;
+             cursor: pointer;
+             box-shadow: 2px 2px 2px 1px rgba(8, 25, 119, 0.973);
+        }
+        input:hover{
+            background-color: rgba(97, 131, 216, 0.4);
+        }
+    }
+}
+@media (max-width: 860px) {
+    .containerForm {
+        display: block;
+        div {
+            input {
+                width: 90%;
+                height: 40px
+            }
+        };
+    }
+  }
 .discount {
     text-decoration: line-through;
 }

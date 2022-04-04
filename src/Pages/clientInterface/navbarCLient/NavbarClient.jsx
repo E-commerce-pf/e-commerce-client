@@ -69,6 +69,7 @@ export const NavbarClient = ({ user, setUser }) => {
     const [modal, setModal] = useState(false)
     const dispatch = useDispatch()
     const open = Boolean(anchorEl);
+    const cartChange = useSelector((store) => store.productsReducer.cartChange);
     const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
     const userId = useSelector((store) => store.userReducer.currentUser);
 
@@ -87,7 +88,7 @@ export const NavbarClient = ({ user, setUser }) => {
     const logout=()=>{
         let userId=user.id
         if(bagProducts.length)
-        addProductToCartDb(userId, bagProducts);
+        addProductToCartDb(userId, bagProducts,cartChange,true);
         else removeProductToCartDb("all",userId.userId)
         
         removeToLocalStorageIds()
