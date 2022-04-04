@@ -40,8 +40,8 @@ export const removeToLocalStorageIds = () => {
 
 
 export const addProductToCartDb = (userId,cart,cartChange)=>{
-  return removeProductToCartDb("all",userId).then(async ()=>{
-    if(cartChange){
+  if(cartChange){
+    return removeProductToCartDb("all",userId).then(async ()=>{
       for(let i=0;i<cart.length;i++){
         await axios({
           method:"POST",
@@ -49,8 +49,8 @@ export const addProductToCartDb = (userId,cart,cartChange)=>{
           data:{userId,quantity:cart[i].amount}
         })
       }
-    }
-}).then(()=>window.location.href="/order")
+  }).then(()=>window.location.href="/order")
+  } else window.location.href="/order"
 }
 export const removeProductToCartDb = (productId,userId)=> {
   return axios({
