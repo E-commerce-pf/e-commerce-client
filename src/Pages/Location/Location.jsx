@@ -57,8 +57,8 @@ const Location = ({ storeLocations }) => {
           <h2 className={style.title_cities}>Selling points</h2>
           <p className={style.segundo_title}>Find our nearest branch</p>
           {storesLocations &&
-            storesLocations.map((location) => (
-           <div>
+            storesLocations.map((location,index ) => (
+           <div key={Math.random(index)}>
              <p className={style.segundo_title}><GiShop/> {location.name}</p>
            </div>
             ))}
