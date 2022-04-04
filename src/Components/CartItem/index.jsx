@@ -1,5 +1,5 @@
 import React from "react";
-
+import Button from "@material-ui/core/Button";
 import AddToBag from "../AddToBag";
 import RemoveToBag from "../RemoveToBag";
 import styled from "./CartItem.module.scss";
@@ -24,10 +24,10 @@ const CartItem = ({ title, price, id, amount, discount }) => {
   };
   return (
     <div className={styled.container}>
-      <button className={styled.btn_quitar} onClick={() => remove(id)}>
+      <Button className={styled.btn_quitar} onClick={() => remove(id)}>
         <FaTrashAlt />
         Remove product
-      </button>
+      </Button>
       <p className={styled.text_shp}>{title}</p>
       <div className={styled.price}>
         <p className={styled.text_shp}>Precio: {discount?<span className={styled.discount}>{price}</span>:null} {price*(1-discount)}$</p>

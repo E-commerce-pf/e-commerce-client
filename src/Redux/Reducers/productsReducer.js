@@ -45,7 +45,6 @@ const initialState = {
 const productsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case CART_CHANGE:
-      console.log(state,payload)
       return {
         ...state,
         cartChange: payload,

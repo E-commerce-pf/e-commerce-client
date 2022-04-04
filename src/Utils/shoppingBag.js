@@ -39,8 +39,20 @@ export const removeToLocalStorageIds = () => {
 };
 
 
-export const addProductToCartDb = (userId,cart,cartChange)=>{
-  if(cartChange){
+export const addProductToCartDb = (userId,cart,cartChange,logOut)=>{
+  if(cartChange&&logOut){
+    return removeProductToCartDb("all",userId).then(async ()=>{
+      for(let i=0;i<cart.length;i++){
+        await axios({
+          method:"POST",
+          url: `/api/cart/${cart[i].id}`,
+          data:{userId,quantity:cart[i].amount}
+        })
+      }
+  })
+  } else if(logOut){
+  }
+  else if(cartChange){
     return removeProductToCartDb("all",userId).then(async ()=>{
       for(let i=0;i<cart.length;i++){
         await axios({

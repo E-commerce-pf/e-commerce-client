@@ -1,5 +1,5 @@
 import axios from "axios";
-import { removeToLocalStorageIds } from "./shoppingBag";
+import { removeAmountProductToCartDb, removeToLocalStorageIds } from "./shoppingBag";
 
 export const createTransaction = (userId,description)=> {
     return axios({
@@ -8,6 +8,7 @@ export const createTransaction = (userId,description)=> {
       data:{userId,description}
     }).then(async ({data})=>{
         removeToLocalStorageIds();
+        await removeAmountProductToCartDb("all",userId)
         window.location.href=data.links[1].href;
     })
   };
