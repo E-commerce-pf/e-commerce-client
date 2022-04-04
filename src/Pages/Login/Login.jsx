@@ -138,7 +138,7 @@ const Login = () => {
           />
           <button>Sign in</button>
           <Link to="/register" className={styles.link}>
-            create new account
+          You still don't have an account? Create new account
           </Link>
         </form>
         <div className={styles.login3}>
