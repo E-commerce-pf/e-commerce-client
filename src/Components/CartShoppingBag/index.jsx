@@ -6,20 +6,18 @@ import { notifyError } from "../../Utils/notifications";
 import { addProductToCartDb } from "../../Utils/shoppingBag";
 import { newCartChange } from "../../Redux/Actions/productsActions";
 
-
 const CartShoppingBag = ({ cartItems, deleteCart }) => {
   const user = useSelector((store) => store.userReducer.currentUser);
   const cartChange = useSelector((store) => store.productsReducer.cartChange);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const buyProduct = () => {
     if (!user) {
       notifyError("You aren't logged in");
     } else {
-      if (cartItems.length){
+      if (cartItems.length) {
         dispatch(newCartChange(false));
-        addProductToCartDb(user.userId, cartItems,cartChange);
-      }
-      else notifyError("You don't have products in the cart");
+        addProductToCartDb(user.userId, cartItems, cartChange);
+      } else notifyError("You don't have products in the cart");
     }
   };
   return (
@@ -37,7 +35,11 @@ const CartShoppingBag = ({ cartItems, deleteCart }) => {
       <p className={styled.text_total}>
         Total amount:{" "}
         {cartItems
-          .reduce((acum, product) => product.price*(1-product.discount) * product.amount + acum, 0)
+          .reduce(
+            (acum, product) =>
+              product.price * (1 - product.discount) * product.amount + acum,
+            0
+          )
           .toFixed(2)}{" "}
         $
       </p>
@@ -46,7 +48,7 @@ const CartShoppingBag = ({ cartItems, deleteCart }) => {
           Empty cart
         </button>
         <button className={styled.btn_comprar} onClick={buyProduct}>
-          Keep buying
+          Proceed to checkout
         </button>
       </div>
     </aside>

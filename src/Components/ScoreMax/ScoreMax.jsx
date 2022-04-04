@@ -23,7 +23,7 @@ export default function ScoreMax() {
 
   return (
     <div>
-      <h2 className="text_shop">Bests products</h2>
+      <h2 className="text_shop">Best products</h2>
       <Carousel
         className="carousel_score"
         breakPoints={breakPoints}
