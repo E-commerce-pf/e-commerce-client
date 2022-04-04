@@ -5,9 +5,6 @@ import { Home } from "./Pages/Home/index";
 import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
 import Register from "./Pages/Register/Register";
 import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "@material-ui/styles";
-import theme from "./Components/temaConfig";
-import { CssBaseline, Container } from "@material-ui/core";
 import Location from "./Pages/Location/Location";
 import ViewProducts from "./Pages/ViewProducts";
 import Order from "./Pages/Order/Order";
@@ -17,9 +14,7 @@ import { MyShopping } from "./Pages/clientInterface/miShopping/MyShopping";
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container>
+      <>
         <ChatBot
           steps={steps}
           floating={true}
@@ -38,8 +33,7 @@ const App = () => {
           <Route path="*" element={<Home />} />
         </Routes>
         <ToastContainer />
-      </Container>
-    </ThemeProvider>
+      </>
   );
 };
 
