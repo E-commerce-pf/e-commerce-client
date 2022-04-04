@@ -1,13 +1,12 @@
-import React from 'react'
+import React from "react";
 import { motion } from "framer-motion";
-import {useState,useEffect} from 'react'
-import categoriesService from '../../Services/category'
-import { Link } from 'react-router-dom';
-import style from './SegPresentation.module.css';
+import { useState, useEffect } from "react";
+import categoriesService from "../../Services/category";
+import { Link } from "react-router-dom";
+import style from "./SegPresentation.module.css";
 
 const SegPresentacion = () => {
-    const [categories, setCategories] = useState([]);
-    console.log(categories,'categorias')
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     categoriesService.getAllCategories().then((data) => {
@@ -20,30 +19,30 @@ const SegPresentacion = () => {
         <h3 className={style.titleC}> Categories</h3>
       </div>
       <div className={style.containerItem}>
-        {categories.map(({ id, name,image }) => (
-        <div className={style.item}>
-          <motion.div
-           whileHover={{
-            scale: [1, 2, 2, 1, 1],
-            borderRadius: ["20%", "20%", "40%", "40%", "20%"],
-        }}
-        whileTap={{scale: 0.9}}>
-                    <Link
-                      className={style.titleItem}
-                      key={id}
-                      to={`/products/${name}`}
-                      value={name}
-                    >
-                      <img className={style.imgItem} src={image} alt={id} />
-                      {name}
-                      
-                    </Link>
-          </motion.div>
-        </div>
-                  ))}
+        {categories.map(({ id, name, image }, index) => (
+          <div key={index} className={style.item}>
+            <motion.div
+              whileHover={{
+                scale: [1, 2, 2, 1, 1],
+                borderRadius: ["20%", "20%", "40%", "40%", "20%"],
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Link
+                className={style.titleItem}
+                // key={id}
+                to={`/products/${name}`}
+                value={name}
+              >
+                <img className={style.imgItem} src={image} alt={id} />
+                {name}
+              </Link>
+            </motion.div>
+          </div>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SegPresentacion
+export default SegPresentacion;
