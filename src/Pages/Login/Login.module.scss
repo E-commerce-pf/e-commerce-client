@@ -7,7 +7,7 @@
   background-color: transparent;
   height: 100vh;
   width: 100%;
-  background-color: transparent;
+  background-color: rgba(217, 226, 226, 0.63);
 
 }
 .contenedor{
@@ -31,7 +31,7 @@
 .cardLogin{
   margin-top: 10px;
   border-radius: 10px;
-  background: linear-gradient(to bottom, rgb(211, 214, 221), rgba(40, 30, 182, 0.322));
+  background: linear-gradient(to bottom, rgb(83, 129, 236), rgba(40, 30, 182));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +101,7 @@
   display:flex;
   width: 8vw;
   height:6vh;
-  background: blue;
+  background: linear-gradient(to bottom, rgb(83, 129, 236), rgba(40, 30, 182));
   border-radius: 10px;
   border:1px solid rgba(10, 36, 57, 0.50);
   cursor:pointer;
@@ -112,7 +112,7 @@
   transition: all ease-in-out 1s;
 }
 .btnLogin:hover{
-  background-color: aliceblue;
+  background: aliceblue;
   color: blue;
 }
 .login3{
