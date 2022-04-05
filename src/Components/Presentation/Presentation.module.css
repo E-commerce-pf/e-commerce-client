@@ -1,15 +1,15 @@
 .container_pres{
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-evenly;
-    /* background-color: aqua; */
+    justify-content: center;
+    background-color: transparent; 
     width: 100%;
     height: 300px;
     margin: 30px auto;
 }
 .txt{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 20px;
+    font-size: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,14 +18,14 @@
     /* background-color: red; */
 }
 .imagenes{
-    /* background-color: pink; */
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
     width: 40%;
     height: 100%;
-    padding: 20px;
+    align-items: center;
 }
 
 .ImgShop{
