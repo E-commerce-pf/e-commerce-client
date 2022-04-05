@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Modal } from "@mui/material";
 
 import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
@@ -33,19 +34,44 @@ const cardVariants = {
 export const Home = () => {
   const [toggle, setToggle] = useState(false);
   const products = useSelector((state) => state.productsReducer.allProducts);
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
 
   const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     productsService.getAllProducts().then((res) => {
       dispatch(setAllProducts(res));
     });
-  }, [dispatch]);
+
+    if (!currentUser) {
+      setTimeout(() => {
+        setOpen(true);
+      }, 3000);
+    }
+  }, [dispatch, currentUser]);
 
   if (!products) return <Loading />;
 
+  const newletter = (
+    <div 
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <h1>¡Suscribete a nuestro newsletter!</h1>
+    </div>
+  );
+
   return (
     <motion.div className={styles.containerHome}>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        {newletter}
+      </Modal>
       <div>
         <Navbar filter={true} state={toggle} setState={setToggle} />
         {toggle && <ContactForm state={toggle} setState={setToggle} />}
