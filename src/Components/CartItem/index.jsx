@@ -17,7 +17,7 @@ const CartItem = ({ title, price, id, amount, discount }) => {
   const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
   const user = useSelector((store) => store.userReducer.currentUser);
   const remove = (id) => {
-    notifySuccess("Producto removido del carrito!");
+    notifySuccess("Product removed successfully");
     dispatch(removeAllProductToBag(id));
     removeToLocalStorageId(id);
     if (user) removeProductToCartDb(id, user.userId);
@@ -30,10 +30,16 @@ const CartItem = ({ title, price, id, amount, discount }) => {
       </Button>
       <p className={styled.text_shp}>{title}</p>
       <div className={styled.price}>
-        <p className={styled.text_shp}>Precio: {discount?<span className={styled.discount}>{price}</span>:null} {price*(1-discount)}$</p>
-        <p className={styled.text_shp}>Total: {price*(1-discount) * amount}$</p>
+        <p className={styled.text_shp}>
+          Precio:{" "}
+          {discount ? <span className={styled.discount}>{price}</span> : null}{" "}
+          {price * (1 - discount)}$
+        </p>
+        <p className={styled.text_shp}>
+          Total: {price * (1 - discount) * amount}$
+        </p>
       </div>
-      <div className={styled.button}>
+      <div className={styled.Button}>
         <RemoveToBag text={"-"} id={id} user={user} />
         <p>{amount}</p>
         <AddToBag text={"+"} id={id} user={user} bagProducts={bagProducts} />

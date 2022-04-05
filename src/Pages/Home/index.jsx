@@ -89,5 +89,6 @@ export const Home = () => {
       <Footer />
    </motion.div>
     </motion.div>
+  
   );
 };

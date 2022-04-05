@@ -1,114 +1,115 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../Redux/Actions/userActions";
-import { Link, useNavigate } from "react-router-dom";
-import everylogopf_gris from "../../Assets/Images/Everylogopf_gris.png";
-import { IoIosArrowBack } from "react-icons/io";
-import { FcGoogle } from "react-icons/fc";
-import { BsGithub } from "react-icons/bs";
-import styles from "./Login.module.scss";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../Redux/Actions/userActions';
+import { Link, useNavigate } from 'react-router-dom';
+import everylogopf_gris from '../../Assets/Images/Everylogopf_gris.png';
+import { IoIosArrowBack } from 'react-icons/io';
+import { FcGoogle } from 'react-icons/fc';
+import { BsGithub } from 'react-icons/bs';
+import styles from './Login.module.scss';
 
 //COMPONENTES
 import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  GithubAuthProvider,
-} from "firebase/auth";
-import firebaseConfing from "../../config/firebase";
-import { notifyError, notifySuccess } from "../../Utils/notifications";
-import axios from "axios";
-
+	getAuth,
+	signInWithPopup,
+	GoogleAuthProvider,
+	GithubAuthProvider,
+} from 'firebase/auth';
+import firebaseConfing from '../../config/firebase';
+import { notifyError, notifySuccess } from '../../Utils/notifications';
+import axios from 'axios';
 
 const Login = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate();
-  firebaseConfing();
-  const auth = getAuth();
-  const googleProvider = new GoogleAuthProvider();
-  const gitHubProvider = new GithubAuthProvider();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	firebaseConfing();
+	const auth = getAuth();
+	const googleProvider = new GoogleAuthProvider();
+	const gitHubProvider = new GithubAuthProvider();
 
-  googleProvider.addScope("https://www.googleapis.com/auth/userinfo.profile");
-  gitHubProvider.addScope("repo");
+	googleProvider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+	gitHubProvider.addScope('repo');
 
-  const currentUser = useSelector((state) => state.userReducer.currentUser);
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/viewClient");
-    }
-  }, [currentUser, navigate])
+	const currentUser = useSelector((state) => state.userReducer.currentUser);
+	useEffect(() => {
+		if (currentUser) {
+			navigate('/viewClient');
+		}
+	}, [currentUser, navigate]);
 
-  const signInGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        const displayName = result.user.displayName.split(" ");
-        const user = {
-          email: result.user.email,
-          name: displayName[0],
-          lastName: displayName[1],
-          password: result.user.uid,
-          loginWithSocial: true,
-          isAdmin: false
-        }
-        //Enviamos los datos a la api
-        axios.post('/api/user/login', { ...user })
-          .then((res) => {
-            notifySuccess(res.data.success);
-            dispatch(getUser(res.data.user));
+	const signInGoogle = () => {
+		signInWithPopup(auth, googleProvider).then((result) => {
+			const displayName = result.user.displayName.split(' ');
+			const user = {
+				email: result.user.email,
+				name: displayName[0],
+				lastName: displayName[1],
+				password: result.user.uid,
+				loginWithSocial: true,
+				isAdmin: false,
+			};
+			//Enviamos los datos a la api
+			axios
+				.post('/api/user/login', { ...user })
+				.then((res) => {
+					notifySuccess(res.data.success);
+					dispatch(getUser(res.data.user));
 
-            setTimeout(()=>{
-              navigate("/viewClient");
-            },3500)
-          })
-          .catch((err) => {
-            notifyError(err.response.data.error);
-          });
-      });
-  };
+					setTimeout(() => {
+						navigate('/viewClient');
+					}, 3500);
+				})
+				.catch((err) => {
+					notifyError(err.response.data.error);
+				});
+		});
+	};
 
-  const signInGitHub = () => {
-    signInWithPopup(auth, gitHubProvider)
-      .then((result) => {
-        console.log(result);
-        const user = {
-          email: result._tokenResponse.email,
-          name: result._tokenResponse.screenName,
-          lastName: "",
-          password: result.user.uid,
-          loginWithSocial: true,
-          isAdmin: false
-        }
-        axios.post('/api/user/login', { ...user })
-          .then((res) => {
-            notifySuccess(res.data.success);
-            dispatch(getUser(res.data.user));
-            
-            setTimeout(()=>{
-              navigate("/viewClient");
-            },3500)
-          })
-          .catch((err) => {
-            notifyError(err.response.data.error);
-          });
-      })
-      .catch((err) => {
-        const error = err.message.split(" ");
-        notifyError(error[2]);
-      });
-  };
+	const signInGitHub = () => {
+		signInWithPopup(auth, gitHubProvider)
+			.then((result) => {
+				console.log(result);
+				const user = {
+					email: result._tokenResponse.email,
+					name: result._tokenResponse.screenName,
+					lastName: '',
+					password: result.user.uid,
+					loginWithSocial: true,
+					isAdmin: false,
+				};
+				axios
+					.post('/api/user/login', { ...user })
+					.then((res) => {
+						notifySuccess(res.data.success);
+						dispatch(getUser(res.data.user));
 
-  const handlerSubmit = (event) => {
-    event.preventDefault();
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
-    axios.post('/api/user/login', { email, password, isAdmin: false })
-      .then(res => {
-        dispatch(getUser(res.data.user))
-        navigate("/viewClient");
-        notifySuccess(`Welcome ${res.data.user.name}`);
-      })
-      .catch(err => notifyError(err.response.data.error))
-  }
+						setTimeout(() => {
+							navigate('/viewClient');
+						}, 3500);
+					})
+					.catch((err) => {
+						notifyError(err.response.data.error);
+					});
+			})
+			.catch((err) => {
+				const error = err.message.split(' ');
+				notifyError(error[2]);
+			});
+	};
+
+	const handlerSubmit = (event) => {
+		event.preventDefault();
+		const email = document.querySelector('#email').value;
+		const password = document.querySelector('#password').value;
+		axios
+			.post('/api/user/login', { email, password, isAdmin: false })
+			.then((res) => {
+				dispatch(getUser(res.data.user));
+				navigate('/viewClient');
+				notifySuccess(`Welcome ${res.data.user.name}`);
+			})
+			.catch((err) => notifyError(err.response.data.error));
+	};
 
   return (
     <div className={styles.containerLogin}>

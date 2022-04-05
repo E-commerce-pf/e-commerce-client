@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
 
-  button {
+  Button {
     width: 20%;
     font-size: 2em;
     background-color: rgba(8, 25, 119, 0.973);
@@ -30,7 +30,7 @@
     transition: all ease-in 0.5s;
   }
 
-  button:hover {
+  Button:hover {
     background-color: rgba(217, 217, 224, 0.658);
     color: rgb(6, 6, 114);
     border-color: rgb(15, 15, 148);
