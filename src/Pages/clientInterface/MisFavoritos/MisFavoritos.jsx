@@ -30,39 +30,47 @@ export const MisFavoritos = ({ Favorites, setUser }) => {
       setLoading(false);
     }
   };
+  if (Favorites.length <= 0) {
+    return (
+      <div className={styles.NohayFav}>
+        <h2>You don't have favorites added yet </h2>
+      </div>
+    )
+  }
   return (
     <div className={styles.contFav}>
-      {Favorites.map((el) => (
-        <div key={el.id} className={styles.contCard}>
-          <div className={styles.delete}>
-            <MdDeleteForever
-              className={styles.svg}
-              onClick={() => deleteFav(el)}
-            />
-          </div>
-          <div
-            onClick={() => navigate(`/productDetail/${el.Product.id}`)}
-            className={styles.cardInfo}
-          >
-            <h3>{el.Product.title}</h3>
-            <img
-              src={el.Product.image}
-              alt="img"
-              width="200px"
-              height="220px"
-            />
-            <p className={styles.parrafo}>{el.Product.description}</p>
-            <div className={styles.cardInfo1}>
-              <span>
-                Price: <MdOutlineAttachMoney />
-                {el.Product.price}.{" "}
-              </span>
-              <span>Discount:{el.Product.discount * 100} %.</span>
-              <span>Stock: {el.Product.stock}</span>
+      {
+        Favorites.map((el) => (
+          <div key={el.id} className={styles.contCard}>
+            <div className={styles.delete}>
+              <MdDeleteForever
+                className={styles.svg}
+                onClick={() => deleteFav(el)}
+              />
+            </div>
+            <div
+              onClick={() => navigate(`/productDetail/${el.Product.id}`)}
+              className={styles.cardInfo}
+            >
+              <h3>{el.Product.title}</h3>
+              <img
+                src={el.Product.image}
+                alt="img"
+                width="200px"
+                height="220px"
+              />
+              <p className={styles.parrafo}>{el.Product.description}</p>
+              <div className={styles.cardInfo1}>
+                <span>
+                  Price: <MdOutlineAttachMoney />
+                  {el.Product.price}.{" "}
+                </span>
+                <span>Discount:{el.Product.discount * 100} %.</span>
+                <span>Stock: {el.Product.stock}</span>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
       {loading && <OpacityLoader />}
     </div>
   );

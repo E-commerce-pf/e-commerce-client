@@ -2,6 +2,7 @@
     display:flex;
     flex-direction:column;
     gap: 3rem;
+    height: 100vh;
 }
 
 .contButton{
@@ -16,6 +17,7 @@
     align-items:center;
     
     Button{
+        height: 40px;
         border: 1px solid #fafafa;
         background-color:#fafafa;
         font-size:16px;

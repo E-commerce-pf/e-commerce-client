@@ -114,10 +114,10 @@ export default function EditUser({ user, setUser, setModal }) {
 					className={styles.input}
 				/>
 			</div>
-			<Button className={styles.btnEdit} onClick={handlePut}>
+			<button className={styles.btnEdit} onClick={handlePut}>
 				{' '}
 				Send <IoSendSharp className={styles.emoticon} />
-			</Button>
+			</button>
 		</div>
 	);
 }

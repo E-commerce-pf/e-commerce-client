@@ -10,7 +10,6 @@ import ViewProducts from "./Pages/ViewProducts";
 import Order from "./Pages/Order/Order";
 import ChatBot from "react-simple-chatbot";
 import { steps } from "./Services/chatBot";
-import { MyShopping } from "./Pages/clientInterface/miShopping/MyShopping";
 import { Paper } from "@mui/material";
 
 const App = () => {
@@ -28,7 +27,6 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
           <Route path="/viewClient" element={<ClientHome />} />
-          <Route path="/viewClient/myShopping" element={<MyShopping />} />
           <Route path="/location" element={<Location />} />
           <Route path="/products/:category" element={<ViewProducts />} />
           <Route path="/order" element={<Order />} />

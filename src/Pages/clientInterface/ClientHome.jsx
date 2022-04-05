@@ -12,25 +12,35 @@ import userService from '../../Services/user';
 import { logoutUser } from '../../Redux/Actions/userActions';
 import Loading from '../../Components/Loading/index';
 import Button from '@mui/material/Button';
-
+import {BiShoppingBag} from 'react-icons/bi';
 import { notifySuccess } from '../../Utils/notifications';
+import { MisProductos } from './misProductos/MisProductos';
 
 export const ClientHome = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [misReviews, setMisReviews] = useState(false);
-	const [miFavorito, setMiFavorito] = useState(true);
+	const [miFavorito, setMiFavorito] = useState(false);
+	const [misProductos,setMisProductos] = useState(true);
 	const [user, setUser] = useState(null);
 	const currentUser = useSelector((state) => state.userReducer.currentUser);
 
-	const openCar = () => {
+	const openReview = () => {
 		setMisReviews(true);
 		setMiFavorito(false);
+		setMisProductos(false);
+	};
+
+	const openProductos = () => {
+		setMisReviews(false)
+		setMiFavorito(false);
+		setMisProductos(true);
 	};
 
 	const openFav = () => {
 		setMiFavorito(true);
 		setMisReviews(false);
+		setMisProductos(false);
 	};
 
 	useEffect(() => {
@@ -69,18 +79,27 @@ export const ClientHome = () => {
 		<div className={styles.contClient}>
 			<NavbarClient user={user} setUser={setUser} />
 			<div className={styles.contButton}>
-				<Button onClick={openCar}>
+				<button onClick={openReview}>
 					{' '}
 					<MdOutlineRateReview className={styles.btn} /> My reviews
-				</Button>
-				<Button onClick={openFav}>
+				</button>
+				<button onClick={openProductos}>
+					{' '}
+					<BiShoppingBag className={styles.btn} />
+					My products
+				</button>
+				<button onClick={openFav}>
 					{' '}
 					<AiOutlineStar className={styles.btn} />
 					My favourites
-				</Button>
+				</button>
 			</div>
 			<>
-				{misReviews ? (
+				{
+				misProductos?(
+					<MisProductos Transactions={user.Transactions}user={user} setUser={setUser} />
+				):
+					misReviews ? (
 					<MisReviews userId={user.id} />
 				) : miFavorito ? (
 					<MisFavoritos Favorites={user.Favorites} setUser={setUser} />

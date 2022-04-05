@@ -1,44 +1,51 @@
-.containerR{
+.containerR {
     display: flex;
     flex-direction: row;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     padding: 10px;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 3px 3px 20px rgba(3, 12, 54, 0.459), -3px -3px 20px rgb(209, 209, 224);
 }
-.containerProd{
+
+.containerProd {
     padding: 10px;
 
 }
-.title{
+
+.title {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 17px;
     color: rgb(10, 10, 102);
     font-weight: 200;
 }
-.desc{
+
+.desc {
     padding: 10px;
     width: 100%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 13px;
     color: rgba(15, 14, 14, 0.904);
 }
-.Img{
+
+.Img {
     position: relative;
     width: 200px;
     height: 200px;
     border-radius: 15px;
     box-shadow: 1px 1px 1px black;
 }
-.btn1{
+
+.btn1 {
     margin-top: 20px;
 }
-.score{
+
+.score {
     padding-left: 10%;
 }
-.btn{
-   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+.btn {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     position: relative;
     border-radius: 15px;
     font-size: 15px;
@@ -50,18 +57,29 @@
     color: rgb(10, 10, 110);
     transition: all ease-in 0.5s;
 }
-.btn:hover{
+
+.btn:hover {
     background-color: rgb(10, 10, 110);
-    color:rgb(220, 214, 243);
+    color: rgb(220, 214, 243);
 }
+
 @media (max-width: 600px) {
-    .containerR{
+    .containerR {
         display: flex;
         flex-direction: column;
-        justify-content:space-evenly;
+        justify-content: space-evenly;
         padding: 10px;
         background-color: #fff;
         border-radius: 15px;
         box-shadow: 3px 3px 20px rgba(3, 12, 54, 0.459), -3px -3px 20px rgb(209, 209, 224);
     }
-  }
+}
+
+.NohayFav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    font-family: "ABeeZee";
+    color: #23263B;
+}
