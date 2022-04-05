@@ -111,46 +111,55 @@ const Login = () => {
 			.catch((err) => notifyError(err.response.data.error));
 	};
 
-	return (
-		<div className={styles.containerLogin}>
-			<div className={styles.cardButton}>
-				<Button onClick={() => navigate('/')} className={styles.btnLogin}>
-					<IoIosArrowBack /> Back
-				</Button>
-			</div>
-			<div className={styles.cardLogin}>
-				<div className={styles.login1}>
-					<h1>Login</h1>
-					<img src={everylogopf_gris} alt='logo' width='124px' height='78px' />
-				</div>
-				<form className={styles.login2} onSubmit={handlerSubmit}>
-					<h4>Email</h4>
-					<input
-						type='email'
-						placeholder='example@example.com'
-						id='email'
-						autoComplete='off'
-					/>
-					<h4>Password</h4>
-					<input type='password' placeholder='password' id='password' />
-					<Button>Sign in</Button>
-					<Link to='/register' className={styles.link}>
-						create new account
-					</Link>
-				</form>
-				<div className={styles.login3}>
-					<Button onClick={signInGoogle}>
-						{' '}
-						<FcGoogle className={styles.span} />
-						Sign in with Google
-					</Button>
-					<Button onClick={signInGitHub}>
-						<BsGithub className={styles.span} />
-						Sign in with GitHub
-					</Button>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className={styles.containerLogin}>
+      <div className={styles.cardButton}>
+        <button onClick={() => navigate("/")} className={styles.btnLogin}>
+          <IoIosArrowBack /> Back
+        </button>
+      </div>
+      <div className={styles.contenedor}>
+
+      <div className={styles.cardLogin}>
+        <div className={styles.login1}>
+          {/* <img src={everylogopf_gris} alt="logo" width="124px" height="78px" /> */}
+          <h1 className={styles.title2}>Log In</h1>
+        </div>
+        <form className={styles.login2} onSubmit={handlerSubmit}>
+          <h4>Email</h4>
+          <input
+            className={styles.titleInput}
+            type="email"
+            placeholder="example@example.com"
+            id='email'
+            autoComplete="off"
+          />
+          <h4>Password</h4>
+          <input
+            className={styles.titleInput}
+            type="password"
+            placeholder="password"
+            id='password'
+          />
+          <button>Sign in</button>
+          <Link to="/register" className={styles.link}>
+          You still don't have an account? Create new account
+          </Link>
+        </form>
+        <div className={styles.login3}>
+          <button onClick={signInGoogle}>
+            {" "}
+            <FcGoogle className={styles.span} />
+            Sign in with Google
+          </button>
+          <button onClick={signInGitHub}>
+            <BsGithub className={styles.span} />
+            Sign in with GitHub
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+  );
 };
 export default Login;

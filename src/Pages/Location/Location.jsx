@@ -20,15 +20,16 @@ const cardVariants= {
     x: 10
   },
   onscreen: {
-    scale: [1, 2, 2, 1, 1],
+    scale: [1, 1,1,1, 1],
     x:10,
-    y:[10,35,45,-45,-35,10],
+    y:[10,35,40,-39,-35,10],
     // rotate: [0, 0, 270, 270, 0],
     borderRadius: ["20%", "20%", "50%", "50%", "20%"],
     transition: {
       type:'tween',
       bounce: 0,
-      duration: 2
+      duration: 3,
+      yoyo:Infinity,
     }
   }
 };
@@ -62,6 +63,7 @@ const Location = ({ storeLocations }) => {
    {name:'Bogota,Cundinamarca,Colombia',coordenadas:[4.710, -74.072]},
    {name:'Baranquilla,Atlantico,Colombia',coordenadas:[11.003, -74.811]},
    {name:'Tupungato,Mendoza,Argentina',coordenadas:[-33.372, -69.147]},
+   {name:'Florencia,Caquetá,Colombia',coordenadas:[1.755, -75.608]},
 ];
 
   console.log(storesLocations,'storeLocation')
@@ -72,15 +74,16 @@ const Location = ({ storeLocations }) => {
         <h1 className={style.locationContainer__title}>Our branches</h1>
       <div className={style.locationContainer}>
         <div className={style.Cities}>
-
+          <div className={style.divIMG}>
           <motion.img 
             variants={cardVariants}
             initial="offscreen"
             whileInView="onscreen"
-            viewport={{ once: false, amount: 0 }}
+            viewport={{ once: false, amount: 1 }}
           className={style.img_mapa} src={mapa} alt='mapa_local' />
+          </div>
           <h2 className={style.title_cities}>Selling points</h2>
-          <p className={style.segundo_title}>Find our nearest branch</p>
+          <p className={style.segundo_title}>Find our nearest points of sale</p>
           {storesLocations &&
             storesLocations.map((location,index ) => (
            <div key={Math.random(index)}>

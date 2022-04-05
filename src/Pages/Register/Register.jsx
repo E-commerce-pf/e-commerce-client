@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from '../../Redux/Actions/userActions' 
 import style from "./Register.module.scss";
 import { countries } from "../../Utils/countries";
+import { Link } from "react-router-dom";
 
 //COMPONENTES
 import { TextField, InputLabel } from "@mui/material";
@@ -104,12 +105,22 @@ const Register = () => {
   };
 
   return (
+    <div className={style.containerGeneral}>
+
+      <div className={style.Backdiv}>
+        <Link className={style.Back} to="/login">Go Back</Link>
+      </div>
     <div className={style.container}>
+      <div className={style.Cont}>
       <ToastContainer />
-      <form onSubmit={(e) => handlerSubmit(e)} className={style.formContainer}>
+      <form onSubmit={(e) => handlerSubmit(e)} className={style.formContainer} >
+        <div>
+          <h2 className={style.titleP}>Sign up</h2>
+        </div>
         <div className={style.personalData}>
           <div className={style.container}>
             <TextField
+              className={style.textfield}
               name="name"
               value={userData.name}
               onChange={handlerChange}
@@ -120,6 +131,7 @@ const Register = () => {
 
           <div className={style.container}>
             <TextField
+              className={style.textfield}
               name="lastName"
               value={userData.lastName}
               onChange={handlerChange}
@@ -130,6 +142,7 @@ const Register = () => {
         </div>
 
         <TextField
+          className={style.textfield}
           type="email"
           name="email"
           placeholder="example@example.com"
@@ -141,6 +154,7 @@ const Register = () => {
         />
 
         <TextField
+          className={style.textfield}
           type="email"
           name="email2"
           placeholder="example@example.com"
@@ -154,6 +168,7 @@ const Register = () => {
         {error.email && <p className={style.warning}>{error.email}</p>}
 
         <TextField
+          className={style.textfield}
           type="password"
           name="password"
           value={userData.password}
@@ -164,6 +179,7 @@ const Register = () => {
         />
 
         <TextField
+          className={style.textfield}
           type="password"
           name="password2"
           value={userData.password2}
@@ -174,24 +190,28 @@ const Register = () => {
         />
         {error.password && <p className={style.warning}>{error.password}</p>}
 
-        <InputLabel id="pais-label">Pais</InputLabel>
-        <select name="country" onChange={handlerChange}>
+        <InputLabel id="pais-label">Country</InputLabel>
+        <select className={style.textfield} name="country" onChange={handlerChange}>
           {countries.map((country, index) => {
             return (
-              <option key={index} name={country.value}>
+              <option className={style.optionC} key={index} name={country.value}>
                 {country.value}
               </option>
             );
           })}
         </select>
 
+        <div>
         <input
           type="submit"
-          value="Crear cuenta"
+          value="Create account"
           id="submit"
           className={style.disable}
         />
+        </div>
       </form>
+      </div>
+    </div>
     </div>
   );
 };
