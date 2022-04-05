@@ -62,6 +62,7 @@ const Location = ({ storeLocations }) => {
    {name:'Bogota,Cundinamarca,Colombia',coordenadas:[4.710, -74.072]},
    {name:'Baranquilla,Atlantico,Colombia',coordenadas:[11.003, -74.811]},
    {name:'Tupungato,Mendoza,Argentina',coordenadas:[-33.372, -69.147]},
+   {name:'Florencia,Caquetá,Colombia',coordenadas:[1.755, -75.608]},
 ];
 
   console.log(storesLocations,'storeLocation')
