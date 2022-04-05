@@ -99,18 +99,30 @@
  margin-top: 20px;    
 }
 .Back{
-      background-color: blue;
-            margin-top: 15px;
-            margin-right: 15px;
-            width: 150px;
-            height: 35px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            color: white;
-            padding: 10px 25px;
-            cursor:pointer;
-            transition: all ease-in-out 1s;
+      // background-color: blue;
+      //       margin-top: 15px;
+      //       margin-right: 15px;
+      //       width: 150px;
+      //       height: 35px;
+      //       border: none;
+      //       border-radius: 8px;
+      //       font-weight: bold;
+      //       color: white;
+      //       padding: 10px 25px;
+      //       cursor:pointer;
+      //       transition: all ease-in-out 1s;
+      display:flex;
+  width: 8vw;
+  height:6vh;
+  background: blue;
+  border-radius: 10px;
+  border:1px solid rgba(10, 36, 57, 0.50);
+  cursor:pointer;
+  color:white;
+  font-size:20px;
+  align-items: center;
+  padding:5px 20px;
+  transition: all ease-in-out 1s;
 }
 
 .Back:hover{

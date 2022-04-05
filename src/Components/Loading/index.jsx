@@ -5,7 +5,7 @@ import Load from "../../Assets/Gifts/loading (1).gif";
 
 const Loading = () => (
   <div className={styled.container}>
-    <motionimg src={Load} alt="Loading gif" />
+    <img src={Load} alt="Loading gif" />
   </div>
 );
 
