@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Modal } from '@material-ui/core';
 import ReviewUser from '../../reviewUser/ReviewUser';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
 
 const useStyles = makeStyles((theme) => ({
 	modal: {

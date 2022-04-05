@@ -10,6 +10,7 @@ import EditUser from '../editUser/EditUser';
 import Fade from '@material-ui/core/Fade';
 import { ImHome } from 'react-icons/im';
 import { IoLogoGithub } from 'react-icons/io5';
+import Button from '@mui/material/Button';
 import { IoLogoVercel } from 'react-icons/io5';
 import { FiLogOut } from 'react-icons/fi';
 import { FaPencilAlt, FaUserCircle } from 'react-icons/fa';
@@ -161,7 +162,11 @@ export const NavbarClient = ({ user, setUser }) => {
 
 					<h2 className={classes.title}>Social media</h2>
 
-					<a href='https://github.com/E-commerce-pf' target='_blank'>
+					<a
+						href='https://github.com/E-commerce-pf'
+						target='_blank'
+						rel='noreferrer'
+					>
 						<MenuItem className={classes.menuItem}>
 							{' '}
 							<IoLogoGithub className={classes.emoticon} /> Git-Hub
@@ -171,6 +176,7 @@ export const NavbarClient = ({ user, setUser }) => {
 					<a
 						href='https://respaldo-everyones-store.vercel.app/ '
 						target='_blank'
+						rel='noreferrer'
 					>
 						<MenuItem className={classes.menuItem}>
 							{' '}

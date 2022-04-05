@@ -4,6 +4,7 @@ import { IoSendSharp } from 'react-icons/io5';
 import { countries } from '../../../Utils/countries';
 import userService from '../../../Services/user';
 import { toast } from 'react-toastify';
+import Button from '@mui/material/Button';
 
 export default function EditUser({ user, setUser, setModal }) {
 	const [info, setInfo] = useState({
