@@ -19,7 +19,7 @@ export const supportMsgTemplate = (name) => {
           Sinceramente,
           </p>
           <p>
-          Everyone's Store 💙
+          Everyone's Store 💜
           </p>
       </body>
   </html>`;
