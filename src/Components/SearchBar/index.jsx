@@ -72,9 +72,10 @@ const SearchBar = () => {
 						navigate('/');
 					}
 				}}
+			
 				sx={{ width: 300 }}
 				renderInput={(params) => (
-					<TextField {...params} label={<SearchIcon />} />
+					<TextField {...params}  label='Search for products' variant='outlined'  />
 				)}
 			></Autocomplete>
 		</Search>

@@ -122,14 +122,14 @@ export default function Order() {
 				</div>
 			</div>
 			{!bought ? (
-				<Button
+				<button
 					className={style.btn_comprar}
 					onClick={() => initiateTransaction('prueba')}
 				>
 					Buy products
-				</Button>
+				</button>
 			) : (
-				<Button className={style.bought}>Processing purchase</Button>
+				<button className={style.bought}>Processing purchase</button>
 			)}
 			<Footer />
 		</div>

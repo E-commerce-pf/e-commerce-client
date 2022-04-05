@@ -8,9 +8,10 @@ import axios from 'axios';
 import './index.css';
 import { ThemeProvider } from '@mui/material/styles';
 import Themes from '../src/Components/themes';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, Paper } from '@material-ui/core';
 import { LayoutProvider } from '../src/Components/context/LayoutContext';
 import { UserProvider } from '../src/Components/context/UserContext';
+
 
 import { persistor, store } from './Redux/Store';
 import App from './App';
@@ -22,10 +23,12 @@ axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
 const root = document.getElementById('root');
 
 ReactDOM.render(
+	
 	<BrowserRouter>
 		<LayoutProvider>
 			<UserProvider>
 				<ThemeProvider theme={Themes.default}>
+				<Paper>
 					<CssBaseline />
 					<Auth0Provider
 						domain={AUTH0_DOMAIN}
@@ -38,6 +41,7 @@ ReactDOM.render(
 							</PersistGate>
 						</Provider>
 					</Auth0Provider>
+					</Paper>
 				</ThemeProvider>
 			</UserProvider>
 		</LayoutProvider>

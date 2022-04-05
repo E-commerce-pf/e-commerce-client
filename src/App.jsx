@@ -11,14 +11,16 @@ import Order from "./Pages/Order/Order";
 import ChatBot from "react-simple-chatbot";
 import { steps } from "./Services/chatBot";
 import { MyShopping } from "./Pages/clientInterface/miShopping/MyShopping";
+import { Paper } from "@mui/material";
 
 const App = () => {
   return (
-      <>
+      <Paper>
         <ChatBot
           steps={steps}
           floating={true}
           headerTitle={"ChatBot Everyones Store"}
+          
         />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -33,7 +35,7 @@ const App = () => {
           <Route path="*" element={<Home />} />
         </Routes>
         <ToastContainer />
-      </>
+      </Paper>
   );
 };
 

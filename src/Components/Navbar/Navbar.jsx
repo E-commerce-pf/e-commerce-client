@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { FaHeadphonesAlt } from 'react-icons/fa';
-import { HiOutlineLocationMarker } from 'react-icons/hi';
 import logoWhite from '../../Assets/Images/logoWhite.png';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from '../SearchBar';
@@ -17,6 +15,7 @@ import HeadphonesIcon from '@mui/icons-material/Headphones';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import categoriesService from '../../Services/category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+
 
 export const Navbar = ({ filter, state, setState, noCart }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -137,10 +136,14 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 						</Link>
 						<>
 							<SearchBar />
+					
 						</>
 
 						<Box sx={{ flexGrow: 1 }} />
 						<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+						<>
+						
+						</>
 							<>
 								<IconButton
 									onClick={() => setState(!state)}
@@ -169,7 +172,7 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 							</IconButton>
 							<IconButton
 								size='large'
-								aria-label='show 17 new notifications'
+								aria-label='show 11 new notifications'
 								color='inherit'
 							>
 								<Badge>{noCart !== true && <ShoppingBag />}</Badge>
