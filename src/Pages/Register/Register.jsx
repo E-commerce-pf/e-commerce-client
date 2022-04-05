@@ -92,7 +92,7 @@ const Register = () => {
     const { password2, email2, ...newUser } = userData;
     console.log(newUser);
 
-    if (!userData.country) return notifyError("Alto! aún no sabemos de que país eres");
+    if (!userData.country) return notifyError("Wait! We still don't know what your country is");
 
     await axios.post('/api/register', { ...userData })
       .then((res) => {
