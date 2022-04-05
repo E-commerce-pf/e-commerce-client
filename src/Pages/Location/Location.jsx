@@ -83,7 +83,7 @@ const Location = ({ storeLocations }) => {
           className={style.img_mapa} src={mapa} alt='mapa_local' />
           </div>
           <h2 className={style.title_cities}>Selling points</h2>
-          <p className={style.segundo_title}>Find our nearest branch</p>
+          <p className={style.segundo_title}>Find our nearest points of sale</p>
           {storesLocations &&
             storesLocations.map((location,index ) => (
            <div key={Math.random(index)}>

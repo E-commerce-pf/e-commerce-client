@@ -107,11 +107,11 @@ const Register = () => {
   return (
     <div className={style.containerGeneral}>
 
-    <div className={style.container}>
-      <div className={style.Cont}>
       <div className={style.Backdiv}>
         <Link className={style.Back} to="/login">Go Back</Link>
       </div>
+    <div className={style.container}>
+      <div className={style.Cont}>
       <ToastContainer />
       <form onSubmit={(e) => handlerSubmit(e)} className={style.formContainer} >
         <div>

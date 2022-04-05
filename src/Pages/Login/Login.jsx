@@ -117,14 +117,17 @@ const Login = () => {
           <IoIosArrowBack /> Back
         </button>
       </div>
+      <div className={styles.contenedor}>
+
       <div className={styles.cardLogin}>
         <div className={styles.login1}>
-          <h1>Login</h1>
-          <img src={everylogopf_gris} alt="logo" width="124px" height="78px" />
+          {/* <img src={everylogopf_gris} alt="logo" width="124px" height="78px" /> */}
+          <h1 className={styles.title2}>Log In</h1>
         </div>
         <form className={styles.login2} onSubmit={handlerSubmit}>
           <h4>Email</h4>
           <input
+            className={styles.titleInput}
             type="email"
             placeholder="example@example.com"
             id='email'
@@ -132,6 +135,7 @@ const Login = () => {
           />
           <h4>Password</h4>
           <input
+            className={styles.titleInput}
             type="password"
             placeholder="password"
             id='password'
@@ -152,6 +156,7 @@ const Login = () => {
             Sign in with GitHub
           </button>
         </div>
+      </div>
       </div>
     </div>
   );
