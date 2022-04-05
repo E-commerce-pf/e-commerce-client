@@ -2,6 +2,8 @@ import { Badge, Drawer } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setIdBagProducts } from "../../Redux/Actions/productsActions";
 import { getCart } from "../../Redux/Actions/userActions";
@@ -56,16 +58,16 @@ const ShoppingBag = () => {
   };
 
   return (
-    <div>
+    <>
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
         <CartShoppingBag cartItems={bagProducts} deleteCart={deleteCart} />
       </Drawer>
-      <IconButton onClick={() => setCartOpen(true)}>
+      <div onClick={() => setCartOpen(true)}>
         <Badge badgeContent={getTotalProducts(bagProducts)} color="error">
-          <ShoppingBagIcon className="bolsa" />
+          <ShoppingBagIcon />
         </Badge>
-      </IconButton>
-    </div>
+      </div>
+    </>
   );
 };
 
