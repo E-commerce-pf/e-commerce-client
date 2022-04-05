@@ -5,7 +5,7 @@ import Everylogopf from '../../../Assets/Images/Everylogopf.png';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../Redux/Actions/userActions';
-import { Menu, MenuItem, Modal, IconButton } from '@material-ui/core';
+import { Menu, MenuItem, Modal, } from '@material-ui/core';
 import EditUser from '../editUser/EditUser';
 import Fade from '@material-ui/core/Fade';
 import { ImHome } from 'react-icons/im';

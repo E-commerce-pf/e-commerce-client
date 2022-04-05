@@ -6,6 +6,7 @@ import { notifyError } from '../../Utils/notifications';
 import { addProductToCartDb } from '../../Utils/shoppingBag';
 import { newCartChange } from '../../Redux/Actions/productsActions';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 const CartShoppingBag = ({ cartItems, deleteCart }) => {
 	const user = useSelector((store) => store.userReducer.currentUser);
@@ -23,12 +24,13 @@ const CartShoppingBag = ({ cartItems, deleteCart }) => {
 	};
 	return (
 		<aside className={styled.container}>
-			<h1 className={styled.text_shop}>SHOPPING BAG</h1>
+			<Typography justifyContent="center" alignItems="center" variant="h5"
+			 >SHOPPING BAG</Typography>
 			{cartItems.length === 0 ? (
-				<div className={styled.text_shop}>
+				<Typography>
 					You don't have products in the cart
 					<FaRegFrownOpen />
-				</div>
+				</Typography>
 			) : null}
 			{cartItems.map((item) => (
 				<CardItem key={item.id} {...item} />
