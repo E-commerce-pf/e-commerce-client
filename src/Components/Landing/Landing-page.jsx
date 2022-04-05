@@ -11,7 +11,7 @@ const Landing = () => {
 
   const carouselRef = React.useRef(null);
   const totalPages= imagenes.length;
-  const resetTimeout= imagenes[0];
+  let resetTimeout= imagenes[0];
   const breakPoints = [
     { width: 100, itemsToShow: 1 },
     { width: 500, itemsToShow: 1 },
@@ -43,9 +43,10 @@ const Landing = () => {
             }
         }}
         >
-          {imagenes && imagenes.map((el)=>(
-
-          <img className="img-carrousel" src={el} alt="carousel1" />
+          {imagenes && imagenes.map((el,index)=>(
+            <div key={Math.random(index)}>
+              <img className="img-carrousel" src={el} alt="carousel1" />
+            </div>
           ))}
         </Carousel>
       </div>
