@@ -13,9 +13,10 @@ import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
-
+import HeadphonesIcon from '@mui/icons-material/Headphones';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import categoriesService from '../../Services/category';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export const Navbar = ({ filter, state, setState, noCart }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -57,10 +58,7 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 			}}
 			open={isMenuOpen}
 			onClose={handleMenuClose}
-		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
-		</Menu>
+		></Menu>
 	);
 
 	const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -80,24 +78,38 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
 		>
-			<MenuItem>
+			<MenuItem onClick={() => navigate('/login')}>
 				<IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-					<Badge >
-						<PersonIcon/>
+					<Badge>
+						<PersonIcon />
 					</Badge>
 				</IconButton>
 				<p>Profile</p>
 			</MenuItem>
 			<MenuItem>
-				<IconButton  size='large' aria-label='show 11 new notifications' color='inherit'>
-					<Badge >
-					{noCart!==true&&<ShoppingBag />}
-					</Badge>
+				<IconButton
+					size='large'
+					aria-label='show 11 new notifications'
+					color='inherit'
+				
+				>
+				{noCart !== true && <ShoppingBag />}
 				</IconButton>
-				<p>Shopping Bag</p>
+				<p>Shopping </p>
 			</MenuItem>
-			<MenuItem onClick={handleProfileMenuOpen}>
+			<MenuItem onClick={() => setState(!state)}>
+				<IconButton color='inherit' aria-label='open drawer'>
+					<HeadphonesIcon /> 
+				</IconButton>
+				<p>Support</p>
 			</MenuItem>
+			<MenuItem onClick={() => navigate('/location')}>
+				<IconButton color='inherit' aria-label='open drawer'>
+					<LocationOnIcon /> 
+				</IconButton>
+				<p>Location</p>
+			</MenuItem>
+			<MenuItem onClick={handleProfileMenuOpen}></MenuItem>
 		</Menu>
 	);
 
@@ -126,30 +138,32 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 						<>
 							<SearchBar />
 						</>
-						<>
-							<IconButton
-								onClick={() => setState(!state)}
-								color='inherit'
-								aria-label='open drawer'
-							>
-								<FaHeadphonesAlt /> Support
-							</IconButton>
-							<IconButton
-								color='inherit'
-								aria-label='open drawer'
-								onClick={() => navigate('/location')}
-							>
-								<HiOutlineLocationMarker /> Location
-							</IconButton>
-						</>
+
 						<Box sx={{ flexGrow: 1 }} />
 						<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+							<>
+								<IconButton
+									onClick={() => setState(!state)}
+									color='inherit'
+									aria-label='open drawer'
+								>
+									<HeadphonesIcon /> Support
+								</IconButton>
+								<IconButton
+									color='inherit'
+									aria-label='open drawer'
+									onClick={() => navigate('/location')}
+								>
+									<LocationOnIcon /> Location
+								</IconButton>
+							</>
 							<IconButton
+								onClick={() => navigate('/login')}
 								size='large'
 								aria-label='show 4 new mails'
 								color='inherit'
 							>
-								<Badge onClick={() => navigate('/login')}>
+								<Badge>
 									<PersonIcon />
 								</Badge>
 							</IconButton>
@@ -158,11 +172,8 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 								aria-label='show 17 new notifications'
 								color='inherit'
 							>
-								<Badge>
-								{noCart!==true&&<ShoppingBag />}
-								</Badge>
+								<Badge>{noCart !== true && <ShoppingBag />}</Badge>
 							</IconButton>
-						
 						</Box>
 						<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
 							<IconButton

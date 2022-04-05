@@ -3,7 +3,7 @@
   margin-top: 50px;
   margin-right: 10px;
 
-  button {
+  Button {
     font-size: 2em;
     background-color: rgba(8, 25, 119, 0.973);
     padding: 10px;
@@ -19,7 +19,7 @@
     transition: all ease-in 0.5s;
   }
 
-  button:hover {
+  Button:hover {
     background-color: rgba(217, 217, 224, 0.658);
     color: rgb(6, 6, 114);
     border-color: rgb(15, 15, 148);

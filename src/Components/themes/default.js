@@ -24,18 +24,30 @@ const defaultTheme = {
 		},
 		warning: {
 			main: warning,
-			light: tinycolor(warning).lighten(lightenRate).toHexString(),
-			dark: tinycolor(warning).darken(darkenRate).toHexString(),
+			light: tinycolor(warning)
+				.lighten(lightenRate)
+				.toHexString(),
+			dark: tinycolor(warning)
+				.darken(darkenRate)
+				.toHexString(),
 		},
 		success: {
 			main: success,
-			light: tinycolor(success).lighten(lightenRate).toHexString(),
-			dark: tinycolor(success).darken(darkenRate).toHexString(),
+			light: tinycolor(success)
+				.lighten(lightenRate)
+				.toHexString(),
+			dark: tinycolor(success)
+				.darken(darkenRate)
+				.toHexString(),
 		},
 		info: {
 			main: info,
-			light: tinycolor(info).lighten(lightenRate).toHexString(),
-			dark: tinycolor(info).darken(darkenRate).toHexString(),
+			light: tinycolor(info)
+				.lighten(lightenRate)
+				.toHexString(),
+			dark: tinycolor(info)
+				.darken(darkenRate)
+				.toHexString(),
 		},
 		text: {
 			primary: '#4A4A4A',
@@ -81,7 +93,7 @@ const defaultTheme = {
 					},
 				},
 			},
-			button: {
+			Button: {
 				'&:hover, &:focus': {
 					backgroundColor: '#F3F5FF',
 				},
