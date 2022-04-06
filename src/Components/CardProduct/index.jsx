@@ -80,7 +80,7 @@ const CardProduct = ({
           />
           <CardMedia
             component="img"
-            height="auto"
+            height="350px"
             image={image}
             alt="Main product image"
           />
