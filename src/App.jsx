@@ -13,6 +13,7 @@ import { steps } from "./Services/chatBot";
 import { Paper } from "@mui/material";
 import QuienesSomos from "./Components/QuienesSomos/QuienesSomos";
 import Unsubscribe from "./Pages/Unsubscribe";
+import Tecnologias from './Components/Tecnologias/Tecnologias'
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/products/:category" element={<ViewProducts />} />
         <Route path="/unsubscribe/:id" element={<Unsubscribe />} />
         <Route path="/quienessomos" element={<QuienesSomos />} />
+        <Route path="/tools" element={<Tecnologias/>} />
         <Route path="/order" element={<Order />} />
         <Route path="*" element={<Home />} />
       </Routes>
