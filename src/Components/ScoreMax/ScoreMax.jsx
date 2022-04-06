@@ -9,6 +9,10 @@ import "./Styles/ScoreMax.modules.css";
 export default function ScoreMax() {
   const dispatch = useDispatch();
   const review = useSelector((state) => state.reviewsScore.reviews);
+  const carouselRef = React.useRef(null);
+  const itemsPerPage=3;
+  const totalPages= Math.ceil(review.length/itemsPerPage)
+  let resetTimeout
 
   useEffect(() => {
     dispatch(getReview());
@@ -18,7 +22,7 @@ export default function ScoreMax() {
     { width: 100, itemsToShow: 1 },
     { width: 500, itemsToShow: 2 },
     { width: 1200, itemsToShow: 3 },
-    { width: 1500, itemsToShow: 4 },
+    { width: 1500, itemsToShow: 3 },
   ];
 
   return (
@@ -31,6 +35,17 @@ export default function ScoreMax() {
         autoPlaySpeed={1500}
         itemPadding={[10, 10]}
         focusOnSelect={false}
+        ref={carouselRef}
+        onNextEnd={({index})=>{
+          clearTimeout(resetTimeout)
+          if(index + 1 === totalPages){
+            resetTimeout=setTimeout(()=>{
+              carouselRef.current.goTo(0)
+            },1500)
+          }
+        }
+      }
+      itemsToShow={itemsPerPage}
       >
         {review && review.length !== 0 ? (
           review.map((item) => (
