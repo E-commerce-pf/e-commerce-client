@@ -36,7 +36,11 @@ export default function Unsubscribe() {
 
   return (
     <div className={style.container}>
-      <h1>Unsubscribe</h1>
+      <h1>We're sorry to see you go.</h1>
+      <h1>
+        Please click if you would like to be completely removed from us
+        subscriptions list.
+      </h1>
       <button onClick={handleOnClick}>Unsubscribe</button>
     </div>
   );
