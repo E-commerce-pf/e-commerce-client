@@ -63,7 +63,7 @@ export const ClientHome = () => {
 			<>
 				<div className={styles.titleLogin}>
 					<h1>You must login to see this interface</h1>
-					<button onClick={() => navigate('/login')} className='btn'>
+					<button onClick={() => navigate('/login')} className={styles.Client}>
 						To accept
 					</button>
 				</div>
