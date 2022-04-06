@@ -56,17 +56,21 @@ const productsReducer = (state = initialState, { type, payload }) => {
       };
     case GET_CART:
       let combined=[...payload,...state.bagProducts]
+      console.log(state.bagProducts)
       let newBagProducts=[];
       let i;
       combined.forEach(p=>{
         if(newBagProducts.find((j,index)=>{
           i=index
           return j.id===p.id
-        }))
-        newBagProducts[i]={...p,amount:combined[i].amount+p.amount}
+        })){
+          newBagProducts[i]={...p,amount:newBagProducts[i].amount+p.amount}
+        }
         else
         newBagProducts.push(p)
       })
+      console.log("yep",newBagProducts)
+      localStorage.setItem("shoppingBag", JSON.stringify(newBagProducts));
       return {
         ...state,
         bagProducts: newBagProducts.map(({ id, amount }) => {

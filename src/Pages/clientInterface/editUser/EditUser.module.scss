@@ -54,13 +54,13 @@
 .contSelect {
     display: flex;
     flex-direction: row;
-    gap: 3rem;
+    gap: .5rem;
 }
 
 
 .inputCity {
     height: 40px;
-    width: 100px;
+    width:100px;
     border: 1px solid white;
 
     :focus {

@@ -3,11 +3,9 @@ import Rating from 'react-rating';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import Styles from './ReviewUser.module.scss';
 import { IoSendSharp } from 'react-icons/io5';
-import userService from '../../../Services/user';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { PostReview } from '../../../Redux/Actions/userActions';
-import Button from '@mui/material/Button';
 
 export default function ReviewUser({ user, id, setModal }) {
 	const [review, setReview] = useState({
@@ -49,9 +47,9 @@ export default function ReviewUser({ user, id, setModal }) {
 					}}
 				/>
 			</span>
-			<Button className={Styles.btnEdit} onClick={handlePostReview}>
+			<button className={Styles.btnEdit} onClick={handlePostReview}>
 				Send <IoSendSharp className={Styles.emoticon} />
-			</Button>
+			</button>
 		</div>
 	);
 }

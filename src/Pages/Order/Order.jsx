@@ -13,7 +13,7 @@ export default function Order() {
 	const [bought, setBought] = useState(false);
 	const initiateTransaction = (description) => {
 		setBought(!bought);
-		createTransaction(user.userId, description);
+		createTransaction(user.userId, description,direction);
 	};
 	const [direction, setDirection] = useState({
 		country: '',
@@ -121,7 +121,7 @@ export default function Order() {
 					</div>
 				</div>
 			</div>
-			{!bought ? (
+			{!cart.length?<button className={style.bought}>Empty car</button>:!bought ? (
 				<button
 					className={style.btn_comprar}
 					onClick={() => initiateTransaction('prueba')}

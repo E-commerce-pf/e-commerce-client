@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../Redux/Actions/userActions';
+import { getCart, getUser } from '../../Redux/Actions/userActions';
 import { Link, useNavigate } from 'react-router-dom';
 import everylogopf_gris from '../../Assets/Images/Everylogopf_gris.png';
 import { IoIosArrowBack } from 'react-icons/io';
@@ -54,7 +54,7 @@ const Login = () => {
 				.then((res) => {
 					notifySuccess(res.data.success);
 					dispatch(getUser(res.data.user));
-
+						dispatch(getCart(res.data.user.userId));
 					setTimeout(() => {
 						navigate('/viewClient');
 					}, 3500);
@@ -82,7 +82,7 @@ const Login = () => {
 					.then((res) => {
 						notifySuccess(res.data.success);
 						dispatch(getUser(res.data.user));
-
+							dispatch(getCart(res.data.user.userId));
 						setTimeout(() => {
 							navigate('/viewClient');
 						}, 3500);
@@ -105,61 +105,61 @@ const Login = () => {
 			.post('/api/user/login', { email, password, isAdmin: false })
 			.then((res) => {
 				dispatch(getUser(res.data.user));
+					dispatch(getCart(res.data.user.userId));
 				navigate('/viewClient');
 				notifySuccess(`Welcome ${res.data.user.name}`);
 			})
 			.catch((err) => notifyError(err.response.data.error));
 	};
 
-  return (
-    <div className={styles.containerLogin}>
-      <div className={styles.cardButton}>
-        <button onClick={() => navigate("/")} className={styles.btnLogin}>
-          <IoIosArrowBack /> Back
-        </button>
-      </div>
-      <div className={styles.contenedor}>
-
-      <div className={styles.cardLogin}>
-        <div className={styles.login1}>
-          {/* <img src={everylogopf_gris} alt="logo" width="124px" height="78px" /> */}
-          <h1 className={styles.title2}>Log In</h1>
-        </div>
-        <form className={styles.login2} onSubmit={handlerSubmit}>
-          <h4>Email</h4>
-          <input
-            className={styles.titleInput}
-            type="email"
-            placeholder="example@example.com"
-            id='email'
-            autoComplete="off"
-          />
-          <h4>Password</h4>
-          <input
-            className={styles.titleInput}
-            type="password"
-            placeholder="password"
-            id='password'
-          />
-          <button>Sign in</button>
-          <Link to="/register" className={styles.link}>
-          You still don't have an account? Create new account
-          </Link>
-        </form>
-        <div className={styles.login3}>
-          <button onClick={signInGoogle}>
-            {" "}
-            <FcGoogle className={styles.span} />
-            Sign in with Google
-          </button>
-          <button onClick={signInGitHub}>
-            <BsGithub className={styles.span} />
-            Sign in with GitHub
-          </button>
-        </div>
-      </div>
-      </div>
-    </div>
-  );
+	return (
+		<div className={styles.containerLogin}>
+			<div className={styles.cardButton}>
+				<button onClick={() => navigate("/")} className={styles.btnLogin}>
+					<IoIosArrowBack /> Back
+				</button>
+			</div>
+			<div className={styles.contenedor}>
+				<div className={styles.cardLogin}>
+					<div className={styles.login1}>
+						{/* <img src={everylogopf_gris} alt="logo" width="124px" height="78px" /> */}
+						<h1 className={styles.title2}>Log In</h1>
+					</div>
+					<form className={styles.login2} onSubmit={handlerSubmit}>
+						<h4>Email</h4>
+						<input
+							className={styles.titleInput}
+							type="email"
+							placeholder="example@example.com"
+							id='email'
+							autoComplete="off"
+						/>
+						<h4>Password</h4>
+						<input
+							className={styles.titleInput}
+							type="password"
+							placeholder="password"
+							id='password'
+						/>
+						<button>Sign in</button>
+						<Link to="/register" className={styles.link}>
+							You still don't have an account? Create new account
+						</Link>
+					</form>
+					<div className={styles.login3}>
+						<button onClick={signInGoogle}>
+							{" "}
+							<FcGoogle className={styles.span} />
+							Sign in with Google
+						</button>
+						<button onClick={signInGitHub}>
+							<BsGithub className={styles.span} />
+							Sign in with GitHub
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 export default Login;
