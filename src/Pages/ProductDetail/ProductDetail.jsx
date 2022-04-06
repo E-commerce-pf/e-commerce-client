@@ -115,7 +115,7 @@ export const ProductDetail = () => {
                     margin: "1rem auto",
                   }}
                 >
-                  {r.comment[0].toUpperCase() + r.comment.slice(1)}
+                  {r.comment}
                 </p>
               </div>
             ))
