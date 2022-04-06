@@ -12,30 +12,31 @@ import ChatBot from "react-simple-chatbot";
 import { steps } from "./Services/chatBot";
 import { MyShopping } from "./Pages/clientInterface/miShopping/MyShopping";
 import { Paper } from "@mui/material";
+import Unsubscribe from "./Pages/Unsubscribe";
 
 const App = () => {
   return (
-      <Paper>
-        <ChatBot
-          steps={steps}
-          floating={true}
-          headerTitle={"ChatBot Everyones Store"}
-          
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/productDetail/:productId" element={<ProductDetail />} />
-          <Route path="/viewClient" element={<ClientHome />} />
-          <Route path="/viewClient/myShopping" element={<MyShopping />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/products/:category" element={<ViewProducts />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-        <ToastContainer />
-      </Paper>
+    <Paper>
+      <ChatBot
+        steps={steps}
+        floating={true}
+        headerTitle={"ChatBot Everyones Store"}
+      />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/productDetail/:productId" element={<ProductDetail />} />
+        <Route path="/viewClient" element={<ClientHome />} />
+        <Route path="/viewClient/myShopping" element={<MyShopping />} />
+        <Route path="/location" element={<Location />} />
+        <Route path="/products/:category" element={<ViewProducts />} />
+        <Route path="/unsubscribe/:id" element={<Unsubscribe />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+      <ToastContainer />
+    </Paper>
   );
 };
 

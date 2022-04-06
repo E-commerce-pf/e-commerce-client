@@ -94,7 +94,7 @@ export const unsubscribe = () => {
       <main>
         <h1>Hello 👋🏼</h1>
         <p>
-          You have Unsubscribe to our newsletter!.
+          You have been unsubscribed to our newsletter!.
         </p>
         <div>
           <img src="https://i.ibb.co/b5NkjVL/Everylogopf.png" alt="Everylogopf" />

@@ -46,14 +46,13 @@ export const Home = () => {
       dispatch(setAllProducts(res));
     });
 
-    /*
+    
     if (!currentUser) {
       setTimeout(() => {
         setOpen(true);
       }, 3000);
     }
-    */
-    setOpen(true);
+    
   }, [dispatch, currentUser]);
 
   if (!products) return <Loading />;
@@ -69,7 +68,7 @@ export const Home = () => {
         padding: 20,
       }}
     >
-      <Newletter />
+      <Newletter setOpen={setOpen} />
     </div>
   );
 

@@ -1,32 +1,44 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 import style from "./Newletter.module.scss";
 import newletterService from "../../Services/newletter";
 import { validateEmail } from "../../Utils/isEmail";
 import { sendEmail } from "../../Services/sendEmail";
-import Swal from "sweetalert2";
+import { subscribe } from "../../Templates/newletterSubscribe";
 
-export default function Newletter() {
+export default function Newletter({ setOpen }) {
   const [email, setEmail] = useState("");
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (validateEmail(email)) {
-      newletterService.registerToNewletter(email).then((data) => {
-        sendEmail({
-          email: email,
-          templete: `<h1>${data.id}</h1>`,
-          name: "Newsletter",
-        }).then(() => {
+      newletterService
+        .registerToNewletter(email)
+        .then((data) => {
+          sendEmail({
+            email: email,
+            template: subscribe(data.id),
+            name: "Newsletter",
+          }).then(() => {
+            Swal.fire({
+              title: "Success",
+              text: "You have been subscribed to our newsletter",
+              icon: "success",
+              confirmButtonText: "Cool",
+            });
+          });
+        })
+        .catch(() => {
           Swal.fire({
-            title: "Success",
-            text: "You have been subscribed to our newsletter",
-            icon: "success",
+            title: "Error",
+            text: "Email already exists",
+            icon: "error",
             confirmButtonText: "Cool",
           });
         });
-      });
       setEmail("");
+      setOpen(false);
     } else {
       Swal.fire({
         title: "Error",
