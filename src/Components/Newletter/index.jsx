@@ -64,7 +64,14 @@ export default function Newletter({ setOpen }) {
         />
         <button type="submit">Subscribe</button>
       </form>
-      <button onClick={dispatch(SetEmail(" "))}>Don't show again</button>
+      <button
+        onClick={() => {
+          dispatch(SetEmail(" "));
+          setOpen(false);
+        }}
+      >
+        Don't show again
+      </button>
     </div>
   );
 }
