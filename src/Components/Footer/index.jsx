@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className={styled.container}>
       <div className={styled.footerContent}>
         <div>
-          <h3>About</h3>
+          <h3>Know us</h3>
           <ul>
 
             <li>
@@ -18,17 +18,21 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h3>Terms and conditions</h3>
+          <h3>We use this tools</h3>
           <ul>
-            <li>About us</li>
+            <li>
+            <Link className={styled.Linkk} to="/tools" >
+             Tools
+           </Link>
+            </li>
           </ul>
         </div>
-        <div>
+        {/* <div>
           <h3>Help / FAQ</h3>
           <ul>
             <li>About us</li>
           </ul>
-        </div>
+        </div> */}
       </div>
       <div className={styled.footer}>
         <img src={Logo} alt="Logo Everyone's Store" />
