@@ -44,7 +44,7 @@ export const ClientHome = () => {
 	};
 
 	useEffect(() => {
-		if (currentUser.userId) {
+		if (currentUser !== null) {
 			userService
 				.getUser(currentUser.userId)
 				.then((res) => {
@@ -58,14 +58,14 @@ export const ClientHome = () => {
 		}
 	}, [navigate, dispatch]);
 
-	if (currentUser === null) {
+	if (currentUser=== null) {
 		return (
 			<>
-				<div className='title_login'>
+				<div className={styles.titleLogin}>
 					<h1>You must login to see this interface</h1>
-					<Button onClick={() => navigate('/')} className='btn'>
+					<button onClick={() => navigate('/login')} className='btn'>
 						To accept
-					</Button>
+					</button>
 				</div>
 			</>
 		);
