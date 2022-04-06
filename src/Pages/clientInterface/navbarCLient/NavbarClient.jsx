@@ -66,11 +66,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const NavbarClient = ({ user, setUser }) => {
-	const [anchorEl, setAnchorEl] = useState(null);
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const [modal, setModal] = useState(false);
 	const dispatch = useDispatch();
+	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const cartChange = useSelector((store) => store.productsReducer.cartChange);
 	const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
