@@ -5,7 +5,7 @@
     justify-content: center;
     font-family: 'ABeeZee';
     color:white;
-    gap: 2rem;
+    gap: 1.2rem;
     h2{
         font-size: 30px;
         padding: 0;
@@ -16,6 +16,11 @@
         font-size: 20px;
     }
 }
+
+.review__title {
+    padding: 0.5rem;
+}
+
 .textare{
     height: 100px;
     width: 300px;
