@@ -17,6 +17,7 @@ const Landing = () => {
 		{ width: 1200, itemsToShow: 1 },
 		{ width: 1500, itemsToShow: 1 },
 	];
+	
 	return (
 		<div>
 			<div className='container-carrusel'>

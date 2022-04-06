@@ -213,13 +213,14 @@ const Login = () => {
 		//   </div>
 		// </div>
 		<ThemeProvider theme={Themes.default}>
+				<Button onClick={() => navigate("/")} variant='contained' color='primary'>
+		<IoIosArrowBack /> Back
+		    </Button>
 			<Container component='main' maxWidth='sm'>
 		
 				<CssBaseline />
 				<div className={classes.paper}>
-				<Button onClick={() => navigate("/")} variant='contained' color='primary' className={classes.button}>
-		<IoIosArrowBack /> Back
-		    </Button>
+		
 					<Grid>
 						<Grid item xs={9}>
 							<img src={Everylogopf} alt='logo' width='90px' height='78px' />
