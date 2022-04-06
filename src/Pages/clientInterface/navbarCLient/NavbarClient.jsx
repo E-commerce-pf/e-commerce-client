@@ -126,7 +126,7 @@ export const NavbarClient = ({ user, setUser }) => {
 					TransitionComponent={Fade}
 				>
 					<h2 className={classes.title}>
-						<FaUserCircle className={classes.emoticon} /> {user.name}{' '}
+						<FaUserCircle className={classes.emoticon} /> {user.name} {' '}
 						{user.lastName}
 					</h2>
 
@@ -137,18 +137,6 @@ export const NavbarClient = ({ user, setUser }) => {
 						</MenuItem>
 					</Link>
 
-					<Link to='/viewClient/myShopping'>
-						<MenuItem className={classes.menuItem}>
-							<AiTwotoneShopping className={classes.emoticon} />
-							My shopping
-						</MenuItem>
-					</Link>
-					<Link to='/viewClient'>
-						<MenuItem className={classes.menuItem}>
-							<MdOutlineReviews className={classes.emoticon} />
-							Reviews and favorites
-						</MenuItem>
-					</Link>
 					<MenuItem
 						className={classes.menuItem}
 						onClick={() => openCloseModal()}

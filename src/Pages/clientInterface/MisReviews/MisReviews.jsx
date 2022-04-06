@@ -15,9 +15,10 @@ export const MisReviews = ({ userId }) => {
     useEffect(() => {
         dispatch(reviewUserId(userId))
     }, [dispatch, userId])
+    console.log(reviewsUser);
     return (
         <>
-            {reviewsUser !== null ?
+            {reviewsUser !== null && reviewsUser.length >= 1 ?
                 reviewsUser.map((e) => (
                     <div className={styles.containerR} key={e.ProductId}>
                         <div className={styles.containerProd}>
@@ -36,9 +37,8 @@ export const MisReviews = ({ userId }) => {
                         </div>
                     </div>
 
-                )) :
-                <div>
-                    <Loading />
+                )) : <div className={styles.NohayFav}>
+                    <h2>There are no reviews. </h2>
                 </div>
             }
         </>

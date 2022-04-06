@@ -16,8 +16,10 @@ import SegPresentacion from "../../Components/Seg_Presentacion/SegPresentacion";
 import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 import { motion } from "framer-motion";
-import Presentation from "../../Components/Presentation/Presentation";
-const cardVariants = {
+import Presentation from '../../Components/Presentation/Presentation'
+import { useLocation } from "react-router-dom";
+import { removeToLocalStorageIds } from "../../Utils/shoppingBag";
+const cardVariants= {
   offscreen: {
     x: 400,
   },
@@ -41,6 +43,10 @@ export const Home = () => {
 
   const [open, setOpen] = useState(false);
 
+  const {search}=useLocation();
+  const queryParam=new URLSearchParams(search).get("success");
+  if(queryParam)
+  removeToLocalStorageIds();
   useEffect(() => {
     productsService.getAllProducts().then((res) => {
       dispatch(setAllProducts(res));
