@@ -20,8 +20,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import LockIcon from '@mui/icons-material/Lock';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
-
 import Everylogopf from '../../Assets/Images/Everylogopf.svg';
+import {ThemeProvider} from '@material-ui/styles';
+import Themes from '../../../src/Components/themes';
 
 //COMPONENTES
 import {
@@ -58,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 	form: {
 		width: '100%', // Fix IE 11 issue.
 		marginTop: theme.spacing(1),
+		
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
@@ -210,7 +212,7 @@ const Login = () => {
 		//   </div>
 		//   </div>
 		// </div>
-		<>
+		<ThemeProvider theme={Themes.default}>
 			<Container component='main' maxWidth='sm'>
 		
 				<CssBaseline />
@@ -297,7 +299,7 @@ const Login = () => {
 									type='submit'
 									fullWidth
 									variant='contained'
-									color='secondary'
+									color='inherit'
 									className={classes.submit}
 									m={0}
 								>
@@ -351,7 +353,7 @@ const Login = () => {
 					</form>
 				</div>
 			</Container>
-		</>
+		</ThemeProvider>
 	);
 };
 export default Login;
