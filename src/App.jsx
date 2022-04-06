@@ -11,6 +11,7 @@ import Order from "./Pages/Order/Order";
 import ChatBot from "react-simple-chatbot";
 import { steps } from "./Services/chatBot";
 import { Paper } from "@mui/material";
+import QuienesSomos from './Components/QuienesSomos/QuienesSomos'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/location" element={<Location />} />
           <Route path="/products/:category" element={<ViewProducts />} />
           <Route path="/order" element={<Order />} />
+          <Route path="/quienessomos" element={<QuienesSomos />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <ToastContainer />
