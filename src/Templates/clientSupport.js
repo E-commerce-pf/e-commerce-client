@@ -8,15 +8,15 @@ export const supportMsgTemplate = (name) => {
           <title>Email template</title>
       </head>
       <body>
-          <h3>Hola ${name} 👋🏼</h3>
+          <h3>Hi ${name} 👋🏼</h3>
           <p>
-              ¡Muchas gracias por contactarnos! Solo confirmamos que hemos recibido tu solicitud de más información y nos comunicaremos contigo dentro de las 24 horas con una respuesta más completa.
+            Thank you for contacting us! We only confirmed that we have received your request for more information and we will contact you within 24 hours with a more complete answer..
           </p>
           <p>
-          Si necesitas asistencia inmediata, no dudes en llamarnos al +54 9 2920 36-2448 📱
+          If you need immediate assistance, do not hesitate to call us at +54 9 2920 36-2448 📱
           </p>
-              <p>
-          Sinceramente,
+          <p>
+          best regards,
           </p>
           <p>
           Everyone's Store 💜
