@@ -4,6 +4,7 @@ import { Modal } from "@mui/material";
 import Landing from "../../Components/Landing/Landing-page";
 import Footer from "../../Components/Footer";
 import Loading from "../../Components/Loading";
+import Newletter from "../../Components/Newletter";
 
 import styles from "./Home.module.css";
 import { Navbar } from "../../Components/Navbar/Navbar";
@@ -45,25 +46,30 @@ export const Home = () => {
       dispatch(setAllProducts(res));
     });
 
+    /*
     if (!currentUser) {
       setTimeout(() => {
         setOpen(true);
       }, 3000);
     }
+    */
+    setOpen(true);
   }, [dispatch, currentUser]);
 
   if (!products) return <Loading />;
 
   const newletter = (
-    <div 
+    <div
       style={{
         position: "absolute",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
+        backgroundColor: "rgba(218, 218, 230, 0.904)",
+        padding: 20,
       }}
     >
-      <h1>¡Suscribete a nuestro newsletter!</h1>
+      <Newletter />
     </div>
   );
 
