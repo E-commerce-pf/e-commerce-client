@@ -38,6 +38,7 @@ export const Home = () => {
   const [toggle, setToggle] = useState(false);
   const products = useSelector((state) => state.productsReducer.allProducts);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
+  const email = useSelector((state) => state.reducerNewletter.email);
 
   const dispatch = useDispatch();
 
@@ -53,13 +54,13 @@ export const Home = () => {
     });
 
     
-    if (!currentUser) {
+    if (!currentUser && !email) {
       setTimeout(() => {
         setOpen(true);
       }, 3000);
     }
     
-  }, [dispatch, currentUser]);
+  }, [dispatch, currentUser, email]);
 
   if (!products) return <Loading />;
 

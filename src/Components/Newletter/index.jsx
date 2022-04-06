@@ -6,9 +6,12 @@ import newletterService from "../../Services/newletter";
 import { validateEmail } from "../../Utils/isEmail";
 import { sendEmail } from "../../Services/sendEmail";
 import { subscribe } from "../../Templates/newletterSubscribe";
+import { useDispatch } from "react-redux";
+import { SetEmail } from "../../Redux/Actions/actionNewletter";
 
 export default function Newletter({ setOpen }) {
   const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +30,7 @@ export default function Newletter({ setOpen }) {
               icon: "success",
               confirmButtonText: "Cool",
             });
+            dispatch(SetEmail(email));
           });
         })
         .catch(() => {
@@ -60,6 +64,14 @@ export default function Newletter({ setOpen }) {
         />
         <button type="submit">Subscribe</button>
       </form>
+      <button
+        onClick={() => {
+          dispatch(SetEmail(" "));
+          setOpen(false);
+        }}
+      >
+        Don't show again
+      </button>
     </div>
   );
 }
