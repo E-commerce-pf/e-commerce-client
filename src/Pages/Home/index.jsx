@@ -15,6 +15,8 @@ import productsService from "../../Services/products";
 import { setAllProducts } from "../../Redux/Actions/productsActions";
 import { motion } from "framer-motion";
 import Presentation from '../../Components/Presentation/Presentation'
+import { useLocation } from "react-router-dom";
+import { removeToLocalStorageIds } from "../../Utils/shoppingBag";
 const cardVariants= {
   offscreen: {
     x: 400
@@ -35,7 +37,10 @@ export const Home = () => {
   const products = useSelector((state) => state.productsReducer.allProducts);
 
   const dispatch = useDispatch();
-
+  const {search}=useLocation();
+  const queryParam=new URLSearchParams(search).get("success");
+  if(queryParam)
+  removeToLocalStorageIds();
   useEffect(() => {
     productsService.getAllProducts().then((res) => {
       dispatch(setAllProducts(res));
