@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import styles from './ProductComplete.module.css';
+import styles from './MisProductos.module.css';
 import { useNavigate } from 'react-router-dom';
 import { Modal } from '@material-ui/core';
-import ReviewUser from '../../reviewUser/ReviewUser';
+import ReviewUser from '../reviewUser/ReviewUser';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@mui/material/Button';
 
 const useStyles = makeStyles((theme) => ({
 	modal: {
 		position: 'absolute',
-		height: '300px',
+		height: '350px',
 		width: '600px',
 		borderRadius: '5px',
 		backgroundColor: '#23263B',
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ProductComplete = ({ Transactions, user }) => {
+export const MisProductos = ({ Transactions, user }) => {
 	const navigate = useNavigate();
 	const classes = useStyles();
 	const [modal, setModal] = useState(false);
@@ -39,12 +39,12 @@ export const ProductComplete = ({ Transactions, user }) => {
 	const handleId = (id) => {
 		setId(id);
 	};
-
+	console.log(Transactions);
 	return (
 		<>
 			<div className={styles.containerProd}>
 				<div className={styles.containerProdInd}>
-					{Transactions ? (
+					{Transactions && Transactions.length >= 1 ? (
 						Transactions.map(
 							(e) =>
 								e.state === 'complete' &&
@@ -64,7 +64,7 @@ export const ProductComplete = ({ Transactions, user }) => {
 												Descripcion:{e.product.description}
 											</h3>
 
-											<Button
+											<button
 												onClick={() => {
 													handleId(e.product.id);
 													openCloseModal();
@@ -72,7 +72,7 @@ export const ProductComplete = ({ Transactions, user }) => {
 												className={styles.btnSend}
 											>
 												Create review
-											</Button>
+											</button>
 										</div>
 									) : (
 										<h2 className={styles.title}>
@@ -82,9 +82,10 @@ export const ProductComplete = ({ Transactions, user }) => {
 								)
 						)
 					) : (
-						<h1 className={styles.parrafo}>No hay productos aun</h1>
+						<div className={styles.NohayFav}>
+							<h2>You have no products added </h2>
+						</div>
 					)}
-					<div></div>
 					<Modal open={modal} onClose={openCloseModal}>
 						{body}
 					</Modal>

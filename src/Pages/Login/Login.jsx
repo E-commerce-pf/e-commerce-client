@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
+import { getCart, getUser } from '../../Redux/Actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../Redux/Actions/userActions';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import styles from './Login.module.scss';
@@ -103,7 +103,7 @@ const Login = () => {
 				.then((res) => {
 					notifySuccess(res.data.success);
 					dispatch(getUser(res.data.user));
-
+						dispatch(getCart(res.data.user.userId));
 					setTimeout(() => {
 						navigate('/viewClient');
 					}, 3500);
@@ -131,7 +131,7 @@ const Login = () => {
 					.then((res) => {
 						notifySuccess(res.data.success);
 						dispatch(getUser(res.data.user));
-
+							dispatch(getCart(res.data.user.userId));
 						setTimeout(() => {
 							navigate('/viewClient');
 						}, 3500);
@@ -154,6 +154,7 @@ const Login = () => {
 			.post('/api/user/login', { email, password, isAdmin: false })
 			.then((res) => {
 				dispatch(getUser(res.data.user));
+					dispatch(getCart(res.data.user.userId));
 				navigate('/viewClient');
 				notifySuccess(`Welcome ${res.data.user.name}`);
 			})

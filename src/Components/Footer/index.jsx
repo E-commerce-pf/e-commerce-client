@@ -1,5 +1,6 @@
 import Logo from "../../Assets/Images/logo.png";
 import styled from "./Footer.module.scss";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -8,7 +9,12 @@ const Footer = () => {
         <div>
           <h3>About</h3>
           <ul>
-            <li>About us</li>
+
+            <li>
+            <Link className={styled.Linkk} to="/quienessomos" >
+             About us
+           </Link>
+            </li>
           </ul>
         </div>
         <div>
