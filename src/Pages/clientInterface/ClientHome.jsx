@@ -47,7 +47,6 @@ export const ClientHome = () => {
 	let [info,setInfo]=useState({
 		password:'',
 		password2:'',
-		loginWithSocial: false
 	});
 	
 	const openReview = () => {
@@ -67,7 +66,7 @@ export const ClientHome = () => {
 		setMisReviews(false);
 		setMisProductos(false);
 	};
-
+	console.log(user);
 	useEffect(() => {
 		if (currentUser !== null) {
 			userService
@@ -92,20 +91,19 @@ export const ClientHome = () => {
 
 	const handlePut = () => {
 		if(password!==password2){
-			return toast.error('Las contraseñas no coinciden');
+			return toast.error('Passwords do not match');
 		}
 		else if(password.length<6){
-			return toast.error('La contraseña debe tener al menos 6 caracteres');
+			return toast.error('The password must be at least 6 characters');
 		}
 		else if(password==='' && password2===''){
-			return toast.error('No se puede dejar campos vacios');
+			return toast.error('Fields cannot be left empty.');
 		}
 		info={
 			password,
-			loginWithSocial
 		}
 		userService.editUser(user.id, info)
-		toast.success('Contraseña actualizada');
+		toast.success('Updated password');
 		setTimeout(() => {
 			setModal(false);
 		}, 1000);

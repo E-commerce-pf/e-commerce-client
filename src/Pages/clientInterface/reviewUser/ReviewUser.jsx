@@ -48,16 +48,16 @@ export default function ReviewUser({ user, id, setModal }) {
           setReview({ ...review, comment: e.target.value });
         }}
       />
-      <span  className={Styles.rating}>
+      <span className={Styles.rating}>
         Score:{" "}
         <Rating name="simple-controlled"
-       
-        value={review.score} 
-        Controlled 
-        onChange={(e,value) => {
-          setReview({ ...review, score: value });
-        }}/>
-  
+
+          value={review.score}
+          Controlled
+          onChange={(e, value) => {
+            setReview({ ...review, score: value });
+          }} />
+
         {/* <Rating
           emptySymbol={<AiOutlineStar />}
           fullSymbol={<AiFillStar />}
