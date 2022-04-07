@@ -27,11 +27,11 @@ export default function ViewProducts() {
 		(state) => state.productsReducer.produtsFilter
 	);
 
-	useEffect(() => {
+	/*useEffect(() => {
 		productsService.getAllProducts().then((products) => {
 			return dispatch(setAllProducts(products));
 		});
-	}, [dispatch]);
+	}, [dispatch]);*/
 
 	if (!productsFilter) {
 		return <Loading />;
