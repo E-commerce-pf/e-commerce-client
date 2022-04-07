@@ -48,13 +48,19 @@ export default function ViewProducts() {
 	return (
 		<div className={style.container}>
 			<Navbar />
+			<div className={style.filter}>
 			<Filter category={category} />
+			</div>
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<Order />
-				<div>
+				
+				<Order className={style.order} />
+			
+				<div className={style.productsB}>
+					<div className={style.products}>
 					<CardsProducts
 						products={paginate(productsFilter, page, elementsPerPage)}
 					/>
+					</div>
 					<div className={style.paginate}>
 						<Button onClick={previous}>Previous</Button>
 						<Button onClick={next}>Next</Button>
