@@ -23,7 +23,6 @@ import { motion } from "framer-motion";
 
 const Tools=[
     {name:js, link:'https://www.javascript.com/',description:'Javascript'},
-    {name:auth0, link:'https://auth0.com/es',description:'Auth0'},
     {name:css, link:'#',description:'CSS3'},
     {name:express, link:'https://expressjs.com/es/',description:'Express Js'},
     {name:firebase, link:'https://firebase.google.com/?hl=es-419',description:'Firebase'},
