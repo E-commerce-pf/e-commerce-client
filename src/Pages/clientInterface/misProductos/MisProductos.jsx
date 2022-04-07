@@ -36,7 +36,7 @@ export const MisProductos = ({ Transactions, user }) => {
 		setModal(!modal);
 	};
 	const handleId = (id) => {
-		setId(id);
+		setId(id);	
 	};
 	return (
 		<>
@@ -69,7 +69,7 @@ export const MisProductos = ({ Transactions, user }) => {
 												}}
 												className={styles.btnSend}
 											>
-												Create review
+												Create or edit Review
 											</button>
 										</div>
 									) : (
