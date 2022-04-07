@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Rating from "react-rating";
+// import Rating from "react-rating";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import Styles from "./ReviewUser.module.scss";
 import { IoSendSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { PostReview } from "../../../Redux/Actions/userActions";
+import Rating from "@mui/material/Rating";
 
 export default function ReviewUser({ user, id, setModal }) {
   const [review, setReview] = useState({
@@ -47,15 +48,23 @@ export default function ReviewUser({ user, id, setModal }) {
           setReview({ ...review, comment: e.target.value });
         }}
       />
-      <span>
+      <span  className={Styles.rating}>
         Score:{" "}
-        <Rating
+        <Rating name="simple-controlled"
+       
+        value={review.score} 
+        Controlled 
+        onChange={(e,value) => {
+          setReview({ ...review, score: value });
+        }}/>
+  
+        {/* <Rating
           emptySymbol={<AiOutlineStar />}
           fullSymbol={<AiFillStar />}
           onChange={(value) => {
             setReview({ ...review, score: value });
           }}
-        />
+        /> */}
       </span>
       <button className={Styles.btnEdit} onClick={handlePostReview}>
         Send <IoSendSharp className={Styles.emoticon} />
