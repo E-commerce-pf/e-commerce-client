@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const CardsProducts = ({ products, classes }) => {
 	const bagProducts = useSelector((store) => store.productsReducer.bagProducts);
 	if (products.length === 0) {
-		return <h1>No se encontraron productos...</h1>;
+		return <h1>Not find products...</h1>;
 	}
 	return (
 		<Container sx={{ py: 8 }}>
