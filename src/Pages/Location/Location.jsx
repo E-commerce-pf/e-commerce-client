@@ -38,6 +38,7 @@ const cardVariants= {
 
 const LocationMarker = () => {
   const [position, setPosition] = useState(null);
+  
   const map = useMapEvents({
     click() {
       map.locate();
@@ -49,7 +50,7 @@ const LocationMarker = () => {
   });
 
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker  position={position}>
       <Popup>You are here</Popup>
     </Marker>
   );
