@@ -15,9 +15,12 @@ import HeadphonesIcon from '@mui/icons-material/Headphones';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import categoriesService from '../../Services/category';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import { useSelector } from 'react-redux';
+import Typography from '@mui/material/Typography';
 
 export const Navbar = ({ filter, state, setState, noCart }) => {
+	const user = useSelector((state) => state.userReducer.currentUser);
+	console.log(user);
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -90,21 +93,20 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 					size='large'
 					aria-label='show 11 new notifications'
 					color='inherit'
-				
 				>
-				{noCart !== true && <ShoppingBag />}
+					{noCart !== true && <ShoppingBag />}
 				</IconButton>
 				<p>Shopping </p>
 			</MenuItem>
 			<MenuItem onClick={() => setState(!state)}>
 				<IconButton color='inherit' aria-label='open drawer'>
-					<HeadphonesIcon /> 
+					<HeadphonesIcon />
 				</IconButton>
 				<p>Support</p>
 			</MenuItem>
 			<MenuItem onClick={() => navigate('/location')}>
 				<IconButton color='inherit' aria-label='open drawer'>
-					<LocationOnIcon /> 
+					<LocationOnIcon />
 				</IconButton>
 				<p>Location</p>
 			</MenuItem>
@@ -127,8 +129,9 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 	};
 
 	return (
+
 		<>
-			<Box sx={{ flexGrow: 1 }}>
+		<Box sx={{ flexGrow: 1 }}>
 				<AppBar position='static'>
 					<Toolbar>
 						<Link to='/'>
@@ -136,15 +139,16 @@ export const Navbar = ({ filter, state, setState, noCart }) => {
 						</Link>
 						<>
 							<SearchBar />
-					
 						</>
-
+					
+						<Typography variant='h4' noWrap justifyContent='center'>
+							{user ? `Welcome  ${user.name}😁! ` : 'Welcome to our store !'}
+						</Typography>
 						<Box sx={{ flexGrow: 1 }} />
 						<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-						<>
-						
-						</>
 							<>
+							
+
 								<IconButton
 									onClick={() => setState(!state)}
 									color='inherit'
